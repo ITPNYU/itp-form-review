@@ -9,14 +9,55 @@
  * License: GPLv3
  */
 
-add_action('admin_menu', 'formReviewMenu');
+register_activation_hook( __FILE__, 'ifr_setup');
 
-function formReviewMenu() {
-  add_management_page( 'Form Review', 'Form Review', 'manage_options', 'itp-form-review', 'formReviewPage');
+add_action('admin_init', 'ifr_settings');
+add_action('admin_menu', 'ifr_menu');
+
+function ifr_gravity_private_key_callback() {
+  echo '<input name="ifr_gravity_private_key" id="ifr_gravity_private_key" type="text" />';
 }
 
-function formReviewPage() {
-  echo "<h2>Form Review</h2>";  
+function ifr_gravity_public_key_callback() {
+  echo '<input name="ifr_gravity_public_key" id="ifr_gravity_public_key" type="text" />';
 }
+
+function ifr_menu() {
+  add_management_page( 'Form Review', 'Form Review', 'manage_options', 'itp-form-review', 'ifr_page');
+}
+
+function ifr_page() {
+  echo '<h2>Form Review</h2>';
+}
+
+function ifr_settings() {
+  add_settings_section(
+    'ifr_gravity_section',
+    'Gravity Forms API',
+    'ifr_section',
+    'general'
+  );
+
+  add_settings_field(
+    'ifr_gravity_public_key',
+    'Gravity Forms API Public Key',
+    'ifr_gravity_public_key_callback',
+    'general',
+    'ifr_gravity_section'
+  );
+  
+  add_settings_field(
+    'ifr_gravity_private_key',
+    'Gravity Forms API Private Key',
+    'ifr_gravity_private_key_callback',
+    'general',
+    'ifr_gravity_section'
+  );
+}
+
+function ifr_setup() {
+  add_option('ifr_gravity_public_key');
+  add_option('ifr_gravity_private_key');
+} 
 
 ?>
