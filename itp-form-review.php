@@ -33,7 +33,7 @@ function ifr_page() {
 function ifr_settings() {
   add_settings_section(
     'ifr_gravity_section',
-    'Gravity Forms API',
+    'ITP Form Review Plugin',
     'ifr_section',
     'general'
   );
