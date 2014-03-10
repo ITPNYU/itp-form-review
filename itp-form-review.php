@@ -40,7 +40,7 @@ function ifr_page() {
   $public_key = get_option('ifr_gravity_public_key');
   $private_key = get_option('ifr_gravity_private_key');
   $method = "GET";
-  $route = "forms/1/entries";
+  $route = "forms/2/entries";
   date_default_timezone_set('America/New_York');
   $expires = strtotime("+60 mins");
   $string_to_sign = sprintf("%s:%s:%s:%s", $public_key, $method, $route, $expires);
