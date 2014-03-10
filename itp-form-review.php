@@ -54,6 +54,9 @@ function ifr_settings() {
     'general',
     'ifr_gravity_section'
   );
+
+  register_setting( 'general', 'ifr_gravity_public_key');
+  register_setting( 'general', 'ifr_gravity_private_key');
 }
 
 function ifr_setup() {
