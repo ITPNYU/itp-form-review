@@ -14,6 +14,13 @@ register_activation_hook( __FILE__, 'ifr_setup');
 add_action('admin_init', 'ifr_settings');
 add_action('admin_menu', 'ifr_menu');
 
+# From Gravity Forms API documentation
+function calculate_signature($string, $private_key) {
+  $hash = hash_hmac("sha1", $string, $private_key, true);
+  $sig = rawurlencode(base64_encode($hash));
+  return $sig;
+}
+
 function ifr_gravity_private_key_callback() {
   echo '<input name="ifr_gravity_private_key" id="ifr_gravity_private_key" type="text" />';
 }
@@ -28,7 +35,17 @@ function ifr_menu() {
 
 function ifr_page() {
   echo '<h2>Form Review</h2>';
-  echo get_option('ifr_gravity_public_key');
+
+  # From Gravity Forms API, should be rolled into a function
+  $public_key = get_option('ifr_gravity_public_key');
+  $private_key = get_option('ifr_gravity_private_key');
+  $method = "GET";
+  $route = "forms/1/entries";
+  date_default_timezone_set('America/New_York');
+  $expires = strtotime("+60 mins");
+  $string_to_sign = sprintf("%s:%s:%s:%s", $public_key, $method, $route, $expires);
+  $sig = calculate_signature($string_to_sign, $private_key);
+  echo site_url() . "/gravityformsapi/" . $route . "?api_key=" . $public_key . "&signature=" . $sig . "&expires=" . expires;
 }
 
 function ifr_settings() {
