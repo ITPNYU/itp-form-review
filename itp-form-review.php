@@ -28,7 +28,7 @@ function ifr_menu() {
 
 function ifr_page() {
   echo '<h2>Form Review</h2>';
-  #echo options['ifr_gravity_public_key'];
+  echo get_option('ifr_gravity_public_key');
 }
 
 function ifr_settings() {
