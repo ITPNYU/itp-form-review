@@ -33,19 +33,23 @@ function ifr_menu() {
   add_management_page( 'Form Review', 'Form Review', 'manage_options', 'itp-form-review', 'ifr_page');
 }
 
-function ifr_page() {
-  echo '<h2>Form Review</h2>';
-
-  # From Gravity Forms API, should be rolled into a function
+function ifr_form_query($route) {
+  # From Gravity Forms API
   $public_key = get_option('ifr_gravity_public_key');
   $private_key = get_option('ifr_gravity_private_key');
   $method = "GET";
-  $route = "forms/2/entries";
-  date_default_timezone_set('America/New_York');
+  date_default_timezone_set('America/New_York'); # FIXME: get from Wordpress
   $expires = strtotime("+60 mins");
   $string_to_sign = sprintf("%s:%s:%s:%s", $public_key, $method, $route, $expires);
   $sig = calculate_signature($string_to_sign, $private_key);
-  echo site_url() . "/gravityformsapi/" . $route . "?api_key=" . $public_key . "&signature=" . $sig . "&expires=" . $expires;
+  $query_url = site_url() . "/gravityformsapi/" . $route . "?api_key=" . $public_key . "&signature=" . $sig . "&expires=" . $expires;
+  return $query_url;
+}
+
+function ifr_page() {
+  echo '<h2>Form Review</h2>';
+
+  echo ifr_form_query("forms/2/entries");
 }
 
 function ifr_settings() {
