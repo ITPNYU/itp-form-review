@@ -45,7 +45,7 @@ function ifr_page() {
   $expires = strtotime("+60 mins");
   $string_to_sign = sprintf("%s:%s:%s:%s", $public_key, $method, $route, $expires);
   $sig = calculate_signature($string_to_sign, $private_key);
-  echo site_url() . "/gravityformsapi/" . $route . "?api_key=" . $public_key . "&signature=" . $sig . "&expires=" . expires;
+  echo site_url() . "/gravityformsapi/" . $route . "?api_key=" . $public_key . "&signature=" . $sig . "&expires=" . $expires;
 }
 
 function ifr_settings() {
