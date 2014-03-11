@@ -58,8 +58,31 @@ function ifr_form_query($route) {
 
 function ifr_page() {
   echo '<h2>Form Review</h2>';
-
   echo ifr_form_query("forms/2/entries");
+
+  echo '<div ng-app="ifrApp">';
+
+  echo '<div ng-controller="ResponseCtrl">';
+
+  echo '<ul>
+  <li ng-repeat="entry in responses.entries">
+    {{entry["1"]}}
+  </li>
+</ul>';
+
+  echo '</div> <!-- ng-app -->';
+
+  echo '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+    <script type="text/javascript">
+      var ifrApp = angular.module("ifrApp", []);
+ 
+      ifrApp.controller("ResponseCtrl", function ($scope, $http) {
+
+        $http.get("' . ifr_form_query("forms/2/entries") . 'data/feed.json").success(function(data) {
+          $scope.responses = data;
+        });
+      });
+    </script>';
 }
 
 function ifr_settings() {
