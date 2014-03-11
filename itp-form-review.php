@@ -62,11 +62,11 @@ function ifr_page() {
 
   echo '<div ng-app="ifrApp">';
 
-  echo '<div ng-controller="ResponseCtrl">';
+  echo '<div ng-controller="EntriesCtrl">';
 
   echo '<ul>
-  <li ng-repeat="entry in response.entries">
-    {{entry.id}}
+  <li ng-repeat="e in entries">
+    {{e.id}}
   </li>
 </ul>';
 
@@ -76,10 +76,10 @@ function ifr_page() {
     <script type="text/javascript">
       var ifrApp = angular.module("ifrApp", []);
  
-      ifrApp.controller("ResponseCtrl", function ($scope, $http) {
+      ifrApp.controller("EntriesCtrl", function ($scope, $http) {
 
         $http.get("' . ifr_form_query("forms/2/entries") . 'data/feed.json").success(function(data) {
-          $scope.response = data;
+          $scope.entries = data;
         });
       });
     </script>';
