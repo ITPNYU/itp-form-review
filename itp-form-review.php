@@ -22,11 +22,21 @@ function calculate_signature($string, $private_key) {
 }
 
 function ifr_gravity_private_key_callback() {
-  echo '<input name="ifr_gravity_private_key" id="ifr_gravity_private_key" type="text" />';
+  $private_key = get_option('ifr_gravity_private_key');
+  $val = '';
+  if (isset($private_key)) {
+    $val = 'value="' . $private_key . '"';
+  }
+  echo '<input name="ifr_gravity_private_key" id="ifr_gravity_private_key" type="text" ' . $val . ' />';
 }
 
 function ifr_gravity_public_key_callback() {
-  echo '<input name="ifr_gravity_public_key" id="ifr_gravity_public_key" type="text" />';
+  $public_key = get_option('ifr_gravity_public_key');
+  $val = '';
+  if (isset($public_key)) {
+    $val = 'value="' . $public_key . '"';
+  }
+  echo '<input name="ifr_gravity_public_key" id="ifr_gravity_public_key" type="text" ' . $val . ' />';
 }
 
 function ifr_menu() {
