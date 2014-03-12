@@ -72,7 +72,7 @@ function ifr_page() {
     <li><b>Email</b>: {{e["3"]}}</li>
     <li><b>Location</b>: {{e["10"]}}</li>
     <li><b>Work</b>: {{e["4"]}}</li>
-    <li><b>Links</b>: <span ng-bind-html="{{e.5}} | linky"</span></li>
+    <li><b>Links</b>: <span ng-bind-html=\'{{e["5"]}} | linky\'</span></li>
     <li><b>Affiliation</b>: {{e["6"]}}</li>
     <li><b>Goals for Camp</b>: {{e["7"]}}</li>
     <li><b>Skills/Contributions</b>: {{e["8"]}}</li>
