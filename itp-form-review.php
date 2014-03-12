@@ -41,6 +41,7 @@ function ifr_gravity_public_key_callback() {
 
 function ifr_menu() {
   $hookname = add_management_page( 'Form Review', 'Form Review', 'manage_options', 'itp-form-review', 'ifr_page');
+  echo ':::' . $hookname . ':::';
   add_action('ifr_script_load-' . $hookname, 'ifr_script_load');
 }
 
