@@ -91,8 +91,6 @@ function ifr_page() {
 
   echo '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>';
   echo '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.min.js"></script>';
-  echo '<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>';
-  echo '<script src="//code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>';
 
   echo '<script>
   jQuery( document ).ready(function() {
