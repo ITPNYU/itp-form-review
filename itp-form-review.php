@@ -58,6 +58,8 @@ function ifr_form_query($route) {
 }
 
 function ifr_page() {
+  wp_enqueue_script('jquery');
+  wp_enqueue_script('jquery-ui-core');
   echo '<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">';
 
   echo '<h2>Form Review</h2>';
@@ -93,7 +95,7 @@ function ifr_page() {
   echo '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.min.js"></script>';
 
   echo '<script>
-  jQuery( "#accordion" ).accordion();
+  jQuery( "div#accordion" ).accordion();
 </script>';
 
   echo '<script type="text/javascript">
