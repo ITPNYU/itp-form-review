@@ -79,7 +79,7 @@ function ifr_page() {
       ifrApp.controller("EntriesCtrl", function ($scope, $http) {
 
         $http.get("' . ifr_form_query("forms/2/entries") . '").success(function(data) {
-          $scope.entries = data;
+          $scope.entries = data.response.entries;
         });
       });
     </script>';
