@@ -66,8 +66,8 @@ function ifr_page() {
 
   echo '<input type="search" ng-model="entryFilter" placeholder="search" />';
   echo '<ul>
-  <li ng-repeat="e in entries | orderBy:date_created | filter:entryFilter">
-    {{e.id}} - {{e["1"]}}
+  <li ng-repeat="e in entries | orderBy:date_created:reverse | filter:entryFilter">
+    {{e["1"]}} {{e["2"]
   </li>
 </ul>';
 
