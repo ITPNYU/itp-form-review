@@ -112,7 +112,7 @@ function ifr_page() {
 
 function ifr_script_load() {
   wp_enqueue_script('jquery-ui-core');
-  #wp_enqueue_script('jquery-ui-accordion');
+  wp_enqueue_script('jquery-ui-accordion');
 }
 
 function ifr_settings() {
