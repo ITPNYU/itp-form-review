@@ -67,7 +67,18 @@ function ifr_page() {
   echo '<input type="search" ng-model="entryFilter" placeholder="search" />';
   echo '<div class="ifrEntry" ng-repeat="e in entries | orderBy:date_created:reverse | filter:entryFilter">
   <h3 class="ifrEntryHeader">{{e["1"]}} {{e["2"]}}</h3>
-  
+  <ul>
+    <li>Email: {{e["3"]}}</li>
+    <li>Location: {{e["10"]}}</li>
+    <li>Work: {{e["4"]}}</li>
+    <li>Links: {{e["5"]}}</li>
+    <li>Affiliation: {{e["6"]}}</li>
+    <li>Goals for Camp: {{e["7"]}}</li>
+    <li>Skills/Contributions: {{e["8"]}}</li>
+    <li>Proposed Session: {{e["9"]}}</li>
+    <li>Anything Else: {{e["11"]}}</li>
+  </ul>
+
 </div><!-- .ifrEntry -->';
 
   echo '</div> <!-- ng-app -->';
