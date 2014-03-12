@@ -41,7 +41,7 @@ function ifr_gravity_public_key_callback() {
 
 function ifr_menu() {
   $hookname = add_management_page( 'Form Review', 'Form Review', 'manage_options', 'itp-form-review', 'ifr_page');
-  add_action('ifr_script_load', 'ifr_script_load_callback');
+  add_action('ifr_script_load-' . $hookname, 'ifr_script_load_callback');
 }
 
 function ifr_form_query($route) {
@@ -111,7 +111,7 @@ function ifr_page() {
 
 function ifr_script_load_callback() {
 #  wp_enqueue_script('jquery');
-  wp_enqueue_script('jquery-ui-core');
+  wp_enqueue_script('jquery-ui-accordion');
 }
 
 function ifr_settings() {
