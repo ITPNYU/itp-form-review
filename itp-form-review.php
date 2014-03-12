@@ -65,11 +65,10 @@ function ifr_page() {
   echo '<div ng-controller="EntriesCtrl">';
 
   echo '<input type="search" ng-model="entryFilter" placeholder="search" />';
-  echo '<ul>
-  <li ng-repeat="e in entries | orderBy:date_created:reverse | filter:entryFilter">
-    {{e["1"]}} {{e["2"]}}
-  </li>
-</ul>';
+  echo '<div class="ifrEntry" ng-repeat="e in entries | orderBy:date_created:reverse | filter:entryFilter">
+  <h3 class="ifrEntryHeader">{{e["1"]}} {{e["2"]}}</h3>
+  
+</div><!-- .ifrEntry -->';
 
   echo '</div> <!-- ng-app -->';
 
