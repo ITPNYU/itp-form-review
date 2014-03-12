@@ -40,9 +40,9 @@ function ifr_gravity_public_key_callback() {
 }
 
 function ifr_menu() {
+  # $hookname is something like tools_page_itp-form-review
   $hookname = add_management_page( 'Form Review', 'Form Review', 'manage_options', 'itp-form-review', 'ifr_page');
-  echo ':::' . $hookname . ':::';
-  add_action('ifr_script_load-' . $hookname, 'ifr_script_load');
+  add_action('admin_print_scripts-' . $hookname, 'ifr_script_load');
 }
 
 function ifr_form_query($route) {
