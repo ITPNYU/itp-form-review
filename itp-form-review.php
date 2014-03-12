@@ -21,6 +21,20 @@ function calculate_signature($string, $private_key) {
   return $sig;
 }
 
+function ifr_form_query($route) {
+  # From Gravity Forms API
+  $public_key = get_option('ifr_gravity_public_key');
+  $private_key = get_option('ifr_gravity_private_key');
+  $method = "GET";
+  date_default_timezone_set('America/New_York'); # FIXME: get from Wordpress
+  $expires = strtotime("+60 mins");
+  $paging = '250'; # limit API to first 250 results
+  $string_to_sign = sprintf("%s:%s:%s:%s", $public_key, $method, $route, $expires);
+  $sig = calculate_signature($string_to_sign, $private_key);
+  $query_url = site_url() . "/gravityformsapi/" . $route . "?api_key=" . $public_key . "&signature=" . $sig . "&expires=" . $expires . "&paging[page_size]=" . $paging;
+  return $query_url;
+}
+
 function ifr_gravity_private_key_callback() {
   $private_key = get_option('ifr_gravity_private_key');
   $val = '';
@@ -42,21 +56,7 @@ function ifr_gravity_public_key_callback() {
 function ifr_menu() {
   # $hookname is something like tools_page_itp-form-review
   $page_hook = add_management_page( 'Form Review', 'Form Review', 'manage_options', 'itp_form_review', 'ifr_page');
-  add_action('admin_enqueue_scripts-' . $page_hook, 'ifr_script_load');
-}
-
-function ifr_form_query($route) {
-  # From Gravity Forms API
-  $public_key = get_option('ifr_gravity_public_key');
-  $private_key = get_option('ifr_gravity_private_key');
-  $method = "GET";
-  date_default_timezone_set('America/New_York'); # FIXME: get from Wordpress
-  $expires = strtotime("+60 mins");
-  $paging = '250'; # limit API to first 250 results
-  $string_to_sign = sprintf("%s:%s:%s:%s", $public_key, $method, $route, $expires);
-  $sig = calculate_signature($string_to_sign, $private_key);
-  $query_url = site_url() . "/gravityformsapi/" . $route . "?api_key=" . $public_key . "&signature=" . $sig . "&expires=" . $expires . "&paging[page_size]=" . $paging;
-  return $query_url;
+  add_action('admin_print_scripts-' . $page_hook, 'ifr_script_load');
 }
 
 function ifr_page() {
@@ -111,8 +111,8 @@ function ifr_page() {
 }
 
 function ifr_script_load() {
-  wp_enqueue_script('jquery-ui-core');
-  wp_enqueue_script('jquery-ui-accordion');
+  wp_enqueue_script('jquery.ui.core');
+  wp_enqueue_script('jquery.ui.accordion');
 }
 
 function ifr_settings() {
