@@ -72,7 +72,7 @@ function ifr_page() {
     <li><b>Email</b>: {{e["3"]}}</li>
     <li><b>Location</b>: {{e["10"]}}</li>
     <li><b>Work</b>: {{e["4"]}}</li>
-    <li><b>Links</b>: {{e["5"]}}</li>
+    <li><b>Links</b>: <span ng-bind-html="{{e['5']}} | linky"</li>
     <li><b>Affiliation</b>: {{e["6"]}}</li>
     <li><b>Goals for Camp</b>: {{e["7"]}}</li>
     <li><b>Skills/Contributions</b>: {{e["8"]}}</li>
@@ -84,9 +84,10 @@ function ifr_page() {
 
   echo '</div> <!-- ng-app -->';
 
-  echo '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
-    <script type="text/javascript">
-      var ifrApp = angular.module("ifrApp", []);
+  echo '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>';
+  echo '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.min.js"></script>';
+  echo '<script type="text/javascript">
+      var ifrApp = angular.module("ifrApp", ['ngSanitize']);
  
       ifrApp.controller("EntriesCtrl", function ($scope, $http) {
 
