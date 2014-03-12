@@ -87,7 +87,7 @@ function ifr_page() {
   echo '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>';
   echo '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.min.js"></script>';
   echo '<script type="text/javascript">
-      var ifrApp = angular.module("ifrApp", ['ngSanitize']);
+      var ifrApp = angular.module("ifrApp", ["ngSanitize"]);
  
       ifrApp.controller("EntriesCtrl", function ($scope, $http) {
 
