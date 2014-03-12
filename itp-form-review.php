@@ -110,7 +110,7 @@ function ifr_page() {
 }
 
 function ifr_script_load_callback() {
-  wp_enqueue_script('jquery');
+#  wp_enqueue_script('jquery');
   wp_enqueue_script('jquery-ui-core');
 }
 
