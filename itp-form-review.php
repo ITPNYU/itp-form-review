@@ -109,7 +109,10 @@ function ifr_page() {
 }
 
 function ifr_script_load() {
-  wp_enqueue_script('jquery-ui-core');
+  wp_deregister_script('jquery-ui');
+  wp_register_script('jquery-ui','//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js',array('jquery'));
+  wp_enqueue_script('jquery-ui');
+  #wp_enqueue_script('jquery-ui-core');
   #wp_enqueue_script('jquery-ui-accordion');
 }
 
