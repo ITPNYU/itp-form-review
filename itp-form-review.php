@@ -68,15 +68,15 @@ function ifr_page() {
   echo '<div class="ifrEntry" ng-repeat="e in entries | orderBy:date_created:reverse | filter:entryFilter">
   <h3 class="ifrEntryHeader">{{e["1"]}} {{e["2"]}}</h3>
   <ul>
-    <li>Email: {{e["3"]}}</li>
-    <li>Location: {{e["10"]}}</li>
-    <li>Work: {{e["4"]}}</li>
-    <li>Links: {{e["5"]}}</li>
-    <li>Affiliation: {{e["6"]}}</li>
-    <li>Goals for Camp: {{e["7"]}}</li>
-    <li>Skills/Contributions: {{e["8"]}}</li>
-    <li>Proposed Session: {{e["9"]}}</li>
-    <li>Anything Else: {{e["11"]}}</li>
+    <li><b>Email</b>: {{e["3"]}}</li>
+    <li><b>Location</b>: {{e["10"]}}</li>
+    <li><b>Work</b>: {{e["4"]}}</li>
+    <li><b>Links</b>: {{e["5"]}}</li>
+    <li><b>Affiliation</b>: {{e["6"]}}</li>
+    <li><b>Goals for Camp</b>: {{e["7"]}}</li>
+    <li><b>Skills/Contributions</b>: {{e["8"]}}</li>
+    <li><b>Proposed Session</b>: {{e["9"]}}</li>
+    <li><b>Anything Else</b>: {{e["11"]}}</li>
   </ul>
 
 </div><!-- .ifrEntry -->';
