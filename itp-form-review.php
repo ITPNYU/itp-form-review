@@ -93,9 +93,7 @@ function ifr_page() {
   echo '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.min.js"></script>';
 
   echo '<script>
-  jQuery( document ).ready(function() {
-    jQuery( "#accordion" ).accordion();
-  });
+  jQuery( "#accordion" ).accordion();
 </script>';
 
   echo '<script type="text/javascript">
