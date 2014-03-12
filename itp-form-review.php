@@ -40,7 +40,8 @@ function ifr_gravity_public_key_callback() {
 }
 
 function ifr_menu() {
-  add_management_page( 'Form Review', 'Form Review', 'manage_options', 'itp-form-review', 'ifr_page');
+  $hookname = add_management_page( 'Form Review', 'Form Review', 'manage_options', 'itp-form-review', 'ifr_page');
+  add_action('ifr_script_load', 'ifr_script_load_callback');
 }
 
 function ifr_form_query($route) {
@@ -58,8 +59,6 @@ function ifr_form_query($route) {
 }
 
 function ifr_page() {
-  wp_enqueue_script('jquery');
-  wp_enqueue_script('jquery-ui-core');
   echo '<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">';
 
   echo '<h2>Form Review</h2>';
@@ -108,6 +107,11 @@ function ifr_page() {
         });
       });
     </script>';
+}
+
+function ifr_script_load_callback() {
+  wp_enqueue_script('jquery');
+  wp_enqueue_script('jquery-ui-core');
 }
 
 function ifr_settings() {
