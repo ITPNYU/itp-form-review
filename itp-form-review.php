@@ -50,9 +50,10 @@ function ifr_form_query($route) {
   $method = "GET";
   date_default_timezone_set('America/New_York'); # FIXME: get from Wordpress
   $expires = strtotime("+60 mins");
+  $paging = '200';
   $string_to_sign = sprintf("%s:%s:%s:%s", $public_key, $method, $route, $expires);
   $sig = calculate_signature($string_to_sign, $private_key);
-  $query_url = site_url() . "/gravityformsapi/" . $route . "?api_key=" . $public_key . "&signature=" . $sig . "&expires=" . $expires;
+  $query_url = site_url() . "/gravityformsapi/" . $route . "?api_key=" . $public_key . "&signature=" . $sig . "&expires=" . $expires . "&paging[page_size]=" . $paging;
   return $query_url;
 }
 
