@@ -50,7 +50,7 @@ function ifr_form_query($route) {
   $method = "GET";
   date_default_timezone_set('America/New_York'); # FIXME: get from Wordpress
   $expires = strtotime("+60 mins");
-  $paging = '200';
+  $paging = '250'; # limit API to first 250 results
   $string_to_sign = sprintf("%s:%s:%s:%s", $public_key, $method, $route, $expires);
   $sig = calculate_signature($string_to_sign, $private_key);
   $query_url = site_url() . "/gravityformsapi/" . $route . "?api_key=" . $public_key . "&signature=" . $sig . "&expires=" . $expires . "&paging[page_size]=" . $paging;
@@ -71,17 +71,19 @@ function ifr_page() {
   echo '<div id="accordion">';
   echo '<div class="ifrEntry" ng-repeat="e in entries | orderBy:date_created:reverse | filter:entryFilter">
   <h3 class="ifrEntryHeader">{{e["1"]}} {{e["2"]}}</h3>
-  <ul>
-    <li><b>Email</b>: {{e["3"]}}</li>
-    <li><b>Location</b>: {{e["10"]}}</li>
-    <li><b>Work</b>: {{e["4"]}}</li>
-    <li><b>Links</b>: <span ng-bind-html="e[\'5\'] | linky"></span></li>
-    <li><b>Affiliation</b>: {{e["6"]}}</li>
-    <li><b>Goals for Camp</b>: {{e["7"]}}</li>
-    <li><b>Skills/Contributions</b>: {{e["8"]}}</li>
-    <li><b>Proposed Session</b>: {{e["9"]}}</li>
-    <li><b>Anything Else</b>: {{e["11"]}}</li>
-  </ul>
+  <div class="ifrDetails">
+    <ul>
+      <li><b>Email</b>: {{e["3"]}}</li>
+      <li><b>Location</b>: {{e["10"]}}</li>
+      <li><b>Work</b>: {{e["4"]}}</li>
+      <li><b>Links</b>: <span ng-bind-html="e[\'5\'] | linky"></span></li>
+      <li><b>Affiliation</b>: {{e["6"]}}</li>
+      <li><b>Goals for Camp</b>: {{e["7"]}}</li>
+      <li><b>Skills/Contributions</b>: {{e["8"]}}</li>
+      <li><b>Proposed Session</b>: {{e["9"]}}</li>
+      <li><b>Anything Else</b>: {{e["11"]}}</li>
+    </ul>
+  </div><!-- .ifrDetails -->
 </div><!-- .ifrEntry -->';
   echo '</div><!-- #accordion -->';
 
@@ -93,7 +95,9 @@ function ifr_page() {
   echo '<script src="//code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>';
 
   echo '<script>
-$( "#accordion" ).accordion();
+  $( document ).ready(function() {
+    $( "#accordion" ).accordion();
+  });
 </script>';
 
   echo '<script type="text/javascript">
