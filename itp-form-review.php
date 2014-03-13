@@ -61,8 +61,6 @@ function ifr_menu() {
 }
 
 function ifr_page() {
-  #echo '<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">';
-
   echo '<h2>Form Review</h2>';
   echo ifr_form_query("forms/2/entries");
 
@@ -89,19 +87,7 @@ function ifr_page() {
   </div><!-- .ifrDetails -->
 </div><!-- .ifrEntry -->';
   echo '</div><!-- #accordion -->';
-
   echo '</div><!-- ng-app -->';
-
-  #echo '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>';
-  #echo '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.min.js"></script>';
-
-  #echo '<script> jQuery( "div#accordion" ).accordion(); </script>';
-  #echo '<script> jQuery( document ).ready(function() { jQuery( "div#accordion" ).accordion(); }); </script>';
-#  echo '<script>
-#  jQuery(function() {
-#    jQuery( "#accordion" ).accordion();
-#  });
-#</script>';
 
   echo '<script type="text/javascript">
       var ifrApp = angular.module("ifrApp", ["ngSanitize"]);
@@ -119,7 +105,7 @@ function ifr_script_load($hook) {
   wp_deregister_script('jquery-ui');
   wp_register_script('jquery-ui','//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js',array('jquery'));
   wp_enqueue_script('jquery-ui');
-  wp_enqueue_style('jquery-style', '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css');
+  #wp_enqueue_style('jquery-style', '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css');
 
   wp_register_script('entriesAccordion', plugins_url('js/entriesAccordion.js', __FILE__), array('jquery-ui'));
   wp_enqueue_script('entriesAccordion');
