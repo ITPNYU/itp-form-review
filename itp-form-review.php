@@ -98,7 +98,7 @@ function ifr_page() {
   #echo '<script> jQuery( document ).ready(function() { jQuery( "div#accordion" ).accordion(); }); </script>';
   echo '<script>
   jQuery(function() {
-    jQuery( "div#accordion" ).accordion();
+    jQuery( "#accordion" ).accordion();
   });
 </script>';
 
