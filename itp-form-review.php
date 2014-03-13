@@ -62,7 +62,7 @@ function ifr_menu() {
 
 function ifr_page() {
   echo '<h2>Form Review</h2>';
-  echo ifr_form_query("forms/2/entries");
+  #echo ifr_form_query("forms/2/entries");
 
   echo '<div ng-app="ifrApp">';
 
@@ -77,7 +77,12 @@ function ifr_page() {
       <li><b>Location</b>: {{e["10"]}}</li>
       <li><b>Work</b>: {{e["4"]}}</li>
       <li><b>Links</b>: <span ng-bind-html="e[\'5\'] | linky"></span></li>
-      <li><b>Affiliation</b>: {{e["6"]}}</li>
+      <li><b>Affiliation</b>:
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" ng-model="e[\'6.1\']" btn-checkbox>{{e["6.1"]}}</button>
+          <button type="button" class="btn btn-primary" ng-model="e[\'6.2\']" btn-checkbox>{{e["6.2"]}}</button>
+        </div><!-- btn-group -->
+      </li>
       <li><b>Goals for Camp</b>: {{e["7"]}}</li>
       <li><b>Skills/Contributions</b>: {{e["8"]}}</li>
       <li><b>Proposed Session</b>: {{e["9"]}}</li>
