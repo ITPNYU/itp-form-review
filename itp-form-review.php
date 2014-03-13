@@ -57,6 +57,7 @@ function ifr_menu() {
   # $hookname is something like tools_page_itp-form-review
   $page_hook = add_management_page( 'Form Review', 'Form Review', 'manage_options', 'itp_form_review', 'ifr_page');
   add_action('admin_print_scripts-' . $page_hook, 'ifr_script_load');
+  #add_action('admin_enqueue_scripts-' . $page_hook, 'ifr_script_load'); # FIXME? is this right?
 }
 
 function ifr_page() {
@@ -114,19 +115,21 @@ function ifr_page() {
     </script>';
 }
 
-function ifr_script_load() {
-  wp_deregister_script('jquery-ui');
-  wp_register_script('jquery-ui','//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js',array('jquery'));
-  wp_enqueue_script('jquery-ui');
-  wp_enqueue_style('jquery-style', '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css');
+function ifr_script_load($hook) {
+  if ('tools.php?page=itp_form_review' == $hook) {
+    wp_deregister_script('jquery-ui');
+    wp_register_script('jquery-ui','//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js',array('jquery'));
+    wp_enqueue_script('jquery-ui');
+    wp_enqueue_style('jquery-style', '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css');
 
-  wp_register_script('entriesAccordion', plugins_url('js/entriesAccordion.js', __FILE__), array('jquery-ui'));
-  wp_enqueue_script('entriesAccordion');
+    wp_register_script('entriesAccordion', plugins_url('js/entriesAccordion.js', __FILE__), array('jquery-ui'));
+    wp_enqueue_script('entriesAccordion');
 
-  wp_register_script('angular', '//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js');
-  wp_register_script('angular-sanitize', '//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.min.js', array('angular'));
-  wp_enqueue_script('angular');
-  wp_enqueue_script('angular-sanitize');
+    wp_register_script('angular', '//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js');
+    wp_register_script('angular-sanitize', '//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.min.js', array('angular'));
+    wp_enqueue_script('angular');
+    wp_enqueue_script('angular-sanitize');
+  }
 }
 
 function ifr_settings() {
