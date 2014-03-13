@@ -91,11 +91,11 @@ function ifr_page() {
 
   echo '</div><!-- ng-app -->';
 
-  echo '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>';
-  echo '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.min.js"></script>';
+  #echo '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>';
+  #echo '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.min.js"></script>';
 
   #echo '<script> jQuery( "div#accordion" ).accordion(); </script>';
-  echo '<script> jQuery( document ).ready(function() { jQuery( "div#accordion" ).accordion(); }); </script>';
+  #echo '<script> jQuery( document ).ready(function() { jQuery( "div#accordion" ).accordion(); }); </script>';
 
   echo '<script type="text/javascript">
       var ifrApp = angular.module("ifrApp", ["ngSanitize"]);
@@ -114,8 +114,11 @@ function ifr_script_load() {
   wp_register_script('jquery-ui','//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js',array('jquery'));
   wp_enqueue_script('jquery-ui');
   wp_enqueue_style('jquery-style', '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css');
-  #wp_enqueue_script('jquery-ui-core');
-  #wp_enqueue_script('jquery-ui-accordion');
+
+  wp_register_script('angular', '//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js');
+  wp_register_script('angular-sanitize', '//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.min.js', array('angular'));
+  wp_enqueue_script('angular');
+  wp_enqueue_script('angular-sanitize');
 }
 
 function ifr_settings() {
