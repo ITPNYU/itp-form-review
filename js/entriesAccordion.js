@@ -1,5 +1,6 @@
 jQuery.noConflict();
 
 jQuery(document).ready(function() {
-    jQuery( "#accordion" ).accordion();
+  console.log("running accordion callback");
+  jQuery( "#accordion" ).accordion();
 });
