@@ -1,3 +1,5 @@
-$(function() {
-    $( "#accordion" ).accordion();
+jQuery.noConflict();
+
+jQuery(function() {
+    jQuery( "#accordion" ).accordion();
 });
