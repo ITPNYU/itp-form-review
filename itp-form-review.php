@@ -69,10 +69,9 @@ function ifr_page() {
   echo '<div ng-controller="EntriesCtrl">';
 
   echo '<input type="search" ng-model="entryFilter" placeholder="search" />';
-  echo '<div id="accordion">';
-  echo '<div class="ifrEntry" ng-repeat="e in entries | orderBy:date_created:reverse | filter:entryFilter">
-  <h3 class="ifrEntryHeader">{{e["1"]}} {{e["2"]}}</h3>
-  <div class="ifrDetails">
+  echo '<accordion close-others="true">';
+  echo '<accordion-group ng-repeat="e in entries | orderBy:date_created:reverse | filter:entryFilter">
+  <accordion-heading>{{e["1"]}} {{e["2"]}}</accordion-heading>
     <ul>
       <li><b>Email</b>: {{e["3"]}}</li>
       <li><b>Location</b>: {{e["10"]}}</li>
@@ -84,13 +83,13 @@ function ifr_page() {
       <li><b>Proposed Session</b>: {{e["9"]}}</li>
       <li><b>Anything Else</b>: {{e["11"]}}</li>
     </ul>
-  </div><!-- .ifrDetails -->
-</div><!-- .ifrEntry -->';
-  echo '</div><!-- #accordion -->';
+  </accordion-group>';
+  echo '</accordion>';
+  echo '</div><!-- ng-controller -->';
   echo '</div><!-- ng-app -->';
 
   echo '<script type="text/javascript">
-      var ifrApp = angular.module("ifrApp", ["ngSanitize"]);
+      var ifrApp = angular.module("ifrApp", ["ngSanitize", "ui.bootstrap"]);
  
       ifrApp.controller("EntriesCtrl", function ($scope, $http) {
 
