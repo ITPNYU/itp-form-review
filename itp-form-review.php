@@ -116,6 +116,7 @@ function ifr_page() {
 }
 
 function ifr_script_load($hook) {
+  echo ":::" . $hook . ":::";
   if ('tools.php?page=itp_form_review' == $hook) {
     wp_deregister_script('jquery-ui');
     wp_register_script('jquery-ui','//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js',array('jquery'));
