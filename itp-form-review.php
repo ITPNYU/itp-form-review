@@ -96,6 +96,11 @@ function ifr_page() {
 
   #echo '<script> jQuery( "div#accordion" ).accordion(); </script>';
   #echo '<script> jQuery( document ).ready(function() { jQuery( "div#accordion" ).accordion(); }); </script>';
+  echo '<script>
+  $(function() {
+    $( "div#accordion" ).accordion();
+  });
+</script>';
 
   echo '<script type="text/javascript">
       var ifrApp = angular.module("ifrApp", ["ngSanitize"]);
