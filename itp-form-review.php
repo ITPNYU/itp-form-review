@@ -60,7 +60,7 @@ function ifr_menu() {
 }
 
 function ifr_page() {
-  echo '<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">';
+  #echo '<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">';
 
   echo '<h2>Form Review</h2>';
   echo ifr_form_query("forms/2/entries");
