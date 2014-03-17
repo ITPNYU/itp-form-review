@@ -109,6 +109,7 @@ function ifr_page() {
                 var fields = ["6.1", "6.2", "6.3", "6.4", "6.5", "6.6"];
                 for (var f in fields) {
                   if (e[f] !== "") {
+                    console.log("pushing " + e[f] + " for " + index);
                     affiliations.push(e[f]);
                   }
                 }
