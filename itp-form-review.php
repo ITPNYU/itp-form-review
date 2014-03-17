@@ -100,18 +100,15 @@ function ifr_page() {
       ifrApp.controller("EntriesCtrl", function ($scope, $http) {
 
         $http.get("' . ifr_form_query("forms/2/entries") . '").success(function(data) {
-          data.response.affiliations = [];
+          var fields = ["6.1", "6.2", "6.3", "6.4", "6.5", "6.6"];
           for (var e in data.response.entries) {
-            if (e["id"] === index) {
-              console.log("entry " + e["id"]);
-              var fields = ["6.1", "6.2", "6.3", "6.4", "6.5", "6.6"];
-              for (var f in fields) {
-                if (e[f] != "") {
-                  console.log("pushing " + e[f] + " for " + index);
-                  data.response.affiliations.push(e[f]);
-                }
+            e["affiliations"] = [];
+            for (var f in fields) {
+              if (e[f] != "") {
+                //console.log("pushing " + e[f] + " for " + index);
+                e["affiliations"].push(e[f]);
               }
-            } 
+            }
           }
           $scope.entries = data.response.entries;
         });
