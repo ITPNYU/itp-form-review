@@ -78,11 +78,9 @@ function ifr_page() {
       <li><b>Work</b>: {{e["4"]}}</li>
       <li><b>Links</b>: <span ng-bind-html="e[\'5\'] | linky"></span></li>
       <li><b>Affiliation</b>:
-        <div class="btn-group">
-          <span ng-repeat="a in e.affiliations">
-            <button type="button" class="btn btn-primary" ng-model="a" btn-checkbox>{{a}}</button>
-          </span>
-        </div><!-- btn-group -->
+        <ul>
+          <li ng-repeat="a in e.affiliations">{{a}}</li>
+        </ul>
       </li>
       <li><b>Goals for Camp</b>: {{e["7"]}}</li>
       <li><b>Skills/Contributions</b>: {{e["8"]}}</li>
@@ -98,8 +96,8 @@ function ifr_page() {
       var ifrApp = angular.module("ifrApp", ["ngSanitize", "ui.bootstrap"]);
  
       ifrApp.controller("EntriesCtrl", function ($scope, $http) {
-
         $http.get("' . ifr_form_query("forms/2/entries") . '").success(function(data) {
+          // augment data with affiliations field
           var fields = ["6.1", "6.2", "6.3", "6.4", "6.5", "6.6"];
           for (var e in data.response.entries) {
             var affiliations = [];
@@ -111,6 +109,7 @@ function ifr_page() {
             }
             data.response.entries[e]["affiliations"] = affiliations;
           }
+          // now copy the data into scope
           $scope.entries = data.response.entries;
         });
       });
