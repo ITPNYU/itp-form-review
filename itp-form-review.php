@@ -119,14 +119,6 @@ function ifr_page() {
 }
 
 function ifr_script_load($hook) {
-  #wp_deregister_script('jquery-ui');
-  #wp_register_script('jquery-ui','//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js',array('jquery'));
-  #wp_enqueue_script('jquery-ui');
-  #wp_enqueue_style('jquery-style', '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css');
-
-  #wp_register_script('entriesAccordion', plugins_url('js/entriesAccordion.js', __FILE__), array('jquery-ui'));
-  #wp_enqueue_script('entriesAccordion');
-
   wp_enqueue_style('bootstrap', '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
  
   wp_register_script('angular', '//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js');
