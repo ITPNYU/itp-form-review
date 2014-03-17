@@ -102,15 +102,14 @@ function ifr_page() {
         $http.get("' . ifr_form_query("forms/2/entries") . '").success(function(data) {
           var fields = ["6.1", "6.2", "6.3", "6.4", "6.5", "6.6"];
           for (var e in data.response.entries) {
-            console.dir(e);
             var affiliations = [];
             for (var f in fields) {
-              if (e[fields[f]] != "") {
+              if (data.response.entries[e][fields[f]] != "") {
                 //console.log("pushing " + e[fields[f]] + " for " + e["id"]);
-                affiliations.push(e[fields[f]]);
+                affiliations.push(data.response.entries[e][fields[f]]);
               }
             }
-            e["affiliations"] = affiliations;
+            data.response.entries[e]["affiliations"] = affiliations;
           }
           $scope.entries = data.response.entries;
         });
