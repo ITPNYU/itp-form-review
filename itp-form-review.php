@@ -95,27 +95,27 @@ function ifr_page() {
   echo '</div><!-- ng-app -->';
 
   echo '<script type="text/javascript">
-      var ifrApp = angular.module("ifrApp", ["ngSanitize", "ui.bootstrap"]);
- 
-      ifrApp.controller("EntriesCtrl", function ($scope, $http) {
-        $http.get("' . ifr_form_query("forms/2/entries") . '").success(function(data) {
-          // augment data with affiliations field
-          var fields = ["6.1", "6.2", "6.3", "6.4", "6.5", "6.6"];
-          for (var e in data.response.entries) {
-            var affiliations = [];
-            for (var f in fields) {
-              if (data.response.entries[e][fields[f]] != "") {
-                //console.log("pushing " + e[fields[f]] + " for " + e["id"]);
-                affiliations.push(data.response.entries[e][fields[f]]);
-              }
+    var ifrApp = angular.module("ifrApp", ["ngSanitize", "ui.bootstrap"]);
+
+    ifrApp.controller("EntriesCtrl", function ($scope, $http) {
+      $http.get("' . ifr_form_query("forms/2/entries") . '").success(function(data) {
+        // augment data with affiliations field
+        var fields = ["6.1", "6.2", "6.3", "6.4", "6.5", "6.6"];
+        for (var e in data.response.entries) {
+          var affiliations = [];
+          for (var f in fields) {
+            if (data.response.entries[e][fields[f]] != "") {
+              //console.log("pushing " + e[fields[f]] + " for " + e["id"]);
+              affiliations.push(data.response.entries[e][fields[f]]);
             }
-            data.response.entries[e]["affiliations"] = affiliations;
           }
-          // now copy the data into scope
-          $scope.entries = data.response.entries;
-        });
+          data.response.entries[e]["affiliations"] = affiliations;
+        }
+        // now copy the data into scope
+        $scope.entries = data.response.entries;
       });
-    </script>';
+    });
+  </script>';
 }
 
 function ifr_script_load($hook) {
