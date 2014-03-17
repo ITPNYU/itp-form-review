@@ -105,7 +105,7 @@ function ifr_page() {
             var affiliations = [];
             for (var f in fields) {
               if (e[f] != "") {
-                //console.log("pushing " + e[f] + " for " + index);
+                console.log("pushing " + e[f] + " for " + e["id"]);
                 affiliations.push(e[f]);
               }
             }
