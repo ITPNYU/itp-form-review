@@ -80,7 +80,7 @@ function ifr_page() {
       <li><b>Affiliation</b>:
         <div class="btn-group">
           <span ng-repeat="a in e.affiliations">
-            <button type="button" class="btn btn-default btm-sm" ng-model="a" btn-checkbox>{{a}}</button>
+            {{a}} | 
           </span>
         </div><!-- btn-group -->
       </li>
