@@ -78,9 +78,11 @@ function ifr_page() {
       <li><b>Work</b>: {{e["4"]}}</li>
       <li><b>Links</b>: <span ng-bind-html="e[\'5\'] | linky"></span></li>
       <li><b>Affiliation</b>:
-        <ul>
-          <li ng-repeat="a in e.affiliations">{{a}}</li>
-        </ul>
+        <div class="btn-group">
+          <span ng-repeat="a in e.affiliations">
+            <button type="button" class="btn btn-default btm-sm" ng-model="a" btn-checkbox>{{a}}</button>
+          </span>
+        </div><!-- btn-group -->
       </li>
       <li><b>Goals for Camp</b>: {{e["7"]}}</li>
       <li><b>Skills/Contributions</b>: {{e["8"]}}</li>
