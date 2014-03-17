@@ -79,8 +79,9 @@ function ifr_page() {
       <li><b>Links</b>: <span ng-bind-html="e[\'5\'] | linky"></span></li>
       <li><b>Affiliation</b>:
         <div class="btn-group">
-          <button type="button" class="btn btn-primary" ng-model="e[\'6.1\']" btn-checkbox>{{e["6.1"]}}</button>
-          <button type="button" class="btn btn-primary" ng-model="e[\'6.2\']" btn-checkbox>{{e["6.2"]}}</button>
+          <span ng-repeat="a in affiliation(e[\'id\'])">
+            <button type="button" class="btn btn-primary" ng-model="a" btn-checkbox>{{a}}</button>
+          </span>
         </div><!-- btn-group -->
       </li>
       <li><b>Goals for Camp</b>: {{e["7"]}}</li>
@@ -100,6 +101,21 @@ function ifr_page() {
 
         $http.get("' . ifr_form_query("forms/2/entries") . '").success(function(data) {
           $scope.entries = data.response.entries;
+
+          $scope.affiliation = function(index) {
+            var affiliations = [];
+            for (var e in $scope.entries) {
+              if (e.id === index) {
+                var fields = ["6.1", "6.2", "6.3", "6.4", "6.5", "6.6"];
+                for (var f in fields) {
+                  if (e[f] !== "") {
+                    affiliations.push(e[f]);
+                  }
+                }
+              } 
+            }
+            return affiliations;
+          };
         });
       });
     </script>';
