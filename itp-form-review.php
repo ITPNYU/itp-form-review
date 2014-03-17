@@ -79,7 +79,7 @@ function ifr_page() {
       <li><b>Links</b>: <span ng-bind-html="e[\'5\'] | linky"></span></li>
       <li><b>Affiliation</b>:
         <div class="btn-group">
-          <span ng-repeat="a in e.affiliation">
+          <span ng-repeat="a in e.affiliations">
             <button type="button" class="btn btn-primary" ng-model="a" btn-checkbox>{{a}}</button>
           </span>
         </div><!-- btn-group -->
@@ -106,7 +106,7 @@ function ifr_page() {
             for (var f in fields) {
               if (e[f] != "") {
                 //console.log("pushing " + e[f] + " for " + index);
-                e["affiliations"].push(e[f]);
+                e.affiliations.push(e[f]);
               }
             }
           }
