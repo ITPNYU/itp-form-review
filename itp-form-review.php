@@ -102,13 +102,14 @@ function ifr_page() {
         $http.get("' . ifr_form_query("forms/2/entries") . '").success(function(data) {
           var fields = ["6.1", "6.2", "6.3", "6.4", "6.5", "6.6"];
           for (var e in data.response.entries) {
-            e["affiliations"] = [];
+            var affiliations = [];
             for (var f in fields) {
               if (e[f] != "") {
                 //console.log("pushing " + e[f] + " for " + index);
-                e.affiliations.push(e[f]);
+                affiliations.push(e[f]);
               }
             }
+            e["affiliations"] = affiliations;
           }
           $scope.entries = data.response.entries;
         });
