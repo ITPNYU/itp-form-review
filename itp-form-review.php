@@ -72,23 +72,30 @@ function ifr_page() {
   echo '<accordion close-others="true">';
   echo '<accordion-group ng-repeat="e in entries | orderBy:date_created:reverse | filter:entryFilter">
   <accordion-heading>{{e["1"]}} {{e["2"]}}</accordion-heading>
-    <ul>
-      <li><b>Email</b>: {{e["3"]}}</li>
-      <li><b>Location</b>: {{e["10"]}}</li>
-      <li><b>Work</b>: {{e["4"]}}</li>
-      <li><b>Links</b>: <span ng-bind-html="e[\'5\'] | linky"></span></li>
-      <li><b>Affiliation</b>:
+    <div class="accordion-content">
+      <div class="review" ng-controller="ReviewCtrl">
         <div class="btn-group">
-          <span ng-repeat="a in e.affiliations">
-            {{a}} | 
-          </span>
-        </div><!-- btn-group -->
-      </li>
-      <li><b>Goals for Camp</b>: {{e["7"]}}</li>
-      <li><b>Skills/Contributions</b>: {{e["8"]}}</li>
-      <li><b>Proposed Session</b>: {{e["9"]}}</li>
-      <li><b>Anything Else</b>: {{e["11"]}}</li>
-    </ul>
+          <button type="button" class="btn btn-success">Approve</button>
+          <button type="button" class="btn btn-info">Comp</button>
+          <button type="button" class="btn btn-danger">Reject</button>
+        </div><!-- .btn-group -->
+      </div>
+      <ul>
+        <li><b>Email</b>: {{e["3"]}}</li>
+        <li><b>Location</b>: {{e["10"]}}</li>
+        <li><b>Work</b>: {{e["4"]}}</li>
+        <li><b>Links</b>: <span ng-bind-html="e[\'5\'] | linky"></span></li>
+        <li><b>Affiliation</b>:
+          <div class="btn-group">
+            <span ng-repeat="a in e.affiliations"> {{a}} | </span>
+          </div><!-- btn-group -->
+        </li>
+        <li><b>Goals for Camp</b>: {{e["7"]}}</li>
+        <li><b>Skills/Contributions</b>: {{e["8"]}}</li>
+        <li><b>Proposed Session</b>: {{e["9"]}}</li>
+        <li><b>Anything Else</b>: {{e["11"]}}</li>
+      </ul>
+    </div><!-- .accordion-content -->
   </accordion-group>';
   echo '</accordion>';
   echo '</div><!-- ng-controller -->';
@@ -115,6 +122,11 @@ function ifr_page() {
         $scope.entries = data.response.entries;
       });
     });
+
+    ifrApp.controller("ReviewCtrl", function ($scope) {
+      $scope.reviews = {}; // FIXME: implement
+    });
+
   </script>';
 }
 
