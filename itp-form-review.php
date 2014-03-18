@@ -73,12 +73,12 @@ function ifr_page() {
   echo '<accordion-group ng-repeat="e in entries | orderBy:date_created:reverse | filter:entryFilter">
   <accordion-heading>{{e["1"]}} {{e["2"]}}</accordion-heading>
     <div class="accordion-content">
-      <div class="decision" ng-controller="DecisionCtrl">
+      <div class="decision">
         <div class="btn-group">
           <button type="button" class="btn btn-success">Approve</button>
           <button type="button" class="btn btn-info">Comp</button>
           <button type="button" class="btn btn-danger">Reject</button>
-          <span ng-model="getDecision(e[\'id\'])"><b>{{d.decision}}</b></span>
+          <b>{{d.decision}}</b>
         </div><!-- .btn-group -->
       </div><!-- .decision -->
       <div class="review" ng-controller="ReviewCtrl">
