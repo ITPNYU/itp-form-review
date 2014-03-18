@@ -73,13 +73,18 @@ function ifr_page() {
   echo '<accordion-group ng-repeat="e in entries | orderBy:date_created:reverse | filter:entryFilter">
   <accordion-heading>{{e["1"]}} {{e["2"]}}</accordion-heading>
     <div class="accordion-content">
-      <div class="review" ng-controller="ReviewCtrl">
+      <div class="decision" ng-controller="DecisionCtrl">
         <div class="btn-group">
           <button type="button" class="btn btn-success">Approve</button>
           <button type="button" class="btn btn-info">Comp</button>
           <button type="button" class="btn btn-danger">Reject</button>
         </div><!-- .btn-group -->
-      </div>
+      </div><!-- .decision -->
+      <div class="review" ng-controller="ReviewCtrl">
+        <ul>
+          <li ng-repeat="r in getReviews(e[\'id\']) | orderBy:date_created">{{r.reviewer}}: <b>{{r.disposition}}</b> - {{r.comment}}</li>
+        </ul>
+      </div><!-- .review -->
       <ul>
         <li><b>Email</b>: {{e["3"]}}</li>
         <li><b>Location</b>: {{e["10"]}}</li>
@@ -124,7 +129,19 @@ function ifr_page() {
     });
 
     ifrApp.controller("ReviewCtrl", function ($scope) {
-      $scope.reviews = {}; // FIXME: implement
+      $scope.reviews = []; // FIXME: implement
+
+      $scope.getReviews = function(id) {
+        for (var rIndex in $scope.reviews) {
+          if ($scope.reviews[rIndex]["id"] === id) {
+            return $scope.reviews[rIndex]["reviews"];
+          }
+        }
+      };
+    });
+
+    ifrApp.controller("DecisionCtrl", function ($scope) {
+      $scope.decisions = []; // FIXME: implement
     });
 
   </script>';
