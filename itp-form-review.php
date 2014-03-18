@@ -78,6 +78,7 @@ function ifr_page() {
           <button type="button" class="btn btn-success">Approve</button>
           <button type="button" class="btn btn-info">Comp</button>
           <button type="button" class="btn btn-danger">Reject</button>
+          <span ng-model="getDecision(e[\'id\'])"><b>{{d.decision}}</b></span>
         </div><!-- .btn-group -->
       </div><!-- .decision -->
       <div class="review" ng-controller="ReviewCtrl">
@@ -142,6 +143,10 @@ function ifr_page() {
 
     ifrApp.controller("DecisionCtrl", function ($scope) {
       $scope.decisions = []; // FIXME: implement
+
+      $scope.getDecision = function(id) {
+        return $scope.decisions[id];
+      };
     });
 
   </script>';
