@@ -144,10 +144,7 @@ function ifr_page() {
           return $scope.decisions[id];
         }
         else { # FIXME: not the most elegant way to do this
-          return \'<div class="btn-group">
-<button type="button" class="btn btn-success">Approve</button>
-<button type="button" class="btn btn-info">Comp</button>
-<button type="button" class="btn btn-danger">Reject</button></div><!-- .btn-group -->\';
+          return \'<div class="btn-group"><button type="button" class="btn btn-success">Approve</button><button type="button" class="btn btn-info">Comp</button><button type="button" class="btn btn-danger">Reject</button></div><!-- .btn-group -->\';
         }
       };
     });
