@@ -83,9 +83,10 @@ function ifr_page() {
       </div><!-- .decision -->
       <div class="review" ng-controller="ReviewCtrl">
         <ul>
-          <li ng-repeat="r in getReviews(e[\'id\']) | orderBy:date_created">{{r.reviewer}}: <b>{{r.disposition}}</b> - {{r.comment}}</li>
+          <li ng-repeat="r in getReviews(e[\'id\']) | orderBy:date_created">{{r.reviewer}}: <b>{{r.recommendation}}</b> - {{r.comment}}</li>
         </ul>
       </div><!-- .review -->
+      <hr />
       <ul>
         <li><b>Email</b>: {{e["3"]}}</li>
         <li><b>Location</b>: {{e["10"]}}</li>
@@ -129,7 +130,7 @@ function ifr_page() {
     });
 
     ifrApp.controller("ReviewCtrl", function ($scope) {
-      $scope.reviews = []; // FIXME: implement
+      $scope.reviews = {"12": {"reviewer": "abc123", "recommendation": "approve", "comment": "good" } }; // FIXME: implement
 
       $scope.getReviews = function(id) {
         for (var rIndex in $scope.reviews) {
