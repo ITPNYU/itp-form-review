@@ -150,6 +150,7 @@ function ifr_page() {
       
       $scope.hasDecision = function(id) {
         if ($scope.getDecision(id) !== null) {
+          console.log("found decision for id " + id);
           return true;
         }
         else {
