@@ -75,7 +75,7 @@ function ifr_page() {
     <div class="accordion-content">
       <div class="decision" ng-controller="DecisionCtrl">
         <b>Decision:</b> {{getDecision(e["id"])}}
-        <div class="btn-group">
+        <div ng-if="hasDecision(e[\'id\'])" class="btn-group">
           <button type="button" class="btn btn-success">Approve</button>
           <button type="button" class="btn btn-info">Comp</button>
           <button type="button" class="btn btn-danger">Reject</button>
@@ -146,6 +146,15 @@ function ifr_page() {
 
       $scope.getDecision = function(id) {
         return $scope.decisions[id];
+      };
+      
+      $scope.hasDecision = function(id) {
+        if ($scope.decisions[id] !== null) {
+          return true;
+        }
+        else {
+          return false;
+        }
       };
     });
 
