@@ -61,7 +61,7 @@ function ifr_menu() {
 }
 
 function ifr_page() {
-  echo file_get_contents(plugin_dir_path(__FILE__ . '/html/ifrPage.html'));
+  echo file_get_contents(plugin_dir_path(__FILE__) . '/html/ifrPage.html');
   echo '<script type="text/javascript">
     var ifrApp = angular.module("ifrApp", ["ngSanitize", "ui.bootstrap"]);
 
