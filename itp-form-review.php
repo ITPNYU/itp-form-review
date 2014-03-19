@@ -74,7 +74,7 @@ function ifr_page() {
   <accordion-heading>{{e["1"]}} {{e["2"]}}</accordion-heading>
     <div class="accordion-content">
       <div class="decision" ng-controller="DecisionCtrl">
-        <b>Decision:</b> {{getDecision(e["id"])}}
+        <b>Decision</b>: {{getDecision(e["id"])}}
         <div ng-if="needsDecision(e[\'id\'])" class="btn-group">
           <button type="button" class="btn btn-success">Approve</button>
           <button type="button" class="btn btn-info">Comp</button>
@@ -82,8 +82,9 @@ function ifr_page() {
         </div><!-- .btn-group -->
       </div><!-- .decision -->
       <div class="review" ng-controller="ReviewCtrl">
+        <b>Reviews</b>: 
         <ul>
-          <li ng-repeat="r in getReviews(e[\'id\']) | orderBy:date_created">{{r.reviewer}}: <b>{{r.recommendation}}</b> - {{r.comment}}</li>
+          <li ng-repeat="r in getReviews(e[\'id\']) | orderBy:date_created"><em>{{r.reviewer}}:</em> <b>{{r.recommendation}}</b> - {{r.comment}}</li>
         </ul>
       </div><!-- .review -->
       <hr />
