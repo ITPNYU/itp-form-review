@@ -118,7 +118,6 @@ function ifr_page() {
           var affiliations = [];
           for (var f in fields) {
             if (data.response.entries[e][fields[f]] != "") {
-              //console.log("pushing " + e[fields[f]] + " for " + e["id"]);
               affiliations.push(data.response.entries[e][fields[f]]);
             }
           }
@@ -150,7 +149,6 @@ function ifr_page() {
       
       $scope.needsDecision = function(id) {
         if ($scope.getDecision(id) != null) {
-          console.log("found decision for id " + id);
           return false;
         }
         else {
