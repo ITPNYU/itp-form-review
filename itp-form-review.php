@@ -74,7 +74,12 @@ function ifr_page() {
   <accordion-heading>{{e["1"]}} {{e["2"]}}</accordion-heading>
     <div class="accordion-content">
       <div class="decision" ng-controller="DecisionCtrl">
-        <b>Decision:</b> {{getDecision(e[\'id\'])}}
+        <b>Decision:</b> {{getDecision(e["id"])}}
+        <div class="btn-group">
+          <button type="button" class="btn btn-success">Approve</button>
+          <button type="button" class="btn btn-info">Comp</button>
+          <button type="button" class="btn btn-danger">Reject</button>
+        </div><!-- .btn-group -->
       </div><!-- .decision -->
       <div class="review" ng-controller="ReviewCtrl">
         <ul>
@@ -140,12 +145,7 @@ function ifr_page() {
       $scope.decisions = {"12": "yes"}; // FIXME: implement
 
       $scope.getDecision = function(id) {
-        if ($scope.decisions[id] !== null) {
-          return $scope.decisions[id];
-        }
-        else { // FIXME: not the most elegant way to do this
-          return \'<div class="btn-group"><button type="button" class="btn btn-success">Approve</button><button type="button" class="btn btn-info">Comp</button><button type="button" class="btn btn-danger">Reject</button></div><!-- .btn-group -->\';
-        }
+        return $scope.decisions[id];
       };
     });
 
