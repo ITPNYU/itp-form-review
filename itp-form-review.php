@@ -149,7 +149,7 @@ function ifr_page() {
       };
       
       $scope.hasDecision = function(id) {
-        if ($scope.decisions[id] !== null) {
+        if ($scope.getDecision(id) !== null) {
           return true;
         }
         else {
