@@ -61,55 +61,7 @@ function ifr_menu() {
 }
 
 function ifr_page() {
-  echo '<h2>Form Review</h2>';
-  #echo ifr_form_query("forms/2/entries");
-
-  echo '<div ng-app="ifrApp">';
-
-  echo '<div ng-controller="EntriesCtrl">';
-
-  echo '<input type="search" ng-model="entryFilter" placeholder="search" />';
-  echo '<accordion close-others="true">';
-  echo '<accordion-group ng-repeat="e in entries | orderBy:date_created:reverse | filter:entryFilter">
-  <accordion-heading>{{e["1"]}} {{e["2"]}}</accordion-heading>
-    <div class="accordion-content">
-      <div class="decision" ng-controller="DecisionCtrl">
-        <b>Decision</b>: {{getDecision(e["id"])}}
-        <div ng-if="needsDecision(e[\'id\'])" class="btn-group">
-          <button type="button" class="btn btn-success">Approve</button>
-          <button type="button" class="btn btn-info">Comp</button>
-          <button type="button" class="btn btn-danger">Reject</button>
-        </div><!-- .btn-group -->
-      </div><!-- .decision -->
-      <br />
-      <div class="review" ng-controller="ReviewCtrl">
-        <b>Reviews</b>: <button type="button" class="btn btn-primary">Add review</button>
-        <ul class="list-group">
-          <li class="list-group-item" ng-repeat="r in getReviews(e[\'id\']) | orderBy:date_created"><em>{{r.reviewer}}:</em> <b>{{r.recommendation}}</b> - {{r.comment}}</li>
-        </ul>
-      </div><!-- .review -->
-      <hr />
-      <ul>
-        <li><b>Email</b>: {{e["3"]}}</li>
-        <li><b>Location</b>: {{e["10"]}}</li>
-        <li><b>Work</b>: {{e["4"]}}</li>
-        <li><b>Links</b>: <span ng-bind-html="e[\'5\'] | linky"></span></li>
-        <li><b>Affiliation</b>:
-          <div class="btn-group">
-            <span ng-repeat="a in e.affiliations"> {{a}} | </span>
-          </div><!-- btn-group -->
-        </li>
-        <li><b>Goals for Camp</b>: {{e["7"]}}</li>
-        <li><b>Skills/Contributions</b>: {{e["8"]}}</li>
-        <li><b>Proposed Session</b>: {{e["9"]}}</li>
-        <li><b>Anything Else</b>: {{e["11"]}}</li>
-      </ul>
-    </div><!-- .accordion-content -->
-  </accordion-group>';
-  echo '</accordion>';
-  echo '</div><!-- ng-controller -->';
-  echo '</div><!-- ng-app -->';
-
+  echo file_get_contents(plugin_dir_path('html/ifrPage.html'));
   echo '<script type="text/javascript">
     var ifrApp = angular.module("ifrApp", ["ngSanitize", "ui.bootstrap"]);
 
