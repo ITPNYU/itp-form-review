@@ -78,7 +78,7 @@ function ifr_page() {
           <button type="button" class="btn btn-success">Approve</button>
           <button type="button" class="btn btn-info">Comp</button>
           <button type="button" class="btn btn-danger">Reject</button>
-          <b>{{getDecision(e[id])}}</b>
+          <b>{{getDecision(e[\'id\'])}}</b>
         </div><!-- .btn-group -->
       </div><!-- .decision -->
       <div class="review" ng-controller="ReviewCtrl">
