@@ -81,6 +81,7 @@ function ifr_page() {
           <button type="button" class="btn btn-danger">Reject</button>
         </div><!-- .btn-group -->
       </div><!-- .decision -->
+      <br />
       <div class="review" ng-controller="ReviewCtrl">
         <b>Reviews</b>: <button type="button" class="btn btn-primary">Add review</button>
         <ul class="list-group">
