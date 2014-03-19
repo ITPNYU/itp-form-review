@@ -81,38 +81,12 @@ function ifr_page() {
         // now copy the data into scope
         $scope.entries = data.response.entries;
       });
-    });
+    });';
 
-    ifrApp.controller("ReviewCtrl", function ($scope) {
-      $scope.reviews = [ {"id": "12", "reviews": [ { "reviewer": "abc123", "recommendation": "approve", "comment": "good", "date_created": "2014-03-19T19:17:32.353Z" } ] } ]; // FIXME: implement
+  echo file_get_contents(plugin_dir_path(__FILE__) . '/js/reviewCtrl.js');
+  echo file_get_contents(plugin_dir_path(__FILE__) . '/js/decisionCtrl.js');
 
-      $scope.getReviews = function(id) {
-        for (var rIndex in $scope.reviews) {
-          if ($scope.reviews[rIndex]["id"] === id) {
-            return $scope.reviews[rIndex]["reviews"];
-          }
-        }
-      };
-    });
-
-    ifrApp.controller("DecisionCtrl", function ($scope) {
-      $scope.decisions = {"12": "yes"}; // FIXME: implement
-
-      $scope.getDecision = function(id) {
-        return $scope.decisions[id];
-      };
-      
-      $scope.needsDecision = function(id) {
-        if ($scope.getDecision(id) != null) {
-          return false;
-        }
-        else {
-          return true;
-        }
-      };
-    });
-
-  </script>';
+  echo '</script>';
 }
 
 function ifr_script_load($hook) {
