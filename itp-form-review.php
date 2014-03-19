@@ -82,7 +82,7 @@ function ifr_page() {
         </div><!-- .btn-group -->
       </div><!-- .decision -->
       <div class="review" ng-controller="ReviewCtrl">
-        <b>Reviews</b>: 
+        <b>Reviews</b>: <button type="button" class="btn btn-default">Add review</button>
         <ul class="list-group">
           <li class="list-group-item" ng-repeat="r in getReviews(e[\'id\']) | orderBy:date_created"><em>{{r.reviewer}}:</em> <b>{{r.recommendation}}</b> - {{r.comment}}</li>
         </ul>
