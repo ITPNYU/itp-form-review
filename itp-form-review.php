@@ -130,7 +130,7 @@ function ifr_page() {
     });
 
     ifrApp.controller("ReviewCtrl", function ($scope) {
-      $scope.reviews = {"12": {"reviewer": "abc123", "recommendation": "approve", "comment": "good" } }; // FIXME: implement
+      $scope.reviews = [ {"id": "12", "reviews": { "reviewer": "abc123", "recommendation": "approve", "comment": "good" } } ]; // FIXME: implement
 
       $scope.getReviews = function(id) {
         for (var rIndex in $scope.reviews) {
