@@ -1,6 +1,6 @@
 <h2>Form Review</h2>
 <div ng-app="ifrApp">
-  <div ng-controller="EntriesCtrl">
+  <div ng-controller="EntryCtrl">
   <input type="search" ng-model="entryFilter" placeholder="search" />
   <accordion close-others="true">
     <accordion-group ng-repeat="e in entries | orderBy:date_created:reverse | filter:entryFilter">
