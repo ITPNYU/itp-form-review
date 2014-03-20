@@ -7,7 +7,7 @@
  *
  * If you are using Composer, you can skip this step.
  */
-require 'Slim/Slim.php';
+require plugin_dir_path(__FILE__) . '/../lib/Slim/Slim/Slim.php';
 
 \Slim\Slim::registerAutoloader();
 
