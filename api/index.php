@@ -16,10 +16,12 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
       '/review',
       function () {
         global $wpdb;
-        $review_table = $wpdb->prefix . "2_ifr_review"; // FIXME: hack
-        var_dump($review_table);
+        $db_prefix = $wpdb->prefix;
+        if (get_current_site()->id > 0) {
+          $db_prefix = $db_prefix . get_current_site()->id . "_";
+        }
+        $review_table = $db_prefix . "ifr_review";
         $results = $wpdb->get_results("SELECT * FROM $review_table", ARRAY_A);
-        var_dump($results);
         echo json_encode($results);
       }
   );
