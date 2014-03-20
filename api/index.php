@@ -34,5 +34,6 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
 }
 else {
   header($_SERVER["SERVER_PROTOCOL"]." 403 Forbidden"); 
+  echo "403 Forbidden";
 }
 ?>
