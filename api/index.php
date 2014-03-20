@@ -33,6 +33,6 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
   $app->run();
 }
 else {
-  http_response_code(403);
+  header($_SERVER["SERVER_PROTOCOL"]." 403 Forbidden"); 
 }
 ?>
