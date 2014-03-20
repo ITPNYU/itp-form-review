@@ -21,6 +21,7 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
           $db_prefix = $db_prefix . get_current_site()->id . "_";
         }
         $review_table = $db_prefix . "ifr_review";
+        var_dump($review_table);
         $results = $wpdb->get_results("SELECT * FROM $review_table", ARRAY_A);
         echo json_encode($results);
       }
