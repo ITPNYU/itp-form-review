@@ -9,14 +9,6 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
   global $wpdb;
   $review_table = $wpdb->prefix . "ifr_review";
 
-  /**
-   * Step 2: Instantiate a Slim application
-   *
-   * This example instantiates a Slim application using
-   * its default settings. However, you will usually configure
-   * your Slim application now by passing an associative array
-   * of setting names and values into the application constructor.
-   */
   $app = new \Slim\Slim();
   $app->response->headers->set('Content-Type', 'application/json');
 
@@ -24,7 +16,7 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
       '/review',
       function () {
         global $wpdb;
-        $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %s", $review_table), OBJECT);
+        $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %s", $review_table), ARRAY_A);
         echo json_encode($results);
       }
   );
