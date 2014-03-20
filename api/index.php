@@ -24,7 +24,7 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
       '/review',
       function () {
         global $wpdb;
-        $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM $review_table", array()), OBJECT);
+        $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %s", $review_table), OBJECT);
         echo json_encode($results);
       }
   );
