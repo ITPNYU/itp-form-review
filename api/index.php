@@ -18,11 +18,11 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
    * of setting names and values into the application constructor.
    */
   $app = new \Slim\Slim();
+  $app->response->headers->set('Content-Type', 'application/json');
 
   $app->get(
       '/review',
       function () {
-        $app->response->headers->set('Content-Type', 'application/json');
         $results = $wpdb->get_results($wpdb->prepare("SELECT ALL FROM $review_table"), OBJECT);
         echo json_encode($results);
       }
