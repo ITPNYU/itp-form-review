@@ -95,26 +95,10 @@ function ifr_menu() {
 function ifr_page() {
   echo file_get_contents(plugin_dir_path(__FILE__) . '/html/ifrPage.html');
   echo '<script type="text/javascript">
-    var ifrApp = angular.module("ifrApp", ["ngSanitize", "ui.bootstrap"]);
+  var ifr_form_query = ' . ifr_form_query("forms/2/entries") . ';
+</script>';
 
-    ifrApp.controller("EntriesCtrl", function ($scope, $http) {
-      $http.get("' . ifr_form_query("forms/2/entries") . '").success(function(data) {
-        // augment data with affiliations field
-        var fields = ["6.1", "6.2", "6.3", "6.4", "6.5", "6.6"];
-        for (var e in data.response.entries) {
-          var affiliations = [];
-          for (var f in fields) {
-            if (data.response.entries[e][fields[f]] != "") {
-              affiliations.push(data.response.entries[e][fields[f]]);
-            }
-          }
-          data.response.entries[e]["affiliations"] = affiliations;
-        }
-        // now copy the data into scope
-        $scope.entries = data.response.entries;
-      });
-    });';
-
+  echo file_get_contents(plugin_dir_path(__FILE__) . '/js/entryCtrl.js');
   echo file_get_contents(plugin_dir_path(__FILE__) . '/js/reviewCtrl.js');
   echo file_get_contents(plugin_dir_path(__FILE__) . '/js/decisionCtrl.js');
 
