@@ -9,10 +9,15 @@
  * License: GPLv3
  */
 
+global $ifr_db_version;
+$ifr_db_version = "1.0";
+
 register_activation_hook( __FILE__, 'ifr_setup');
+register_activation_hook( __FILE__, 'ifr_db_install');
 
 add_action('admin_init', 'ifr_settings');
 add_action('admin_menu', 'ifr_menu');
+add_action('plugins_loaded', 'ifr_db_upgrade');
 
 # From Gravity Forms API documentation
 function calculate_signature($string, $private_key) {
@@ -51,6 +56,33 @@ function ifr_gravity_public_key_callback() {
     $val = 'value="' . $public_key . '"';
   }
   echo '<input name="ifr_gravity_public_key" id="ifr_gravity_public_key" type="text" ' . $val . ' />';
+}
+
+function ifr_db_create() {
+  global $wpdb;
+  global $ifr_db_version;
+  $review_table = $wpdb->prefix . "ifr_review";
+  $sql = "CREATE TABLE $review_table (
+`id` INT NOT NULL AUTO_INCREMENT,
+`form` INT NOT NULL,
+`entry` VARCHAR(20) NOT NULL,
+`review` VARCHAR(20) NOT NULL,
+`recommendation` VARCHAR(20) NOT NULL,
+`comment` VARCHAR(1000),
+PRIMARY KEY  (`id`)
+)";
+
+  require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+  dbDelta($sql);
+
+  add_option("ifr_db_version", $ifr_db_version);
+}
+
+function ifr_db_upgrade() {
+  global $ifr_db_version;
+  if (get_option('ifr_db_version') != $ifr_db_version) {
+    ifr_db_create();
+  }
 }
 
 function ifr_menu() {
