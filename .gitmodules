@@ -1,7 +1,3 @@
-[submodule "lib/redbean"]
-	path = lib/redbean
-	url = https://github.com/gabordemooij/redbean.git
-	branch = RedBeanPHP3_5_X
 [submodule "lib/Slim"]
 	path = lib/Slim
 	url = https://github.com/codeguy/Slim.git
