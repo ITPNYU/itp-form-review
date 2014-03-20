@@ -6,6 +6,9 @@ $parse_uri = explode( 'wp-content', $_SERVER['SCRIPT_FILENAME'] );
 require_once( $parse_uri[0] . 'wp-load.php' );
 
 if (current_user_can('activate_plugins')) { // indicates an administrator
+  global $wpdb;
+  $review_table = $wpdb->prefix . "ifr_review";
+
   /**
    * Step 2: Instantiate a Slim application
    *
@@ -19,7 +22,9 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
   $app->get(
       '/review',
       function () {
-        echo "review GET";
+        $app->response()->header('Content-Type', 'application/json');
+        $results = $wpdb->get_results($wpdb->prepare("SELECT ALL FROM $review_table"), OBJECT);
+        echo json_encode($results);
       }
   );
 
