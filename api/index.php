@@ -17,6 +17,7 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
       function () {
         global $wpdb;
         $review_table = $wpdb->prefix . "ifr_review";
+        var_dump($review_table);
         $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %s", $review_table), ARRAY_A);
         var_dump($results);
         echo json_encode($results);
