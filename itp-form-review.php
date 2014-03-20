@@ -95,7 +95,7 @@ function ifr_menu() {
 function ifr_page() {
   echo file_get_contents(plugin_dir_path(__FILE__) . '/html/ifrPage.html');
   echo '<script type="text/javascript">
-  var ifr_form_query = ' . ifr_form_query("forms/2/entries") . ';
+  var ifr_form_query = "' . ifr_form_query("forms/2/entries") . '";
 </script>';
 
   echo file_get_contents(plugin_dir_path(__FILE__) . '/js/entryCtrl.js');
