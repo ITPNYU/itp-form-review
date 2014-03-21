@@ -55,10 +55,10 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         }
         else {
           $app->response->setStatus(201); // created
-          echo "insert id: ";
+          echo 'insert id: ';
           var_dump($wpdb->insert_id);
         }
-        echo "user_login: ";
+        echo 'user_login: ';
         var_dump($user_login);
       }
   );
