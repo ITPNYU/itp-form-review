@@ -17,17 +17,17 @@
           <br />
           <div class="review" ng-controller="ReviewCtrl">
             <b>Reviews</b>: <button type="button" class="btn btn-primary">Add review</button>
-            <form name="ifrReviewForm">
-              <input type="hidden" name="form" ng-model="form" ng-value="e['form_id']" />
-              <input type="hidden" name="entry" ng-model="entry" ng-value="e['id']" />
+            <form>
+              <input type="hidden" name="form" ng-model="ifrReviewForm.form" ng-value="e['form_id']" />
+              <input type="hidden" name="entry" ng-model="ifrReviewForm.entry" ng-value="e['id']" />
               <label>Recommendation</label>
-              <select name="recommendation" ng-model="recommendation">
+              <select name="recommendation" ng-model="ifrReviewForm.recommendation">
                 <option>Approve</option>
                 <option>Comp</option>
                 <option>Reject</option>
               </select>
               <label>Comment</label>
-              <input type="text" name="comment" ng-model="comment" />
+              <input type="text" name="comment" ng-model="ifrReviewForm.comment" />
               <button type="button" ng-click="submitReview(ifrReviewForm)" class="btn btn-success">Save</button>
             </form>
             <ul class="list-group">
