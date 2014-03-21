@@ -13,7 +13,7 @@ ifrApp.controller("ReviewCtrl", function ($scope) {
     $http.post(ifr_api + '/review?blog=2', req)
       .success(function(data, status, headers, config) {
         console.log("success");
-      }
+      })
       .error(function() {
         console.log("error");
       });
