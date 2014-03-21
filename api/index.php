@@ -16,10 +16,10 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
       '/review',
       function () {
         global $wpdb;
-        global $blog_id;
+        $blog_id = $app->request->params('blog');
         $db_prefix = $wpdb->prefix;
         //$blog_id = get_current_site()->blog_id;
-        if ($blog_id > 0) {
+        if ($blog_id != null) {
           $db_prefix = $db_prefix . $blog_id . "_";
         }
         $review_table = $db_prefix . "ifr_review";
