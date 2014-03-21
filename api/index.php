@@ -24,7 +24,9 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         $review_table = $db_prefix . "ifr_review";
         $query = "SELECT * FROM $review_table";
         $results = $wpdb->get_results($query, ARRAY_A);
-        echo json_encode($results);
+        $res["num_objects"] = count($results);
+        $res["objects"] = $results;
+        echo json_encode($res);
       }
   );
 
