@@ -14,8 +14,9 @@ ifrApp.controller('ReviewCtrl', function ($scope, $http) {
     return entryReviews;
   };
 
-  $scope.submitReview = function(entry, recommendation, comment) {
+  $scope.submitReview = function(form, entry, recommendation, comment) {
     var req = {
+      "form": form,
       "entry": entry,
       "recommendation": recommendation,
       "comment": comment
