@@ -14,7 +14,7 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
 
   $app->get(
       '/review',
-      function () {
+      function () use ($app) {
         global $wpdb;
         $blog_id = $app->request->params('blog');
         $db_prefix = $wpdb->prefix;
