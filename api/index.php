@@ -43,11 +43,13 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
           $db_prefix = $db_prefix . $blog_id . '_';
         }
         $review_table = $db_prefix . 'ifr_review'; // END FIXME
-        $req['form'] = $app->request->post('form');
+        $req = json_decode($app->request->getBody());
+        $req['reviewer'] = $user_login;
+        /*$req['form'] = $app->request->post('form');
         $req['entry'] = $app->request->post('entry');
         $req['reviewer'] = $user_login;
         $req['recommendation'] = $app->request->post('recommendation');
-        $req['comment'] = $app->request->post('comment');
+        $req['comment'] = $app->request->post('comment');*/
 
         $status = $wpdb->insert($review_table, $req, array('%d', '%s', '%s', '%s', '%s'));
         if ($status == false) {
@@ -58,7 +60,6 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
           echo 'insert id: ';
           var_dump($wpdb->insert_id);
         }
-        var_dump($app->request->getBody());
       }
   );
 
