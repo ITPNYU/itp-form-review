@@ -22,7 +22,7 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         if ($blog_id != null) {
           $db_prefix = $db_prefix . $blog_id . "_";
           $query = $wpdb->prepare($query . " WHERE blog = %d", intval($blog_id));
-          
+          var_dump($query);
         }
         $review_table = $db_prefix . "ifr_review";
         $results = $wpdb->get_results($query, ARRAY_A);
