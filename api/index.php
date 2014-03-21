@@ -21,7 +21,7 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         $query = "SELECT * FROM $review_table";
         if ($blog_id != null) {
           $db_prefix = $db_prefix . $blog_id . "_";
-          $query = $wpdb->prepare($query . "WHERE blog = %s", $blog_id);
+          $query = $wpdb->prepare($query . "WHERE blog = %d", $blog_id);
         }
         $review_table = $db_prefix . "ifr_review";
         $results = $wpdb->get_results($query, ARRAY_A);
