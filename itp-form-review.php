@@ -96,7 +96,7 @@ function ifr_page() {
   echo file_get_contents(plugin_dir_path(__FILE__) . '/html/ifrPage.html');
   echo '<script type="text/javascript">
   var ifr_form_query = "' . ifr_form_query("forms/2/entries") . '";
-  var ifr_api = "' . plugins_url() . '/itp-form-review/api/";
+  var ifr_api = "' . plugins_url(__FILE__) . '/api/";
 </script>';
   echo '<script type="text/javascript">';
   echo file_get_contents(plugin_dir_path(__FILE__) . '/js/entryCtrl.js');
