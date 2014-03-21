@@ -17,6 +17,17 @@
           <br />
           <div class="review" ng-controller="ReviewCtrl">
             <b>Reviews</b>: <button type="button" class="btn btn-primary">Add review</button>
+            <form>
+              <label>Recommendation</label>
+              <select name="recommendation" ng-model="recommendation">
+                <option>Approve</option>
+                <option>Comp</option>
+                <option>Reject</option>
+              </select>
+              <label>Comment</label>
+              <input type="text" name="comment" ng-model="comment" />
+              <button type="button" class="btn btn-success">Save</button>
+            </form>
             <ul class="list-group">
               <li class="list-group-item" ng-repeat="r in getReviews(e['id']) | orderBy:date_created"><em>{{r.reviewer}}:</em> <b>{{r.recommendation}}</b> - {{r.comment}}</li>
             </ul>
