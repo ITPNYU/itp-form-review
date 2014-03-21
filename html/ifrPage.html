@@ -18,8 +18,8 @@
           <div class="review" ng-controller="ReviewCtrl">
             <b>Reviews</b>: <button type="button" class="btn btn-primary">Add review</button>
             <form name="ifrReviewForm">
-              <input type="hidden" name="form" ng-model="form" ng-value="{{e['form_id'}}" />
-              <input type="hidden" name="entry" ng-model="entry" ng-value="{{e['id'}}" />
+              <input type="hidden" name="form" ng-model="form" ng-value="e['form_id']" />
+              <input type="hidden" name="entry" ng-model="entry" ng-value="e['id']" />
               <label>Recommendation</label>
               <select name="recommendation" ng-model="recommendation">
                 <option>Approve</option>
