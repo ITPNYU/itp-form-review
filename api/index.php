@@ -43,7 +43,7 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
           $db_prefix = $db_prefix . $blog_id . '_';
         }
         $review_table = $db_prefix . 'ifr_review'; // END FIXME
-        $req = json_decode($app->request->getBody());
+        $req = json_decode($app->request->getBody(), true);
         $req['reviewer'] = $user_login;
         /*$req['form'] = $app->request->post('form');
         $req['entry'] = $app->request->post('entry');
