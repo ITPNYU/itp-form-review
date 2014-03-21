@@ -58,7 +58,7 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
           echo 'insert id: ';
           var_dump($wpdb->insert_id);
         }
-        var_dump(json_decode($app->request->getBody()));
+        var_dump($app->request->getBody());
       }
   );
 
