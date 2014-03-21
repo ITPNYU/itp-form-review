@@ -10,7 +10,7 @@
  */
 
 global $ifr_db_version;
-$ifr_db_version = "3";
+$ifr_db_version = "4";
 
 register_activation_hook( __FILE__, 'ifr_setup');
 register_activation_hook( __FILE__, 'ifr_db_install');
@@ -64,7 +64,6 @@ function ifr_db_create() {
   $review_table = $wpdb->prefix . "ifr_review";
   $sql = "CREATE TABLE $review_table (
 `id` INT NOT NULL AUTO_INCREMENT,
-`blog` INT NOT NULL,
 `form` INT NOT NULL,
 `entry` VARCHAR(20) NOT NULL,
 `reviewer` VARCHAR(20) NOT NULL,

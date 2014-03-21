@@ -18,13 +18,11 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         global $wpdb;
         $blog_id = $app->request->params('blog');
         $db_prefix = $wpdb->prefix;
-        $query = "SELECT * FROM $review_table";
         if ($blog_id != null) {
           $db_prefix = $db_prefix . $blog_id . "_";
-          $query = $wpdb->prepare($query . " WHERE blog = %d", intval($blog_id));
-          var_dump($query);
         }
         $review_table = $db_prefix . "ifr_review";
+        $query = "SELECT * FROM $review_table";
         $results = $wpdb->get_results($query, ARRAY_A);
         echo json_encode($results);
       }
