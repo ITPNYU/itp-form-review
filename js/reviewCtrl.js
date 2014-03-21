@@ -15,12 +15,11 @@ ifrApp.controller('ReviewCtrl', function ($scope, $http) {
   };
 
   $scope.submitReview = function(formId, entry, formData) {
-    console.log('form ' + formId + " entry " + entry);
+    //console.log('form ' + formId + ' entry ' + entry);
     formData['form'] = formId;
     formData['entry'] = entry;
-    formData['callback'] = 'JSON_CALLBACK';
     console.dir(formData);
-    $http.jsonp(ifr_api + 'review?blog=2', formData) // FIXME
+    $http.post(ifr_api + 'review?blog=2', formData) // FIXME
       .success(function(data, status, headers, config) {
         console.log('success ' + status + " " + data);
       })
