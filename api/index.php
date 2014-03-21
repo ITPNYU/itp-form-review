@@ -17,8 +17,9 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
       function () {
         global $wpdb;
         $db_prefix = $wpdb->prefix;
-        if (get_current_site()->blog_id > 0) {
-          $db_prefix = $db_prefix . get_current_site()->id . "_";
+        $blog_id = get_current_site()->blog_id;
+        if ($blog_id > 0) {
+          $db_prefix = $db_prefix . $blog_id . "_";
         }
         $review_table = $db_prefix . "ifr_review";
         var_dump($review_table);
