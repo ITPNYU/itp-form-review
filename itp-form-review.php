@@ -96,7 +96,7 @@ function ifr_page() {
   echo file_get_contents(plugin_dir_path(__FILE__) . '/html/ifrPage.html');
   echo '<script type="text/javascript">
   var ifr_form_query = "' . ifr_form_query("forms/2/entries") . '";
-  var ifr_api = "' . get_site_url() . 'wp-content/plugins/itp_form_review/api/";
+  var ifr_api = "' . network_site_url() . 'wp-content/plugins/itp-form-review/api/";
 </script>';
   echo '<script type="text/javascript">';
   echo file_get_contents(plugin_dir_path(__FILE__) . '/js/entryCtrl.js');
