@@ -15,7 +15,7 @@ ifrApp.controller('ReviewCtrl', function ($scope, $http) {
   };
 
   $scope.submitReview = function(formId, entry, formData) {
-    formData['form_id'] = formId;
+    formData['form'] = formId;
     formData['entry'] = entry;
     console.dir(formData);
     $http.post(ifr_api + 'review?blog=2', formData) // FIXME
