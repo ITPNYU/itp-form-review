@@ -1,6 +1,6 @@
 ifrApp.controller("ReviewCtrl", function ($scope, $http) {
   $http.get(ifr_api + 'review?blog=2') // FIXME
-    .success(function() {
+    .success(function(data) {
       $scope.reviews = data.objects;
     });
 
