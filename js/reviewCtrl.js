@@ -15,6 +15,7 @@ ifrApp.controller('ReviewCtrl', function ($scope, $http) {
   };
 
   $scope.submitReview = function(formId, entry, formData) {
+    console.log('form ' + formId + " entry " + entry);
     formData['form'] = formId;
     formData['entry'] = entry;
     formData['callback'] = 'JSON_CALLBACK';
