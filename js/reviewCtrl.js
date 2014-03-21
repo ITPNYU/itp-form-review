@@ -1,5 +1,9 @@
-ifrApp.controller("ReviewCtrl", function ($scope) {
-  $scope.reviews = [ {"id": "12", "reviews": [ { "reviewer": "abc123", "recommendation": "approve", "comment": "good", "date_created": "2014-03-19T19:17:32.353Z" } ] } ]; // FIXME: implement
+ifrApp.controller("ReviewCtrl", function ($scope, $http) {
+  $http.get(ifr_api + '/review?blog=2') // FIXME
+    .success(function() {
+      $scope.reviews = data.objects;
+    });
+
 
   $scope.getReviews = function(id) {
     for (var rIndex in $scope.reviews) {
@@ -10,7 +14,7 @@ ifrApp.controller("ReviewCtrl", function ($scope) {
   };
 
   $scope.submitReview = function(recommendation, comment) {
-    $http.post(ifr_api + '/review?blog=2', req)
+    $http.post(ifr_api + '/review?blog=2', req) // FIXME
       .success(function(data, status, headers, config) {
         console.log("success");
       })
