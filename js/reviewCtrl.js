@@ -7,7 +7,7 @@ ifrApp.controller('ReviewCtrl', function ($scope, $http) {
   $scope.getReviews = function(entry) {
     var entryReviews = [];
     for (var rIndex in $scope.reviews) {
-      if ($scope.reviews[rIndex]['entry'] === id) {
+      if ($scope.reviews[rIndex]['entry'] === entry) {
         entryReviews.push($scope.reviews[rIndex]);
       }
     }
