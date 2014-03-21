@@ -14,7 +14,12 @@ ifrApp.controller('ReviewCtrl', function ($scope, $http) {
     return entryReviews;
   };
 
-  $scope.submitReview = function(recommendation, comment) {
+  $scope.submitReview = function(entry, recommendation, comment) {
+    var req = {
+      "entry": entry,
+      "recommendation": recommendation,
+      "comment": comment
+    };
     $http.post(ifr_api + 'review?blog=2', req) // FIXME
       .success(function(data, status, headers, config) {
         console.log('success');
