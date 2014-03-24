@@ -23,8 +23,26 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         if ($blog_id != null) {
           $db_prefix = $db_prefix . $blog_id . "_";
         }
-        $review_table = $db_prefix . "ifr_review";
-        $query = "SELECT * FROM $review_table";
+        $table = $db_prefix . "ifr_review";
+        $query = "SELECT * FROM $table";
+        $results = $wpdb->get_results($query, ARRAY_A);
+        $res["num_objects"] = count($results);
+        $res["objects"] = $results;
+        echo json_encode($res);
+      }
+  );
+
+  $app->get(
+      '/decision',
+      function () use ($app) {
+        global $wpdb;
+        $blog_id = $app->request->params('blog');
+        $db_prefix = $wpdb->prefix;
+        if ($blog_id != null) {
+          $db_prefix = $db_prefix . $blog_id . "_";
+        }
+        $table = $db_prefix . "ifr_decision";
+        $query = "SELECT * FROM $table";
         $results = $wpdb->get_results($query, ARRAY_A);
         $res["num_objects"] = count($results);
         $res["objects"] = $results;
