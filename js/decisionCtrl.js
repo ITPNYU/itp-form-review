@@ -15,6 +15,7 @@ ifrApp.controller("DecisionCtrl", function ($scope, $http) {
 
   $scope.needsDecision = function(entry) {
     if ($scope.getDecision(entry) != null) {
+      console.log('entry ' + entry + ' has decision ' + $scope.getDecision(entry));
       return false;
     }
     else {
