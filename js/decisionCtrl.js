@@ -10,6 +10,7 @@ ifrApp.controller("DecisionCtrl", function ($scope, $http) {
         return $scope.decisions[dIndex]['decision'];
       }
     }
+    return null;
   };
 
   $scope.needsDecision = function(entry) {
