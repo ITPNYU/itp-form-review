@@ -51,7 +51,7 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         $req['recommendation'] = $app->request->post('recommendation');
         $req['comment'] = $app->request->post('comment');*/
 
-        $status = $wpdb->insert($review_table, $req, array('%d', '%s', '%s', '%s', '%s'));
+        $status = $wpdb->insert($review_table, $req);
         if ($status == false) {
           $app->response->setStatus(400); // bad request
         }
