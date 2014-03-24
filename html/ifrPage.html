@@ -9,9 +9,9 @@
           <div class="decision" ng-controller="DecisionCtrl">
             <b>Decision</b>: {{getDecision(e["id"])}}
             <div ng-if="needsDecision(e['id'])" class="btn-group">
-              <button type="button" class="btn btn-success">Approve</button>
-              <button type="button" class="btn btn-info">Comp</button>
-              <button type="button" class="btn btn-danger">Reject</button>
+              <button type="button" class="btn btn-success" ng-click="submitDecision('approve')">Approve</button>
+              <button type="button" class="btn btn-info" ng-click="submitDecision('comp')">Comp</button>
+              <button type="button" class="btn btn-danger" ng-click="submitDecision('reject')">Reject</button>
             </div><!-- .btn-group -->
           </div><!-- .decision -->
           <br />

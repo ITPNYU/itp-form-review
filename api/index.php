@@ -60,23 +60,41 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         if ($blog_id != null) {
           $db_prefix = $db_prefix . $blog_id . '_';
         }
-        $review_table = $db_prefix . 'ifr_review'; // END FIXME
+        $table = $db_prefix . 'ifr_review'; // END FIXME
         $req = json_decode($app->request->getBody(), true);
         $req['reviewer'] = $user_login;
-        /*$req['form'] = $app->request->post('form');
-        $req['entry'] = $app->request->post('entry');
-        $req['reviewer'] = $user_login;
-        $req['recommendation'] = $app->request->post('recommendation');
-        $req['comment'] = $app->request->post('comment');*/
 
-        $status = $wpdb->insert($review_table, $req);
+        $status = $wpdb->insert($table, $req);
         if ($status == false) {
           $app->response->setStatus(400); // bad request
         }
         else {
           $app->response->setStatus(201); // created
-          #echo 'insert id: ';
-          #var_dump($wpdb->insert_id);
+          echo json_encode($req);
+        }
+      }
+  );
+
+  $app->post(
+      '/decision',
+      function () use ($app) {
+        global $wpdb;
+        global $user_login;
+        $blog_id = $app->request->params('blog'); // FIXME: redundant
+        $db_prefix = $wpdb->prefix;
+        if ($blog_id != null) {
+          $db_prefix = $db_prefix . $blog_id . '_';
+        }
+        $table = $db_prefix . 'ifr_decision'; // END FIXME
+        $req = json_decode($app->request->getBody(), true);
+        $req['reviewer'] = $user_login;
+
+        $status = $wpdb->insert($table, $req);
+        if ($status == false) {
+          $app->response->setStatus(400); // bad request
+        }
+        else {
+          $app->response->setStatus(201); // created
           echo json_encode($req);
         }
       }
