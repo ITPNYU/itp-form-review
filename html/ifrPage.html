@@ -20,9 +20,9 @@
             <form>
               <label>Recommendation</label>
               <select name="recommendation" ng-model="ifrReviewForm.recommendation">
-                <option value="approve">Approve</option>
-                <option value="comp">Comp</option>
-                <option value="reject">Reject</option>
+                <option ng-value="approve">Approve</option>
+                <option ng-value="comp">Comp</option>
+                <option ng-value="reject">Reject</option>
               </select>
               <label>Comment</label>
               <input type="text" name="comment" ng-model="ifrReviewForm.comment" />
