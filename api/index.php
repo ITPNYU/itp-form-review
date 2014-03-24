@@ -59,7 +59,7 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
           $app->response->setStatus(201); // created
           #echo 'insert id: ';
           #var_dump($wpdb->insert_id);
-          var_dump($req);
+          echo json_encode($req);
         }
       }
   );
