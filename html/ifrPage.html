@@ -20,7 +20,7 @@
             <div ng-if="needsDecision(e['id'])" class="btn-group">
               <form>
                 <label>Recommendation</label>
-                <select name="recommendation" ng-model="ifrReviewForm.recommendation" ng-options="item as item for item in ['approve', 'comp', 'reject']">
+                <select name="recommendation" ng-model="ifrReviewForm.recommendation" ng-options="item as item for item in ['approve', 'maybe', 'comp', 'reject']">
                 </select>
                 <label>Comment</label>
                 <input type="text" name="comment" ng-model="ifrReviewForm.comment" />
