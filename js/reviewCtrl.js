@@ -22,7 +22,7 @@ ifrApp.controller('ReviewCtrl', function ($scope, $http) {
     $http.post(ifr_api + 'review?blog=2', formData) // FIXME
       .success(function(data, status, headers, config) {
         console.log('success ' + status + " " + data);
-        $scope.reviews.objects.push(data); # FIXME: probably a better way
+        $scope.reviews.objects.push(data); // FIXME: probably a better way
       })
       .error(function() {
         console.log('error');
