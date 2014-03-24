@@ -8,16 +8,18 @@
         <div class="accordion-content">
           <div class="decision" ng-controller="DecisionCtrl">
             <b>Decision</b>: {{getDecision(e["id"])}}
-            <div ng-if="needsDecision(e['id'])" class="btn-group">
-              <button type="button" class="btn btn-success" ng-click="submitDecision('approve')">Approve</button>
-              <button type="button" class="btn btn-info" ng-click="submitDecision('comp')">Comp</button>
-              <button type="button" class="btn btn-danger" ng-click="submitDecision('reject')">Reject</button>
-            </div><!-- .btn-group -->
+            <div ng-if="needsDecision(e['id'])">
+              <div class="btn-group">
+                <button type="button" class="btn btn-success" ng-click="submitDecision(e['form_id'], e['id'], 'approve')">Approve</button>
+                <button type="button" class="btn btn-info" ng-click="submitDecision(e['form_id'], e['id'], 'comp')">Comp</button>
+                <button type="button" class="btn btn-danger" ng-click="submitDecision(e['form_id'], e['id'], 'reject')">Reject</button>
+              </div><!-- .btn-group -->
+            </div><!-- ng-if -->
           </div><!-- .decision -->
           <br />
           <div class="review" ng-controller="ReviewCtrl">
             <b>Reviews</b>:<br /> 
-            <div ng-if="needsDecision(e['id'])" class="btn-group">
+            <div ng-if="needsDecision(e['id'])">
               <form>
                 <label>Recommendation</label>
                 <select name="recommendation" ng-model="ifrReviewForm.recommendation" ng-options="item as item for item in ['approve', 'maybe', 'comp', 'reject']">
