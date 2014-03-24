@@ -7,7 +7,6 @@ ifrApp.controller("DecisionCtrl", function ($scope, $http) {
   $scope.getDecision = function(entry) {
     for (var dIndex in $scope.decisions) {
       if ($scope.decisions[dIndex]['entry'] == entry) {
-        console.log('entry ' + entry + ' returning ' + $scope.decisions[dIndex]['decision']);
         return $scope.decisions[dIndex]['decision'];
       }
     }
