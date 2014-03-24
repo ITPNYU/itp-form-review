@@ -17,14 +17,16 @@
           <br />
           <div class="review" ng-controller="ReviewCtrl">
             <b>Reviews</b>:<br /> 
-            <form>
-              <label>Recommendation</label>
-              <select name="recommendation" ng-model="ifrReviewForm.recommendation" ng-options="item as item for item in ['approve', 'comp', 'reject']">
-              </select>
-              <label>Comment</label>
-              <input type="text" name="comment" ng-model="ifrReviewForm.comment" />
-              <button type="button" ng-click="submitReview(e['form_id'], e['id'], ifrReviewForm)" class="btn btn-primary">Add review</button>
-            </form>
+            <div ng-if="needsDecision(e['id'])" class="btn-group">
+              <form>
+                <label>Recommendation</label>
+                <select name="recommendation" ng-model="ifrReviewForm.recommendation" ng-options="item as item for item in ['approve', 'comp', 'reject']">
+                </select>
+                <label>Comment</label>
+                <input type="text" name="comment" ng-model="ifrReviewForm.comment" />
+                <button type="button" ng-click="submitReview(e['form_id'], e['id'], ifrReviewForm)" class="btn btn-primary">Add review</button>
+              </form>
+            </div><!-- ng-if -->
             <ul class="list-group">
               <li class="list-group-item" ng-repeat="r in getReviews(e['id']) | orderBy:date_created"><em>{{r.reviewer}}:</em> <b>{{r.recommendation}}</b> - {{r.comment}}</li>
             </ul>
