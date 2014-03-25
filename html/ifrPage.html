@@ -14,6 +14,11 @@
               <button type="button" class="btn btn-danger" ng-click="submitDecision(e['form_id'], e['id'], 'reject')">Reject</button>
             </div><!-- .btn-group -->
             <br />
+            <div class="payment" ng-controller="PaymentCtrl">
+              <div ng-if="! needsDecision(e['id'])">
+                <b>Payment</b>: {{getPayment(e['id'])}}
+              </div><!-- ng-if -->
+            </div><!-- .payment -->
             <div class="review" ng-controller="ReviewCtrl">
               <b>Reviews</b>:<br /> 
               <form ng-if="needsDecision(e['id'])">
