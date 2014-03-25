@@ -4,7 +4,7 @@
   <input type="search" ng-model="entryFilter" placeholder="search" />
   <accordion close-others="true">
     <accordion-group ng-repeat="e in entries | orderBy:date_created:reverse | filter:entryFilter">
-      <accordion-heading>{{e["1"]}} {{e["2"]}} - {{getDecision(e["id"])}}</accordion-heading>
+      <accordion-heading>{{e["1"]}} {{e["2"]}}</accordion-heading>
         <div class="accordion-content">
           <div class="decision" ng-controller="DecisionCtrl">
             <b>Decision</b>: {{getDecision(e["id"])}}
