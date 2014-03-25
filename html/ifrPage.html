@@ -8,29 +8,27 @@
         <div class="accordion-content">
           <div class="decision" ng-controller="DecisionCtrl">
             <b>Decision</b>: {{getDecision(e["id"])}}
-            <div ng-if="needsDecision(e['id'])">
-              <div class="btn-group">
-                <button type="button" class="btn btn-success" ng-click="submitDecision(e['form_id'], e['id'], 'approve')">Approve</button>
-                <button type="button" class="btn btn-info" ng-click="submitDecision(e['form_id'], e['id'], 'comp')">Comp</button>
-                <button type="button" class="btn btn-danger" ng-click="submitDecision(e['form_id'], e['id'], 'reject')">Reject</button>
-              </div><!-- .btn-group -->
-            </div><!-- ng-if -->
+            <div ng-if="needsDecision(e['id'])" class="btn-group">
+              <button type="button" class="btn btn-success" ng-click="submitDecision(e['form_id'], e['id'], 'approve')">Approve</button>
+              <button type="button" class="btn btn-info" ng-click="submitDecision(e['form_id'], e['id'], 'comp')">Comp</button>
+              <button type="button" class="btn btn-danger" ng-click="submitDecision(e['form_id'], e['id'], 'reject')">Reject</button>
+            </div><!-- .btn-group -->
+            <br />
+            <div class="review" ng-controller="ReviewCtrl">
+              <b>Reviews</b>:<br /> 
+              <form ng-if="needsDecision(e['id]')">
+                <label>Recommendation</label>
+                <select name="recommendation" ng-model="ifrReviewForm.recommendation" ng-options="item as item for item in ['approve', 'maybe', 'comp', 'reject']">
+                </select>
+                <label>Comment</label>
+                <input type="text" name="comment" ng-model="ifrReviewForm.comment" />
+                <button type="button" ng-click="submitReview(e['form_id'], e['id'], ifrReviewForm)" class="btn btn-primary">Add review</button>
+              </form>
+              <ul class="list-group">
+                <li class="list-group-item" ng-repeat="r in getReviews(e['id']) | orderBy:date_created"><em>{{r.reviewer}}:</em> <b>{{r.recommendation}}</b> - {{r.comment}}</li>
+              </ul>
+            </div><!-- .review -->
           </div><!-- .decision -->
-          <br />
-          <div class="review" ng-controller="ReviewCtrl">
-            <b>Reviews</b>:<br /> 
-            <form>
-              <label>Recommendation</label>
-              <select name="recommendation" ng-model="ifrReviewForm.recommendation" ng-options="item as item for item in ['approve', 'maybe', 'comp', 'reject']">
-              </select>
-              <label>Comment</label>
-              <input type="text" name="comment" ng-model="ifrReviewForm.comment" />
-              <button type="button" ng-click="submitReview(e['form_id'], e['id'], ifrReviewForm)" class="btn btn-primary">Add review</button>
-            </form>
-            <ul class="list-group">
-              <li class="list-group-item" ng-repeat="r in getReviews(e['id']) | orderBy:date_created"><em>{{r.reviewer}}:</em> <b>{{r.recommendation}}</b> - {{r.comment}}</li>
-            </ul>
-          </div><!-- .review -->
           <hr />
           <ul>
             <li><b>Email</b>: {{e["3"]}}</li>
