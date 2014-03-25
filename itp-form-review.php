@@ -113,6 +113,7 @@ function ifr_page() {
   echo file_get_contents(plugin_dir_path(__FILE__) . '/js/entryCtrl.js');
   echo file_get_contents(plugin_dir_path(__FILE__) . '/js/reviewCtrl.js');
   echo file_get_contents(plugin_dir_path(__FILE__) . '/js/decisionCtrl.js');
+  echo file_get_contents(plugin_dir_path(__FILE__) . '/js/paymentCtrl.js');
 
   echo '</script>';
 }
