@@ -168,15 +168,16 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         }
         $table = $db_prefix . 'ifr_decision'; // END FIXME
         $req = json_decode($app->request->getBody(), true);
-        $req['reviewer'] = $user_login;
 
+        $payment_due = 0.0;
+        $user_db_id = null;
         if (($req['decision'] === 'approve') || ($req['decision'] === 'comp')) {
           $base_price = 1200.0;
           if ($req['decision'] === 'comp') {
-            $req['payment_due'] = 0;
+            $payment_due = 0;
           }
           else {
-            $req['payment_due'] = $base_price * (1 - $req['discount']);
+            $payment_due = $base_price * (1 - $req['discount']);
           }
           $user_info = ifr_create_user(
             $req['fname'],
@@ -193,18 +194,26 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
             'email' => $user_info['user_email']
           );
           if ($wpdb->insert($user_table, $user_data)) {
-            $req['user'] = $wpdb->insert_id;
+            $user_db_id = $wpdb->insert_id;
           }
         }
 
-        $status = $wpdb->insert($table, $req);
+        $decision_data = array(
+          'form' => $req['form'],
+          'entry' => $req['entry'],
+          'decision' => $req['decision'],
+          'reviewer' => $user_login,
+          'user' => $user_db_id,
+          'payment_due' => $payment_due
+        );
+        $status = $wpdb->insert($table, $decision_data);
         if ($status == false) {
           $app->response->setStatus(400); // bad request
-          echo json_encode($req);
+          echo json_encode($decision_data);
         }
         else {
           $app->response->setStatus(201); // created
-          echo json_encode($req);
+          echo json_encode($decision_data);
         }
       }
   );
