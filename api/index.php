@@ -5,7 +5,49 @@ require '../lib/Slim/Slim/Slim.php';
 $parse_uri = explode( 'wp-content', $_SERVER['SCRIPT_FILENAME'] );
 require_once( $parse_uri[0] . 'wp-load.php' );
 
-require('../ifr_gravity.php');
+function ifr_create_user($fname, $lname, $email, $blog) {
+  $user_login_prefix = preg_replace('/\W/', '', strtolower(substr($fname, 0, 1) . $lastname));
+  $user_pass = wp_generate_password( $length=12, $include_standard_special_chars=false );
+                
+  $user_id = email_exists($user_email);
+  if ($user_id) { // user already exists
+    $user_info = get_userdata($user_id);
+    $user_login = $user_info->user_login;
+    if ($user_login != 'admin') {
+      wp_update_user(array( 'ID' => $user_id, 'user_pass' => $user_pass));
+      add_user_to_blog( $blog, $user_id, "subscriber" ) ;
+    }
+  } 
+  else { // user does not exist
+    if (username_exists( $user_login )) { // but user name is in use already
+      do {
+        $user_login = $user_login_prefix . rand(1, 99);
+      }
+      while (username_exists($user_login));
+    }
+    else {
+      $user_login = $user_login_prefix;
+    }
+
+    $user_info = array(
+      'user_login' => $user_login,
+      'user_pass' => $user_pass,
+      'user_email' => $email,
+      'first_name' => $fname,
+      'last_name' => $lname,
+      'nickname' => $fname . " " . $lname
+    );
+    
+    $user_id = wp_insert_user( $user_info );
+    if (is_wp_error($user_id)) {
+      return null;
+    }
+    else {
+      add_user_to_blog( $blog, $user_id, "author" ) ;
+    }
+}
+  return $user_info;
+}
 
 // FIXME: will need to change this for special authorization
 if (current_user_can('activate_plugins')) { // indicates an administrator
@@ -69,6 +111,24 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
       }
   );
 
+  $app->get(
+      '/user',
+      function () use ($app) {
+        global $wpdb;
+        $blog_id = $app->request->params('blog');
+        $db_prefix = $wpdb->prefix;
+        if ($blog_id != null) {
+          $db_prefix = $db_prefix . $blog_id . "_";
+        }
+        $table = $db_prefix . "ifr_user";
+        $query = "SELECT * FROM $table";
+        $results = $wpdb->get_results($query, ARRAY_A);
+        $res["num_objects"] = count($results);
+        $res["objects"] = $results;
+        echo json_encode($res);
+      }
+  );
+
   $app->post(
       '/review',
       function () use ($app) {
@@ -94,6 +154,7 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
       }
   );
 
+  // required args: form, entry, decision
   $app->post(
       '/decision',
       function () use ($app) {
@@ -108,13 +169,32 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         $req = json_decode($app->request->getBody(), true);
         $req['reviewer'] = $user_login;
 
-        $ifr_entries = ifr_form_query("forms/2/entries");
-        echo $ifr_entries;
-
-        $base_price = 1200;
-        $discount_sum = 0;
-
-        //$req['payment_due'] = $base_price * (1 - $discount_sum);
+        if (($req['decision'] === 'approve') || ($req['decision'] === 'comp')) {
+          $base_price = 1200.0;
+          if ($req['decision'] === 'comp') {
+            $req['payment_due'] = 0;
+          }
+          else {
+            $req['payment_due'] = $base_price * (1 - $req['discount_sum']);
+          }
+          $user_info = ifr_create_user(
+            $req['fname'],
+            $req['lname'],
+            $req['email'],
+            $blog_id
+          );
+          $user_table = $db_prefix . 'ifr_user';
+          $user_data = array(
+            'username' => $user_info['user_login'],
+            'password' => $user_info['user_pass'],
+            'fname' => $user_info['first_name'],
+            'lname' => $user_info['last_name'],
+            'email' => $user_info['user_email']
+          );
+          if ($wpdb->insert($user_table, $user_data)) {
+            $req['user'] = $wpdb->insert_id;
+          }
+        }
 
         $status = $wpdb->insert($table, $req);
         if ($status == false) {

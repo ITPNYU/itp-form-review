@@ -23,9 +23,16 @@ ifrApp.controller("DecisionCtrl", function ($scope, $http) {
     }
   };
 
-  $scope.submitDecision = function(formId, entry, decision) {
+  $scope.submitDecision = function(formId, entry, decision, fname, lname, email) {
     console.log('form ' + formId + ' entry ' + entry);
-    var formData = {"form": formId, "entry": entry, "decision": decision};
+    var formData = {
+      "form": formId,
+      "entry": entry,
+      "decision": decision,
+      "fname": fname,
+      "lname": lname,
+      "email": email,
+    };
     console.dir(formData);
     $http.post(ifr_api + 'decision?blog=2', formData) // FIXME
       .success(function(data, status, headers, config) {

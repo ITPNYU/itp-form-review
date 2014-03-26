@@ -9,9 +9,9 @@
           <div class="decision" ng-controller="DecisionCtrl">
             <b>Decision</b>: {{getDecision(e["id"])}}
             <div ng-if="needsDecision(e['id'])" class="btn-group">
-              <button type="button" class="btn btn-success" ng-click="submitDecision(e['form_id'], e['id'], 'approve')">Approve</button>
-              <button type="button" class="btn btn-info" ng-click="submitDecision(e['form_id'], e['id'], 'comp')">Comp</button>
-              <button type="button" class="btn btn-danger" ng-click="submitDecision(e['form_id'], e['id'], 'reject')">Reject</button>
+              <button type="button" class="btn btn-success" ng-click="submitDecision(e['form_id'], e['id'], 'approve', e['1'], e['2'], e['3'])">Approve</button>
+              <button type="button" class="btn btn-info" ng-click="submitDecision(e['form_id'], e['id'], 'comp', e['1'], e['2'], e['3'])">Comp</button>
+              <button type="button" class="btn btn-danger" ng-click="submitDecision(e['form_id'], e['id'], 'reject', e['1'], e['2'], e['3'])">Reject</button>
             </div><!-- .btn-group -->
             <br />
             <div class="payment" ng-controller="PaymentCtrl">

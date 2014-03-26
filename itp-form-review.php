@@ -9,6 +9,8 @@
  * License: GPLv3
  */
 
+require 'ifr_gravity.php';
+
 global $ifr_db_version;
 $ifr_db_version = "8";
 
@@ -19,6 +21,7 @@ add_action('admin_init', 'ifr_settings');
 add_action('admin_menu', 'ifr_menu');
 add_action('plugins_loaded', 'ifr_db_upgrade');
 
+/*
 # From Gravity Forms API documentation
 function calculate_signature($string, $private_key) {
   $hash = hash_hmac("sha1", $string, $private_key, true);
@@ -39,6 +42,7 @@ function ifr_form_query($route) {
   $query_url = site_url() . "/gravityformsapi/" . $route . "?api_key=" . $public_key . "&signature=" . $sig . "&expires=" . $expires . "&paging[page_size]=" . $paging;
   return $query_url;
 }
+*/
 
 function ifr_gravity_private_key_callback() {
   $private_key = get_option('ifr_gravity_private_key');
