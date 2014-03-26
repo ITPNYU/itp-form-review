@@ -114,7 +114,7 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         $base_price = 1200;
         $discount_sum = 0;
 
-        $req['payment_due'] = $base_price * (1 - $discount_sum);
+        //$req['payment_due'] = $base_price * (1 - $discount_sum);
 
         $status = $wpdb->insert($table, $req);
         if ($status == false) {
