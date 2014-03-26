@@ -108,6 +108,8 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         $req = json_decode($app->request->getBody(), true);
         $req['reviewer'] = $user_login;
 
+        $ifr_entries = ifr_form_query("forms/2/entries");
+
         $base_price = 1200;
         $discount_sum = 0;
 
