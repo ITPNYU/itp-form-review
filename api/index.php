@@ -109,6 +109,7 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         $req['reviewer'] = $user_login;
 
         $ifr_entries = ifr_form_query("forms/2/entries");
+        echo $ifr_entries;
 
         $base_price = 1200;
         $discount_sum = 0;
