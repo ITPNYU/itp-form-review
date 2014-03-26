@@ -200,6 +200,7 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         $status = $wpdb->insert($table, $req);
         if ($status == false) {
           $app->response->setStatus(400); // bad request
+          echo json_encode($req);
         }
         else {
           $app->response->setStatus(201); // created
