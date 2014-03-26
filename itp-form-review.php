@@ -10,7 +10,7 @@
  */
 
 global $ifr_db_version;
-$ifr_db_version = "6";
+$ifr_db_version = "8";
 
 register_activation_hook( __FILE__, 'ifr_setup');
 register_activation_hook( __FILE__, 'ifr_db_install');
@@ -62,6 +62,7 @@ function ifr_db_create() {
   global $wpdb;
   global $ifr_db_version;
   $review_table = $wpdb->prefix . "ifr_review";
+  $user_table = $wpdb->prefix . "ifr_user";
   $decision_table = $wpdb->prefix . "ifr_decision";
   $payment_table = $wpdb->prefix . "ifr_payment";
 
@@ -75,13 +76,26 @@ comment VARCHAR(1000),
 PRIMARY KEY  (id)
 );";
 
+  $user_sql = "CREATE TABLE $user_table (
+id INT NOT NULL AUTO_INCREMENT,
+fname VARCHAR(50) NOT NULL,
+lname VARCHAR(50) NOT NULL,
+email VARCHAR(100) NOT NULL,
+username VARCHAR(50) NULL,
+password VARCHAR(50) NULL,
+PRIMARY KEY  (id)
+);";
+
   $decision_sql = "CREATE TABLE $decision_table (
 id INT NOT NULL AUTO_INCREMENT,
+user INT NULL,
 form INT NOT NULL,
 entry VARCHAR(20) NOT NULL,
 reviewer VARCHAR(20) NOT NULL,
 decision VARCHAR(20) NOT NULL,
-PRIMARY KEY  (id)
+payment_due VARCHAR(20) NOT NULL,
+PRIMARY KEY  (id),
+FOREIGN KEY (user) REFERENCES $user_table(id)
 );";
 
   $payment_sql = "CREATE TABLE $payment_table (
@@ -100,6 +114,7 @@ PRIMARY KEY  (id)
 
   require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
   dbDelta($review_sql);
+  dbDelta($user_sql);
   dbDelta($decision_sql);
   dbDelta($payment_sql);
 
