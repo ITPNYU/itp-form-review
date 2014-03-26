@@ -23,8 +23,28 @@ ifrApp.controller("DecisionCtrl", function ($scope, $http) {
     }
   };
 
-  $scope.submitDecision = function(formId, entry, decision, fname, lname, email) {
+  $scope.submitDecision = function(formId, entry, decision, fname, lname, email, affiliation, date_created) {
     console.log('form ' + formId + ' entry ' + entry);
+    var discount = 0.0;
+    var month = parseInt(date_created.substr(5,2));
+    var mday = parseInt(date_created.substr(8,2));
+    console.log("application date is " + month + "/" + mday);
+    
+    if (decision === 'comp') {
+      discount = 1.0;
+    }
+    else {
+      if (affiliation['ITP Alumni'] != null) {
+        discount = discount + 0.5;
+      }
+      if (affiliation['ITP Camp Alumni'] != null) {
+        discount = discount + 0.25;
+      }
+      if ((month < 4) || (month === 4 && mday <= 16)) {
+        discount = discount + 0.25;
+      }
+    }
+    
     var formData = {
       "form": formId,
       "entry": entry,
@@ -32,6 +52,7 @@ ifrApp.controller("DecisionCtrl", function ($scope, $http) {
       "fname": fname,
       "lname": lname,
       "email": email,
+      "discount": discount
     };
     console.dir(formData);
     $http.post(ifr_api + 'decision?blog=2', formData) // FIXME

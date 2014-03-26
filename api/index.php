@@ -176,7 +176,7 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
             $req['payment_due'] = 0;
           }
           else {
-            $req['payment_due'] = $base_price * (1 - $req['discount_sum']);
+            $req['payment_due'] = $base_price * (1 - $req['discount']);
           }
           $user_info = ifr_create_user(
             $req['fname'],
