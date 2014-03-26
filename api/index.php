@@ -6,7 +6,7 @@ $parse_uri = explode( 'wp-content', $_SERVER['SCRIPT_FILENAME'] );
 require_once( $parse_uri[0] . 'wp-load.php' );
 
 function ifr_create_user($fname, $lname, $email, $blog) {
-  $user_login_prefix = preg_replace('/\W/', '', strtolower(substr($fname, 0, 1) . $lastname));
+  $user_login_prefix = preg_replace('/\W/', '', strtolower(substr($fname, 0, 1) . $lname));
   $user_pass = wp_generate_password( $length=12, $include_standard_special_chars=false );
                 
   $user_id = email_exists($user_email);
@@ -44,6 +44,7 @@ function ifr_create_user($fname, $lname, $email, $blog) {
     }
     else {
       add_user_to_blog( $blog, $user_id, "author" ) ;
+      remove_user_from_blog($user_id, 1); // hack, must manually remove from main blog
     }
 }
   return $user_info;
