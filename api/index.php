@@ -5,6 +5,8 @@ require '../lib/Slim/Slim/Slim.php';
 $parse_uri = explode( 'wp-content', $_SERVER['SCRIPT_FILENAME'] );
 require_once( $parse_uri[0] . 'wp-load.php' );
 
+require('../ifr_gravity.php');
+
 // FIXME: will need to change this for special authorization
 if (current_user_can('activate_plugins')) { // indicates an administrator
   global $wpdb;
@@ -106,6 +108,11 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         $req = json_decode($app->request->getBody(), true);
         $req['reviewer'] = $user_login;
 
+        $base_price = 1200;
+        $discount_sum = 0;
+
+        $req['payment_due'] = $base_price * (1 - $discount_sum);
+
         $status = $wpdb->insert($table, $req);
         if ($status == false) {
           $app->response->setStatus(400); // bad request
@@ -130,7 +137,6 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         }
         $table = $db_prefix . 'ifr_payment'; // END FIXME
         $req = json_decode($app->request->getBody(), true);
-        $req['reviewer'] = $user_login;
 
         $status = $wpdb->insert($table, $req);
         if ($status == false) {
