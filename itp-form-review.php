@@ -137,13 +137,13 @@ function ifr_register_template( $template ) {
   if ( is_page( 'register' ) ) {
     $new_template = locate_template( array( 'ifr_register_template.php' ) );
     if ($new_template != '') {
-      echo $new_template;
+      echo "template " . $new_template;
       return $new_template;
     }
     else {
       $location = plugin_dir_path(__FILE__) . $template;
+      echo "plugin " . $location;
       if ( file_exists( $location ) ) {
-        echo $location;
         load_template($location); 
         return $location;
       }
