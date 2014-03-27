@@ -21,7 +21,7 @@ add_action('admin_init', 'ifr_settings');
 add_action('admin_menu', 'ifr_menu');
 add_action('plugins_loaded', 'ifr_db_upgrade');
 
-add_filter( 'template_include', 'ifr_register_template', 99);
+add_filter( 'template_redirect', 'ifr_register_template');
 
 function ifr_gravity_private_key_callback() {
   $private_key = get_option('ifr_gravity_private_key');
@@ -133,17 +133,14 @@ function ifr_page() {
   echo '</script>';
 }
 
-function ifr_register_template( $template ) {
+function ifr_register_template() {
   if (is_page('register')) {
     $location = plugin_dir_path(__FILE__) . 'ifr_register_template.php';
     //echo "plugin " . $location;
     if ( file_exists( $location ) ) {
       load_template($location); 
-      return $location;
+      exit();
     }
-  }
-  else {
-    //return $template;
   }
 }
 
