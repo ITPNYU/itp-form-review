@@ -143,7 +143,7 @@ function ifr_register_template( $template ) {
     }
   }
   else {
-    return $template;
+    //return $template;
   }
 }
 
