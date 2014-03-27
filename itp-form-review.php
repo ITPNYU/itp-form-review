@@ -139,6 +139,13 @@ function ifr_register_template( $template ) {
     if ($new_template != '') {
       return $new_template;
     }
+    else {
+      $location = plugin_dir_path(__FILE__) . $template;
+      if ( file_exists( $location ) ) {
+        load_template($location); 
+        return $location;
+      }
+    }
   }
   return $template;
 }
