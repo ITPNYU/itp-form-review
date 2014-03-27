@@ -134,7 +134,7 @@ function ifr_page() {
 }
 
 function ifr_register_template( $template ) {
-  if ( is_page( 'register' ) ) {
+  if (is_page('register') && (preg_match('/page\.php$/', $template) == 1)) {
     $new_template = locate_template( array( 'ifr_register_template.php' ) );
     if ($new_template != '') {
       //echo "template " . $new_template;
