@@ -21,28 +21,7 @@ add_action('admin_init', 'ifr_settings');
 add_action('admin_menu', 'ifr_menu');
 add_action('plugins_loaded', 'ifr_db_upgrade');
 
-/*
-# From Gravity Forms API documentation
-function calculate_signature($string, $private_key) {
-  $hash = hash_hmac("sha1", $string, $private_key, true);
-  $sig = rawurlencode(base64_encode($hash));
-  return $sig;
-}
-
-function ifr_form_query($route) {
-  # From Gravity Forms API
-  $public_key = get_option('ifr_gravity_public_key');
-  $private_key = get_option('ifr_gravity_private_key');
-  $method = "GET";
-  date_default_timezone_set('America/New_York'); # FIXME: get from Wordpress
-  $expires = strtotime("+60 mins");
-  $paging = '250'; # limit API to first 250 results
-  $string_to_sign = sprintf("%s:%s:%s:%s", $public_key, $method, $route, $expires);
-  $sig = calculate_signature($string_to_sign, $private_key);
-  $query_url = site_url() . "/gravityformsapi/" . $route . "?api_key=" . $public_key . "&signature=" . $sig . "&expires=" . $expires . "&paging[page_size]=" . $paging;
-  return $query_url;
-}
-*/
+add_filter( 'template_include', 'ifr_register_template', 99);
 
 function ifr_gravity_private_key_callback() {
   $private_key = get_option('ifr_gravity_private_key');
@@ -152,6 +131,16 @@ function ifr_page() {
   echo file_get_contents(plugin_dir_path(__FILE__) . '/js/paymentCtrl.js');
 
   echo '</script>';
+}
+
+function ifr_register_template( $template ) {
+  if ( is_page( 'register' ) ) {
+    $new_template = locate_template( array( 'ifr_register_template.php' ) );
+    if ($new_template != '') {
+      return $new_template;
+    }
+  }
+  return $template;
 }
 
 function ifr_script_load($hook) {
