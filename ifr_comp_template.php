@@ -1,7 +1,7 @@
 <?php 
 $register_data = array('user' => null, 'form' => null, 'entry' => null, 'accept' => null);
 global $wpdb;
-if (validate()) {
+if (validate($register_data)) {
   // lookup user
   $user_result = $wpdb->get_row($wpdb->prepare("SELECT id FROM wp_2_ifr_user WHERE id = %d", $_POST['user']));
   if ($user_result) {
