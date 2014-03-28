@@ -192,7 +192,8 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
             'password' => $user_info['user_pass'],
             'fname' => $user_info['first_name'],
             'lname' => $user_info['last_name'],
-            'email' => $user_info['user_email']
+            'email' => $user_info['user_email'],
+            'wpid' => $user_info['wpid']
           );
           if ($wpdb->insert($user_table, $user_data)) {
             $user_db_id = $wpdb->insert_id;
