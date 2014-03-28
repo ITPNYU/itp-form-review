@@ -170,7 +170,7 @@ function ifr_script_load($hook) {
 function ifr_review_setting_callback() {
   $option_name = $arg[0];
   $option_data = get_option($option_name);
-  echo "<textarea name=\"$option_name\" id=\"$option_name\" rows=\"25\" cols=\"60\" />$option_data</textarea>";
+  echo "<textarea name=\"$option_name\" id=\"$option_name\" rows=\"20\" cols=\"60\" />$option_data</textarea>";
 }
 
 function ifr_settings() {
@@ -186,6 +186,22 @@ function ifr_settings() {
     'general',
     'ifr_review_section',
     array('ifr_message_accept')
+  );
+
+  add_settings_field('ifr_message_comp',
+    'Comp Message',
+    'ifr_review_setting_callback',
+    'general',
+    'ifr_review_section',
+    array('ifr_message_comp')
+  );
+
+  add_settings_field('ifr_message_reject',
+    'Reject Message',
+    'ifr_review_setting_callback',
+    'general',
+    'ifr_review_section',
+    array('ifr_message_reject')
   );
 
   // Gravity Forms API settings
@@ -304,6 +320,8 @@ function ifr_settings() {
 
 function ifr_setup() {
   add_option('ifr_message_accept');
+  add_option('ifr_message_comp');
+  add_option('ifr_message_reject');
   add_option('ifr_gravity_public_key');
   add_option('ifr_gravity_private_key');
   add_option('general', 'paygate_url');
