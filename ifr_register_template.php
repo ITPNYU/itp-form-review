@@ -51,6 +51,8 @@ elseif (isset($_REQUEST['email'])) {
 <p>Congratulations! You sound like a great fit for ITP camp.  You are officially in.</p>
 <p>Payment will reserve your spot. We will accept payments until June 1st, pending availability. Feel free to email <a href="mailto:campinfo@itp.nyu.edu">campinfo@itp.nyu.edu</a> if you have any questions.  We look forward to seeing you in June!</p>
 
+<h3>Contact/Billing Information</h3>
+<em>(all fields are required)</em>
 <form id="myform" action="<?php echo get_option('ifr_paygate_URL'); ?>" method="post"> 
   <input type="hidden" name="AMOUNT_EVT_1" id="AMOUNT_EVT_1" size="5" value="<?php echo get_option('ifr_paygate_AMOUNT_EVT_1'); ?>" />
   <input type="hidden" name="FORM_ID" value="<?php echo get_option('ifr_paygate_FORM_ID'); ?>" />
@@ -64,21 +66,20 @@ elseif (isset($_REQUEST['email'])) {
   <input type="hidden" name="PROJECT_ID_EVT_1" value="<?php get_option('ifr_paygate_PROJECT_ID_EVT_1'); ?>" />
   <input type="hidden" name="AMOUNT_PAID" id="AMOUNT_PAID" value="<?php get_option('ifr_paygate_AMOUNT_PAID'); ?>" size="6" />
   <input type="hidden" name="DISCOUNT" value="<?php get_option('ifr_paygate_DISCOUNT'); ?>" />
-  <h3>Contact/Billing Information</h3>
   <label for="FIRST_NAME">First Name:</label>
-  <input type="text" name="FIRST_NAME" id="FIRST_NAME" size="25" />
+  <input type="text" name="FIRST_NAME" id="FIRST_NAME" required="true" size="25" />
   <label for="LAST_NAME">Last Name:</label>
-  <input type="text" name="LAST_NAME" id="LAST_NAME" size="25" />
+  <input type="text" name="LAST_NAME" id="LAST_NAME" required="true" size="25" />
   <label for="EMAIL">Email:</label>
   <input type="text" name="EMAIL" id="EMAIL" size="35" readonly="true" value="<?php  ?>" />
   <label for="PHONE">Phone:</label>
-  <input type="text" name="PHONE" id="PHONE" size="15" />
+  <input type="text" name="PHONE" id="PHONE" size="15" required="true" />
   <label for="ADDRESS_LINE_1">Address:</label>
-  <input type="text" name="ADDRESS_LINE_1" id="ADDRESS_LINE_1" size="35" />
+  <input type="text" name="ADDRESS_LINE_1" id="ADDRESS_LINE_1" size="35" required="true" />
   <label for="CITY">City:</label>
-  <input type="text" name="CITY" id="CITY" size="20" />
+  <input type="text" name="CITY" id="CITY" size="20" required="true" />
   <label for="STATE">* State</label>
-  <select id="STATE" name="STATE">
+  <select id="STATE" name="STATE" required="true" >
     <option value="NA">Non-US</option>
     <option value="AL">Alabama</option>
     <option value="AK">Alaska</option>
@@ -133,9 +134,9 @@ elseif (isset($_REQUEST['email'])) {
     <option value="WY">Wyoming</option>
   </select>
   <label for="POSTAL_CODE">* Postal Code</label>
-  <input type="text" name="POSTAL_CODE" id="POSTAL_CODE" size="10" size="5" />
+  <input type="text" name="POSTAL_CODE" id="POSTAL_CODE" size="10" size="5" required="true" />
   <label for="COUNTRY">* Country</label>
-  <select id="COUNTRY" name="COUNTRY">
+  <select id="COUNTRY" name="COUNTRY" required="true" >
     <option selected="selected" value="us">United States</option>
 <option value="af">Afghanistan</option>
 <option value="al">Albania</option>
