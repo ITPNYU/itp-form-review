@@ -24,6 +24,7 @@ elseif (isset($_REQUEST['email'])) {
     // lookup decision for that user
     $decision_result = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_2_ifr_decision WHERE user = %d AND (decision = 'approve' OR decision = 'comp') ", $user_result->id));
     if ((!$decision_result) || ($decision_result->decision == 'reject')) {
+      echo "no decision / reject";
 ?>
 <h2>Applicant not found, or applicant not yet accepted. If you wish to apply, please <a href="https://itp.nyu.edu/camp/2014/apply">apply here</a></h2>
 <h3>If you have been accepted to Camp already, please input your email address that you used in your application:</h3>
@@ -35,6 +36,7 @@ elseif (isset($_REQUEST['email'])) {
     }
     else if (($decision_result->decision == 'comp') || 
       ($decision_result->decision == 'approve' && $decision_result->payment_due == 0)) {
+      echo "comp or all discounted";
 ?>
 <h2>Acceptance</h2>
 <p>Congratulations! You sound like a great fit for ITP camp.  You are officially in.  Admission is complimentary for you so we do not need any payment from you, but we do need you to let us know that you are coming by clicking one of the buttons below: 
@@ -46,6 +48,7 @@ elseif (isset($_REQUEST['email'])) {
 <?php
     }
     else if ($decision_result == 'approve') {
+      echo "approve but needs to pay";
 ?>
 
 <form id="myform" action="<?php echo get_option('ifr_paygate_URL'); ?>" method="post"> 
