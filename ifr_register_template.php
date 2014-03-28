@@ -49,7 +49,7 @@ elseif (isset($_REQUEST['email'])) {
 ?>
 <h2>Acceptance and Payment</h2>
 <p>Congratulations! You sound like a great fit for ITP camp.  You are officially in.</p>
-<p>Payment will reserve your spot. We will accept payments until June 1st, pending availability. Feel free to email campinfo@itp.nyu.edu if you have any questions and we look forward to seeing you in June!</p>
+<p>Payment will reserve your spot. We will accept payments until June 1st, pending availability. Feel free to email <a href="mailto:campinfo@itp.nyu.edu">campinfo@itp.nyu.edu</a> if you have any questions.  We look forward to seeing you in June!</p>
 
 <form id="myform" action="<?php echo get_option('ifr_paygate_URL'); ?>" method="post"> 
   <input type="hidden" name="AMOUNT_EVT_1" id="AMOUNT_EVT_1" size="5" value="<?php echo get_option('ifr_paygate_AMOUNT_EVT_1'); ?>" />
