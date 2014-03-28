@@ -56,11 +56,11 @@ elseif (isset($_REQUEST['email'])) {
 <form id="myform" action="<?php echo get_option('ifr_paygate_URL'); ?>" method="post"> 
   <input type="hidden" name="AMOUNT_EVT" id="AMOUNT_EVT" size="5" value="<?php echo ''; ?>" />
   <input type="hidden" name="FORM_ID" value="<?php echo get_option('ifr_paygate_FORM_ID'); ?>" />
-  <input type="hidden" name="ACCOUNT_EVT" value="<?php get_option('ifr_paygate_ACCOUNT_EVT'); ?>" />
-  <input type="hidden" name="FUND_CODE_EVT" value="<?php get_option('ifr_paygate_FUND_CODE_EVT'); ?>" />
-  <input type="hidden" name="DEPTID_EVT" value="<?php get_option('ifr_paygate_DEPTID_EVT'); ?>" />
-  <input type="hidden" name="PROGRAM_CODE_EVT" value="<?php get_option('ifr_paygate_PROGRAM_CODE_EVT'); ?>" />
-  <input type="hidden" name="PROJECT_ID_EVT" value="<?php get_option('ifr_paygate_PROJECT_ID_EVT'); ?>" />
+  <input type="hidden" name="ACCOUNT_EVT" value="<?php echo get_option('ifr_paygate_ACCOUNT_EVT'); ?>" />
+  <input type="hidden" name="FUND_CODE_EVT" value="<?php echo get_option('ifr_paygate_FUND_CODE_EVT'); ?>" />
+  <input type="hidden" name="DEPTID_EVT" value="<?php echo get_option('ifr_paygate_DEPTID_EVT'); ?>" />
+  <input type="hidden" name="PROGRAM_CODE_EVT" value="<?php echo get_option('ifr_paygate_PROGRAM_CODE_EVT'); ?>" />
+  <input type="hidden" name="PROJECT_ID_EVT" value="<?php echo get_option('ifr_paygate_PROJECT_ID_EVT'); ?>" />
   <input type="hidden" name="AMOUNT_PAID" id="AMOUNT_PAID" value="<?php echo '' ?>" size="6" />
   <label for="FIRST_NAME">First Name:</label>
   <input type="text" name="FIRST_NAME" id="FIRST_NAME" required="true" size="25" />
