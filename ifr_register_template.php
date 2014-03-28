@@ -54,14 +54,14 @@ elseif (isset($_REQUEST['email'])) {
 <h3>Contact/Billing Information</h3>
 <em> (all fields are required)</em>
 <form id="myform" action="<?php echo get_option('ifr_paygate_URL'); ?>" method="post"> 
-  <input type="hidden" name="AMOUNT_EVT" id="AMOUNT_EVT" size="5" value="<?php echo get_option('ifr_paygate_AMOUNT_EVT'); ?>" />
+  <input type="hidden" name="AMOUNT_EVT" id="AMOUNT_EVT" size="5" value="<?php echo ''; ?>" />
   <input type="hidden" name="FORM_ID" value="<?php echo get_option('ifr_paygate_FORM_ID'); ?>" />
   <input type="hidden" name="ACCOUNT_EVT" value="<?php get_option('ifr_paygate_ACCOUNT_EVT'); ?>" />
   <input type="hidden" name="FUND_CODE_EVT" value="<?php get_option('ifr_paygate_FUND_CODE_EVT'); ?>" />
   <input type="hidden" name="DEPTID_EVT" value="<?php get_option('ifr_paygate_DEPTID_EVT'); ?>" />
   <input type="hidden" name="PROGRAM_CODE_EVT" value="<?php get_option('ifr_paygate_PROGRAM_CODE_EVT'); ?>" />
   <input type="hidden" name="PROJECT_ID_EVT" value="<?php get_option('ifr_paygate_PROJECT_ID_EVT'); ?>" />
-  <input type="hidden" name="AMOUNT_PAID" id="AMOUNT_PAID" value="<?php get_option('ifr_paygate_AMOUNT_PAID'); ?>" size="6" />
+  <input type="hidden" name="AMOUNT_PAID" id="AMOUNT_PAID" value="<?php echo '' ?>" size="6" />
   <label for="FIRST_NAME">First Name:</label>
   <input type="text" name="FIRST_NAME" id="FIRST_NAME" required="true" size="25" />
   <label for="LAST_NAME">Last Name:</label>
@@ -367,6 +367,7 @@ elseif (isset($_REQUEST['email'])) {
 <option value="zm">Zambia</option>
 <option value="zw">Zimbabwe</option>
   </select>
+  <p class="privacy_policy"><strong>Notice:</strong> New York University is committed to respecting your privacy. You can be assured that personal information will only be used by New York University to conduct official University business and personal information will never be disseminated to any unaffiliated third party.<br/> <a href="http://www.nyu.edu/about/notice.html">New York University's privacy policy</a></p>
   <input type="submit" name="submit" id="submit" value="Register" />
 </form>
 <?php
