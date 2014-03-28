@@ -170,11 +170,7 @@ function ifr_script_load($hook) {
 function ifr_review_setting_callback() {
   $option_name = $arg[0];
   $option_data = get_option($option_name);
-  $val = '';
-  if (isset($option_data)) {
-    $val = 'value="' . $option_data . '"';
-  }
-  echo "<textarea name=\"$option_name\" id=\"$option_name\" />$val</textarea>";
+  echo "<textarea name=\"$option_name\" id=\"$option_name\" />$option_data</textarea>";
 }
 
 function ifr_settings() {
