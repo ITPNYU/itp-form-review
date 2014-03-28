@@ -173,6 +173,12 @@ function ifr_review_setting_callback() {
   echo "<textarea name=\"$option_name\" id=\"$option_name\" rows=\"20\" cols=\"60\" />$option_data</textarea>";
 }
 
+function ifr_gravity_section() {
+}
+
+function ifr_paygate_section() {
+}
+
 function ifr_review_section() {
 }
 
