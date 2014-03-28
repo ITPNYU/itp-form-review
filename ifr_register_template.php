@@ -43,9 +43,15 @@ elseif (isset($_REQUEST['email'])) {
   <input type="hidden" name="user" value="<?php echo $decision_result->user; ?>" />
   <input type="hidden" name="form" value="<?php echo $decision_result->form ?>" />
   <input type="hidden" name="entry" value="<?php echo $decision_result->entry ?>" />
-  <input type="radio" name="accept" value="1">Yes, I'm coming to Camp!</input> 
-  <input type="radio" name="accept" value="0">No, I'm not coming to Camp</input>
-  <input type="submit" value="Go" />
+  <input type="hidden" name="accept" value="1" />
+  <input type="submit" value="Yes, I'm coming to Camp!" /> 
+</form>
+<form action="https://itp.nyu.edu/camp/2014/comp" method="POST">
+  <input type="hidden" name="user" value="<?php echo $decision_result->user; ?>" />
+  <input type="hidden" name="form" value="<?php echo $decision_result->form ?>" />
+  <input type="hidden" name="entry" value="<?php echo $decision_result->entry ?>" />
+  <input type="hidden" name="accept" value="0" />
+  <input type="submit" value="No, I'm not coming to Camp" /> 
 </form>
 <?php
     }
