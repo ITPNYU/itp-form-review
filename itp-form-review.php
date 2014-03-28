@@ -77,8 +77,7 @@ entry VARCHAR(20) NOT NULL,
 reviewer VARCHAR(20) NOT NULL,
 decision VARCHAR(20) NOT NULL,
 payment_due VARCHAR(20) NOT NULL,
-PRIMARY KEY  (id),
-FOREIGN KEY (user) REFERENCES $user_table(id)
+PRIMARY KEY  (id)
 );";
 
   $payment_sql = "CREATE TABLE $payment_table (
