@@ -51,17 +51,19 @@ elseif (isset($_REQUEST['email'])) {
   <input type="hidden" name="DISCOUNT" value="<?php ?>" />
   <h3>Contact/Billing Information</h3>
   <label for="FIRST_NAME">First Name:</label>
-  <input type="text" name="FIRST_NAME" id="FIRST_NAME" value="<?php ?>" />
+  <input type="text" name="FIRST_NAME" id="FIRST_NAME" size="25" value="<?php ?>" />
   <label for="LAST_NAME">Last Name:</label>
-  <input type="text" name="LAST_NAME" id="LAST_NAME" value="<?php ?>" />
+  <input type="text" name="LAST_NAME" id="LAST_NAME" size="25" value="<?php ?>" />
   <label for="EMAIL">Email:</label>
-  <input type="text" name="EMAIL" id="EMAIL" value="<?php ?>" />
+  <input type="text" name="EMAIL" id="EMAIL" size="35" value="<?php ?>" />
+  <label for="EMAIL2">Reenter Email:</label>
+  <input type="text" name="EMAIL2" id="EMAIL2" size="35" value="<?php ?>" />
   <label for="PHONE">Phone:</label>
-  <input type="text" name="PHONE" id="PHONE" value="<?php ?>" />
+  <input type="text" name="PHONE" id="PHONE" size="15" value="<?php ?>" />
   <label for="ADDRESS_LINE_1">Address:</label>
-  <input type="text" name="ADDRESS_LINE_1" id="ADDRESS_LINE_1" value="<?php ?>" />
+  <input type="text" name="ADDRESS_LINE_1" id="ADDRESS_LINE_1" size="35" value="<?php ?>" />
   <label for="CITY">City:</label>
-  <input type="text" name="CITY" id="CITY" value="<?php ?>" />
+  <input type="text" name="CITY" id="CITY" size="20" value="<?php ?>" />
   <label for="STATE">* State</label>
   <select id="STATE" name="STATE">
     <option value="NA">Non-US</option>
@@ -117,8 +119,8 @@ elseif (isset($_REQUEST['email'])) {
     <option value="WI">Wisconsin</option>
     <option value="WY">Wyoming</option>
   </select>
-  <input type="text" name="POSTAL_CODE" id="POSTAL_CODE" value="<?php ?>" size="5" />
-  <input type="text" name="COUNTRY" id="COUNTRY" value="<?php ?>" />
+  <label for="POSTAL_CODE">* Postal Code</label>
+  <input type="text" name="POSTAL_CODE" id="POSTAL_CODE" size="10" value="<?php ?>" size="5" />
   <label for="COUNTRY">* Country</label>
   <select id="COUNTRY" name="COUNTRY">
     <option selected="selected" value="us">United States</option>
