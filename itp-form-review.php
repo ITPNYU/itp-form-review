@@ -231,7 +231,7 @@ function ifr_settings() {
   // payment gateway settings
   add_settings_section('ifr_paygate_section',
     'ITP Form Review Payment Settings',
-    'ifr_section',
+    'ifr_paygate_section',
     'general'
   );
 
