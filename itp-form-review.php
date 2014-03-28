@@ -167,10 +167,35 @@ function ifr_script_load($hook) {
   wp_enqueue_script('angular-ui-bootstrap');
 }
 
+function ifr_review_setting_callback() {
+  $option_name = $arg[0];
+  $option_data = get_option($option_name);
+  $val = '';
+  if (isset($option_data)) {
+    $val = 'value="' . $option_data . '"';
+  }
+  echo "<textarea name=\"$option_name\" id=\"$option_name\" />$val</textarea>";
+}
+
 function ifr_settings() {
+  add_settings_section('ifr_review_section',
+    'ITP Form Review Settings',
+    'ifr_review_section',
+    'general'
+  );
+
+  add_settings_field('ifr_message_accept',
+    'Acceptance Message',
+    'ifr_review_setting_callback',
+    'general',
+    'ifr_review_section',
+    array('ifr_message_accept')
+  );
+
+  // Gravity Forms API settings
   add_settings_section('ifr_gravity_section',
-    'ITP Form Review Plugin',
-    'ifr_section',
+    'ITP Form Review Gravity Settings',
+    'ifr_gravity_section',
     'general'
   );
 
@@ -193,7 +218,7 @@ function ifr_settings() {
 
   // payment gateway settings
   add_settings_section('ifr_paygate_section',
-    'ITP Payment Plugin',
+    'ITP Form Review Payment Settings',
     'ifr_section',
     'general'
   );
@@ -282,6 +307,7 @@ function ifr_settings() {
 }
 
 function ifr_setup() {
+  add_option('ifr_message_accept');
   add_option('ifr_gravity_public_key');
   add_option('ifr_gravity_private_key');
   add_option('general', 'paygate_url');
