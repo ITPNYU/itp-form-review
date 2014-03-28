@@ -110,6 +110,7 @@ function ifr_db_upgrade() {
   global $ifr_db_version;
   if (get_option('ifr_db_version') != $ifr_db_version) {
     ifr_db_create();
+    update_option('ifr_db_version', $ifr_db_version);
   }
 }
 
