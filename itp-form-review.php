@@ -12,7 +12,7 @@
 require 'ifr_gravity.php';
 
 global $ifr_db_version;
-$ifr_db_version = "9";
+$ifr_db_version = "10";
 
 register_activation_hook( __FILE__, 'ifr_setup');
 register_activation_hook( __FILE__, 'ifr_db_install');
@@ -49,6 +49,7 @@ function ifr_db_create() {
   $user_table = $wpdb->prefix . "ifr_user";
   $decision_table = $wpdb->prefix . "ifr_decision";
   $payment_table = $wpdb->prefix . "ifr_payment";
+  $register_table = $wpdb->prefix . "ifr_register";
 
   $review_sql = "CREATE TABLE $review_table (
 id INT NOT NULL AUTO_INCREMENT,
@@ -96,11 +97,21 @@ cc_decision VARCHAR(20) NULL,
 PRIMARY KEY  (id)
 );";
 
+  $register_sql = "CREATE TABLE $register_table (
+id INT NOT NULL AUTO_INCREMENT,
+user INT NULL,
+form INT NOT NULL,
+entry VARCHAR(20) NOT NULL,
+accept INT NOT NULL,
+PRIMARY KEY  (id)
+);";
+
   require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
   dbDelta($review_sql);
   dbDelta($user_sql);
   dbDelta($decision_sql);
   dbDelta($payment_sql);
+  dbDelta($register_sql);
 
   add_option('ifr_db_version', $ifr_db_version);
 
