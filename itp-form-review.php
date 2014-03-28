@@ -135,7 +135,8 @@ function ifr_page() {
   echo '</script>';
 }
 
-function ifr_paygate_setting_callback($option_name) {
+function ifr_paygate_setting_callback($arg) {
+  $option_name = $arg[0];
   $option_data = get_option($option_name);
   $val = '';
   if (isset($option_data)) {
