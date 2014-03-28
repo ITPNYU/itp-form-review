@@ -12,7 +12,7 @@
 require 'ifr_gravity.php';
 
 global $ifr_db_version;
-$ifr_db_version = "8";
+$ifr_db_version = "9";
 
 register_activation_hook( __FILE__, 'ifr_setup');
 register_activation_hook( __FILE__, 'ifr_db_install');
@@ -65,6 +65,7 @@ fname VARCHAR(50) NOT NULL,
 lname VARCHAR(50) NOT NULL,
 email VARCHAR(100) NOT NULL,
 username VARCHAR(50) NULL,
+wpid INT NULL,
 password VARCHAR(50) NULL,
 PRIMARY KEY  (id)
 );";
