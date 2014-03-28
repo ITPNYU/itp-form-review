@@ -37,11 +37,15 @@ elseif (isset($_REQUEST['email'])) {
       ($decision_result->decision == 'approve' && $decision_result->payment_due == 0)) {
 ?>
 <h2>Acceptance</h2>
-<p>Congratulations! You sound like a great fit for ITP camp.  You are officially in.  Admission is complimentary for you so we do not need any payment from you, but we do need you to let us know that you are coming by clicking one of the buttons below: 
+<p>Congratulations! You sound like a great fit for ITP camp.  You are officially in.  Your admission is complimentary so we do not need any payment from you, but we do need you to let us know whether you are coming to Camp: 
 
-<form>
-  <input type="button" name="accept">Yes, I'm coming to Camp!</input> 
-  <input type="button" name="decline">No, I'm not coming to Camp</input>
+<form action="https://itp.nyu.edu/camp/2014/comp" method="POST">
+  <input type="hidden" name="user" value="<?php echo $decision_result->user; ?>" />
+  <input type="hidden" name="form" value="<?php echo $decision_result->form ?>" />
+  <input type="hidden" name="entry" value="<?php echo $decision_result->entry ?>" />
+  <input type="radio" name="accept" value="1">Yes, I'm coming to Camp!</input> 
+  <input type="radio" name="accept" value="0">No, I'm not coming to Camp</input>
+  <input type="submit" value="Go" />
 </form>
 <?php
     }
