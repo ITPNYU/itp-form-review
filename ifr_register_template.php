@@ -21,10 +21,9 @@ elseif (isset($_REQUEST['email'])) {
   // lookup user
   $user_result = $wpdb->get_row($wpdb->prepare("SELECT id FROM wp_2_ifr_user WHERE email = %s", $email));
   if ($user_result) {
-    echo "found user";
     // lookup decision for that user
     $decision_result = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_2_ifr_decision WHERE user = %d AND (decision = 'approve' OR decision = 'comp') ", $user_result->id));
-    if ((!$decision_result) || ($decision_result->decision == 'reject')) {
+    if (!$decision_result) {
       echo "no decision / reject";
 ?>
 <h2>Applicant not found, or applicant not yet accepted. If you wish to apply, please <a href="https://itp.nyu.edu/camp/2014/apply">apply here</a></h2>
@@ -48,7 +47,7 @@ elseif (isset($_REQUEST['email'])) {
 </form>
 <?php
     }
-    else if ($decision_result == 'approve') {
+    else if ($decision_result->decision == 'approve') {
       echo "approve but needs to pay";
 ?>
 
@@ -380,7 +379,7 @@ elseif (isset($_REQUEST['email'])) {
 ?>
 
 <h3>Questions? Problems?</h3>
-<p>For any questions or problems, please contact us at (212) 998-1880 or email <a href="mailto:campinfo@itp.nyu.edu">campinfo@itp.nyu.edu</a>.</p>
+<p>If you need help, please contact us at (212) 998-1880 or email <a href="mailto:campinfo@itp.nyu.edu">campinfo@itp.nyu.edu</a>.</p>
 
 <?php
 get_footer();
