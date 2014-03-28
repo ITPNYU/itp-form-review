@@ -167,7 +167,7 @@ function ifr_script_load($hook) {
   wp_enqueue_script('angular-ui-bootstrap');
 }
 
-function ifr_review_setting_callback() {
+function ifr_review_setting_callback($arg) {
   $option_name = $arg[0];
   $option_data = get_option($option_name);
   echo "<textarea name=\"$option_name\" id=\"$option_name\" rows=\"20\" cols=\"60\" />$option_data</textarea>";
