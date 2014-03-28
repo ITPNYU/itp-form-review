@@ -15,7 +15,7 @@ function ifr_create_user($fname, $lname, $email, $blog) {
     $user_login = $user_info->user_login;
     if ($user_login != 'admin') {
       wp_update_user(array( 'ID' => $user_id, 'user_pass' => $user_pass));
-      add_user_to_blog( $blog, $user_id, "subscriber" ) ;
+      add_user_to_blog( $blog, $user_id, "author" ) ;
     }
   } 
   else { // user does not exist
@@ -43,6 +43,7 @@ function ifr_create_user($fname, $lname, $email, $blog) {
       return null;
     }
     else {
+      $user_info['wpid'] = $user_id;
       add_user_to_blog( $blog, $user_id, "author" ) ;
       remove_user_from_blog($user_id, 1); // hack, must manually remove from main blog
     }
