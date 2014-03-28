@@ -23,7 +23,7 @@ elseif (isset($_REQUEST['email'])) {
   if ($user_result) {
     // lookup decision for that user
     $decision_result = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_2_ifr_decision WHERE user = %d AND (decision = 'approve' OR decision = 'comp') ", $user_result->id));
-    if (!$decision_result) {
+    if ((!$decision_result) || ($decision_result->decision == 'reject')) {
 ?>
 <h2>Applicant not found, or applicant not yet accepted. If you wish to apply, please <a href="https://itp.nyu.edu/camp/2014/apply">apply here</a></h2>
 <h3>If you have been accepted to Camp already, please input your email address that you used in your application:</h3>
@@ -33,37 +33,47 @@ elseif (isset($_REQUEST['email'])) {
   </form>
 <?php
     }
-    else {
+    else if (($decision_result->decision == 'comp') || 
+      ($decision_result->decision == 'approve' && $decision_result->payment_due == 0)) {
+?>
+<h2>Acceptance</h2>
+<p>Congratulations! You sound like a great fit for ITP camp.  You are officially in.  Admission is complimentary for you so we do not need any payment from you, but we do need you to let us know that you are coming by clicking one of the buttons below: 
+
+<form>
+  <input type="button" name="accept">Yes, I'm coming to Camp!</input> 
+  <input type="button" name="decline">No, I'm not coming to Camp</input>
+</form>
+<?php
+    }
+    else if ($decision_result == 'approve') {
 ?>
 
-<form id="myform" action="<?php ?>" method="post"> 
-  <input type="hidden" name="AMOUNT_EVT_1" id="AMOUNT_EVT_1" size="5" value="<?php ?>" />
-  <input type="hidden" name="FORM_ID" value="<?php ?>" />
-  <input type="hidden" name="TEST_FLAG" value="<?php ?>" />
-  <input type="hidden" name="FORM_SUCCESS_URL" value="" />
-  <input type="hidden" name="FORM_FAILURE_URL" value="" /> 
-  <input type="hidden" name="ACCOUNT_EVT_1" value="" />
-  <input type="hidden" name="FUND_CODE_EVT_1" value="" />
-  <input type="hidden" name="DEPTID_EVT_1" value="" />
-  <input type="hidden" name="PROGRAM_CODE_EVT_1" value="" />
-  <input type="hidden" name="PROJECT_ID_EVT_1" value="" />
-  <input type="hidden" name="AMOUNT_PAID" id="AMOUNT_PAID" value="<?php ?>" size="6" />
-  <input type="hidden" name="DISCOUNT" value="<?php ?>" />
+<form id="myform" action="<?php echo get_option('ifr_paygate_URL'); ?>" method="post"> 
+  <input type="hidden" name="AMOUNT_EVT_1" id="AMOUNT_EVT_1" size="5" value="<?php echo get_option('ifr_paygate_AMOUNT_EVT_1'); ?>" />
+  <input type="hidden" name="FORM_ID" value="<?php echo get_option('ifr_paygate_FORM_ID'); ?>" />
+  <input type="hidden" name="TEST_FLAG" value="<?php get_option('ifr_paygate_TEST_FLAG'); ?>" />
+  <input type="hidden" name="FORM_SUCCESS_URL" value="<?php get_option('ifr_paygate_FORM_SUCCESS_URL'); ?>" />
+  <input type="hidden" name="FORM_FAILURE_URL" value="<?php get_option('ifr_paygate_FORM_FAILURE_URL'); ?>" /> 
+  <input type="hidden" name="ACCOUNT_EVT_1" value="<?php get_option('ifr_paygate_ACCOUNT_EVT_1'); ?>" />
+  <input type="hidden" name="FUND_CODE_EVT_1" value="<?php get_option('ifr_paygate_FUND_CODE_EVT_1'); ?>" />
+  <input type="hidden" name="DEPTID_EVT_1" value="<?php get_option('ifr_paygate_DEPTID_EVT_1'); ?>" />
+  <input type="hidden" name="PROGRAM_CODE_EVT_1" value="<?php get_option('ifr_paygate_PROGRAM_CODE_EVT_1'); ?>" />
+  <input type="hidden" name="PROJECT_ID_EVT_1" value="<?php get_option('ifr_paygate_PROJECT_ID_EVT_1'); ?>" />
+  <input type="hidden" name="AMOUNT_PAID" id="AMOUNT_PAID" value="<?php get_option('ifr_paygate_AMOUNT_PAID'); ?>" size="6" />
+  <input type="hidden" name="DISCOUNT" value="<?php get_option('ifr_paygate_DISCOUNT'); ?>" />
   <h3>Contact/Billing Information</h3>
   <label for="FIRST_NAME">First Name:</label>
-  <input type="text" name="FIRST_NAME" id="FIRST_NAME" size="25" value="<?php ?>" />
+  <input type="text" name="FIRST_NAME" id="FIRST_NAME" size="25" />
   <label for="LAST_NAME">Last Name:</label>
-  <input type="text" name="LAST_NAME" id="LAST_NAME" size="25" value="<?php ?>" />
+  <input type="text" name="LAST_NAME" id="LAST_NAME" size="25" />
   <label for="EMAIL">Email:</label>
-  <input type="text" name="EMAIL" id="EMAIL" size="35" value="<?php ?>" />
-  <label for="EMAIL2">Reenter Email:</label>
-  <input type="text" name="EMAIL2" id="EMAIL2" size="35" value="<?php ?>" />
+  <input type="text" name="EMAIL" id="EMAIL" size="35" readonly="true" value="<?php  ?>" />
   <label for="PHONE">Phone:</label>
-  <input type="text" name="PHONE" id="PHONE" size="15" value="<?php ?>" />
+  <input type="text" name="PHONE" id="PHONE" size="15" />
   <label for="ADDRESS_LINE_1">Address:</label>
-  <input type="text" name="ADDRESS_LINE_1" id="ADDRESS_LINE_1" size="35" value="<?php ?>" />
+  <input type="text" name="ADDRESS_LINE_1" id="ADDRESS_LINE_1" size="35" />
   <label for="CITY">City:</label>
-  <input type="text" name="CITY" id="CITY" size="20" value="<?php ?>" />
+  <input type="text" name="CITY" id="CITY" size="20" />
   <label for="STATE">* State</label>
   <select id="STATE" name="STATE">
     <option value="NA">Non-US</option>
@@ -120,7 +130,7 @@ elseif (isset($_REQUEST['email'])) {
     <option value="WY">Wyoming</option>
   </select>
   <label for="POSTAL_CODE">* Postal Code</label>
-  <input type="text" name="POSTAL_CODE" id="POSTAL_CODE" size="10" value="<?php ?>" size="5" />
+  <input type="text" name="POSTAL_CODE" id="POSTAL_CODE" size="10" size="5" />
   <label for="COUNTRY">* Country</label>
   <select id="COUNTRY" name="COUNTRY">
     <option selected="selected" value="us">United States</option>

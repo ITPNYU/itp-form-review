@@ -41,6 +41,7 @@ function ifr_gravity_public_key_callback() {
   echo '<input name="ifr_gravity_public_key" id="ifr_gravity_public_key" type="text" ' . $val . ' />';
 }
 
+
 function ifr_db_create() {
   global $wpdb;
   global $ifr_db_version;
@@ -101,7 +102,8 @@ PRIMARY KEY  (id)
   dbDelta($decision_sql);
   dbDelta($payment_sql);
 
-  add_option("ifr_db_version", $ifr_db_version);
+  add_option('ifr_db_version', $ifr_db_version);
+
 }
 
 function ifr_db_upgrade() {
@@ -133,6 +135,15 @@ function ifr_page() {
   echo '</script>';
 }
 
+function ifr_paygate_setting_callback($option_name) {
+  $option_data = get_option($option_name);
+  $val = '';
+  if (isset($option_data)) {
+    $val = 'value="' . $option_data . '"';
+  }
+  echo "<input name=\"$option_name\" id=\"$option_name\" type=\"text\" $val />";
+}
+
 function ifr_register_template() {
   if (is_page('register')) {
     $location = plugin_dir_path(__FILE__) . 'ifr_register_template.php';
@@ -156,23 +167,20 @@ function ifr_script_load($hook) {
 }
 
 function ifr_settings() {
-  add_settings_section(
-    'ifr_gravity_section',
+  add_settings_section('ifr_gravity_section',
     'ITP Form Review Plugin',
     'ifr_section',
     'general'
   );
 
-  add_settings_field(
-    'ifr_gravity_public_key',
+  add_settings_field('ifr_gravity_public_key',
     'Gravity Forms API Public Key',
     'ifr_gravity_public_key_callback',
     'general',
     'ifr_gravity_section'
   );
   
-  add_settings_field(
-    'ifr_gravity_private_key',
+  add_settings_field('ifr_gravity_private_key',
     'Gravity Forms API Private Key',
     'ifr_gravity_private_key_callback',
     'general',
@@ -181,11 +189,149 @@ function ifr_settings() {
 
   register_setting( 'general', 'ifr_gravity_public_key');
   register_setting( 'general', 'ifr_gravity_private_key');
+
+  // payment gateway settings
+  add_settings_section('ifr_paygate_section',
+    'ITP Payment Plugin',
+    'ifr_section',
+    'general'
+  );
+
+  add_settings_field('ifr_paygate_URL',
+    'Paygate URL',
+    'ifr_paygate_setting_callback',
+    'general',
+    'ifr_paygate_section',
+    array('ifr_paygate_URL')
+  );
+
+  add_settings_field('ifr_paygate_AMOUNT_EVT_1',
+    'Paygate AMOUNT_EVT_1',
+    'ifr_paygate_setting_callback',
+    'general',
+    'ifr_paygate_section',
+    array('ifr_paygate_AMOUNT_EVT_1')
+  );
+
+  add_settings_field('ifr_paygate_FORM_ID',
+    'Paygate FORM_ID',
+    'ifr_paygate_setting_callback',
+    'general',
+    'ifr_paygate_section',
+    array('ifr_paygate_FORM_ID')
+  );
+
+  add_settings_field('ifr_paygate_TEST_FLAG',
+    'Paygate TEST_FLAG',
+    'ifr_paygate_setting_callback',
+    'general',
+    'ifr_paygate_section',
+    array('ifr_paygate_TEST_FLAG')
+  );
+
+  add_settings_field('ifr_paygate_FORM_SUCCESS_URL',
+    'Paygate FORM_SUCCESS_URL',
+    'ifr_paygate_setting_callback',
+    'general',
+    'ifr_paygate_section',
+    array('ifr_paygate_FORM_SUCCESS_URL')
+  );
+
+  add_settings_field('ifr_paygate_FORM_FAILURE_URL',
+    'Paygate FORM_FAILURE_URL',
+    'ifr_paygate_setting_callback',
+    'general',
+    'ifr_paygate_section',
+    array('ifr_paygate_FORM_FAILURE_URL')
+  );
+
+  add_settings_field('ifr_paygate_ACCOUNT_EVT_1',
+    'Paygate ACCOUNT_EVT_1',
+    'ifr_paygate_setting_callback',
+    'general',
+    'ifr_paygate_section',
+    array('ifr_paygate_ACCOUNT_EVT_1')
+  );
+
+  add_settings_field('ifr_paygate_FUND_CODE_EVT_1',
+    'Paygate FUND_CODE_EVT_1',
+    'ifr_paygate_setting_callback',
+    'general',
+    'ifr_paygate_section',
+    array('ifr_paygate_FUND_CODE_EVT_1')
+  );
+
+  add_settings_field('ifr_paygate_DEPTID_EVT_1',
+    'Paygate DEPTID_EVT_1',
+    'ifr_paygate_setting_callback',
+    'general',
+    'ifr_paygate_section',
+    array('ifr_paygate_DEPTID_EVT_1')
+  );
+
+  add_settings_field('ifr_paygate_PROGRAM_CODE_EVT_1',
+    'Paygate PROGRAM_CODE_EVT_1',
+    'ifr_paygate_setting_callback',
+    'general',
+    'ifr_paygate_section',
+    array('ifr_paygate_PROGRAM_CODE_EVT_1')
+  );
+
+  add_settings_field('ifr_paygate_PROJECT_ID_EVT_1',
+    'Paygate PROJECT_ID_EVT_1',
+    'ifr_paygate_setting_callback',
+    'general',
+    'ifr_paygate_section',
+    array('ifr_paygate_PROJECT_ID_EVT_1')
+  );
+
+  add_settings_field('ifr_paygate_AMOUNT_PAID',
+    'Paygate AMOUNT_PAID',
+    'ifr_paygate_setting_callback',
+    'general',
+    'ifr_paygate_section',
+    array('ifr_paygate_AMOUNT_PAID')
+  );
+
+  add_settings_field('ifr_paygate_DISCOUNT',
+    'Paygate DISCOUNT',
+    'ifr_paygate_setting_callback',
+    'general',
+    'ifr_paygate_section',
+    array('ifr_paygate_DISCOUNT')
+  );
+
+  register_setting('general', 'ifr_paygate_URL');
+  register_setting('general', 'ifr_paygate_AMOUNT_EVT_1');
+  register_setting('general', 'ifr_paygate_FORM_ID');
+  register_setting('general', 'ifr_paygate_TEST_FLAG');
+  register_setting('general', 'ifr_paygate_FORM_SUCCESS_URL');
+  register_setting('general', 'ifr_paygate_FORM_FAILURE_URL');
+  register_setting('general', 'ifr_paygate_ACCOUNT_EVT_1');
+  register_setting('general', 'ifr_paygate_FUND_CODE_EVT_1');
+  register_setting('general', 'ifr_paygate_DEPTID_EVT_1');
+  register_setting('general', 'ifr_paygate_PROGRAM_CODE_EVT_1');
+  register_setting('general', 'ifr_paygate_PROJECT_ID_EVT_1');
+  register_setting('general', 'ifr_paygate_AMOUNT_PAID');
+  register_setting('general', 'ifr_paygate_DISCOUNT');
 }
 
 function ifr_setup() {
   add_option('ifr_gravity_public_key');
   add_option('ifr_gravity_private_key');
+  add_option('general', 'paygate_url');
+  add_option('general', 'paygate_AMOUNT_EVT_1');
+  add_option('general', 'paygate_FORM_ID');
+  add_option('general', 'paygate_TEST_FLAG');
+  add_option('general', 'paygate_FORM_SUCCESS_URL');
+  add_option('general', 'paygate_FORM_FAILURE_URL');
+  add_option('general', 'paygate_ACCOUNT_EVT_1');
+  add_option('general', 'paygate_FUND_CODE_EVT_1');
+  add_option('general', 'paygate_DEPTID_EVT_1');
+  add_option('general', 'paygate_PROGRAM_CODE_EVT_1');
+  add_option('general', 'paygate_PROJECT_ID_EVT_1');
+  add_option('general', 'paygate_AMOUNT_PAID');
+  add_option('general', 'paygate_DISCOUNT');
 } 
 
 ?>
