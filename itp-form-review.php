@@ -213,6 +213,10 @@ function ifr_settings() {
     array('ifr_message_reject')
   );
 
+  register_setting('general', 'ifr_message_accept');
+  register_setting('general', 'ifr_message_comp');
+  register_setting('general', 'ifr_message_reject');
+
   // Gravity Forms API settings
   add_settings_section('ifr_gravity_section',
     'ITP Form Review Gravity Settings',
