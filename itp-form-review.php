@@ -173,6 +173,9 @@ function ifr_review_setting_callback() {
   echo "<textarea name=\"$option_name\" id=\"$option_name\" rows=\"20\" cols=\"60\" />$option_data</textarea>";
 }
 
+function ifr_review_section() {
+}
+
 function ifr_settings() {
   add_settings_section('ifr_review_section',
     'ITP Form Review Settings',
