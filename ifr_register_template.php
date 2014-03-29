@@ -64,6 +64,10 @@ elseif (isset($_REQUEST['email'])) {
 <h3>Contact/Billing Information</h3>
 <em> (all fields are required)</em>
 <form id="myform" action="<?php echo get_option('ifr_paygate_URL'); ?>" method="post"> 
+  <input type="hidden" name="ifr_user" value="<?php echo $decision_result->user; ?>" />
+  <input type="hidden" name="ifr_form" value="<?php echo $decision_result->form; ?>" />
+  <input type="hidden" name="ifr_entry" value="<?php echo $decision_result->entry; ?>" />
+  <input type="hidden" name="ifr_accept" value="1" />
   <input type="hidden" name="AMOUNT_EVT" id="AMOUNT_EVT" size="5" value="<?php echo $decision_result->payment_due; ?>" />
   <input type="hidden" name="FORM_ID" value="<?php echo get_option('ifr_paygate_FORM_ID'); ?>" />
   <input type="hidden" name="ACCOUNT_EVT" value="<?php echo get_option('ifr_paygate_ACCOUNT_EVT'); ?>" />

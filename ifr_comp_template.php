@@ -14,7 +14,12 @@ if (validate($register_data)) {
       $accept_data['accept'] = $_POST['accept'];
      
       if ($wpdb->insert('wp_2_ifr_register', $accept_data)) {
-        header('Location: https://itp.nyu.edu/camp/2014/registration-successful');
+        if ($_POST['accept'] == 1) {
+          header('Location: https://itp.nyu.edu/camp/2014/registration-successful');
+        }
+        else if ($_POST['accept'] == 0) {
+          header('Location: https://itp.nyu.edu/camp/2014/registration-declined');
+        }
         exit;
       }
     }

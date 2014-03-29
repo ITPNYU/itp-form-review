@@ -134,9 +134,18 @@ function ifr_menu() {
 
 function ifr_page() {
   echo file_get_contents(plugin_dir_path(__FILE__) . '/html/ifrPage.html');
+  echo '<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>';
   echo '<script type="text/javascript">
   var ifr_form_query = "' . ifr_form_query("forms/2/entries") . '";
   var ifr_api = "' . network_site_url() . 'wp-content/plugins/itp-form-review/api/";
+  var ifr_message_accept = "' . get_option('ifr_message_accept') . '";
+  var ifr_message_comp = "' . get_option('ifr_message_comp') . '";
+  var ifr_message_reject = "' . get_option('ifr_message_reject') . '";
+
+  function renderMessage(template, data) {
+    var compiledMessage = _.template(template);
+    return compiledMessage(data);
+  }
 </script>';
   echo '<script type="text/javascript">';
   echo file_get_contents(plugin_dir_path(__FILE__) . '/js/entryCtrl.js');
