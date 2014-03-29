@@ -61,10 +61,8 @@ elseif (isset($_REQUEST['email'])) {
 <p>Congratulations! You sound like a great fit for ITP camp.  You are officially in.</p>
 <p>Payment will reserve your spot. We will accept payments until June 1st, pending availability. Feel free to email <a href="mailto:campinfo@itp.nyu.edu">campinfo@itp.nyu.edu</a> if you have any questions.  We look forward to seeing you in June!</p>
 
-<h3>Payment Amount</h3>
-<em>(this amount already includes all applicable discounts)</em><br />
-<label for="AMOUNT_PAID">Payment Amount: </label>
-$<input type="text" id="AMOUNT_PAID" name="AMOUNT_PAID" readonly="readonly" size="6" value="<?php echo $decision_result->payment_due; ?>" />
+<h3>Payment Amount: $<?php echo $decision_result->payment_due; ?></h3>
+<p>You will be charged <strong>$<?php echo $decision_result->payment_due; ?></strong>. This amount already includes all applicable discounts.</p>
 
 <h3>Contact/Billing Information</h3>
 <em> (all fields are required)</em>
@@ -73,7 +71,8 @@ $<input type="text" id="AMOUNT_PAID" name="AMOUNT_PAID" readonly="readonly" size
   <input type="hidden" name="form" value="<?php echo $decision_result->form; ?>" />
   <input type="hidden" name="entry" value="<?php echo $decision_result->entry; ?>" />
   <input type="hidden" name="accept" value="1" />
-  <input type="hidden" name="AMOUNT_EVT" id="AMOUNT_EVT" size="5" value="<?php echo $decision_result->payment_due; ?>" />
+  <input type="hidden" name="AMOUNT_PAID" value="<?php echo $decision_result->payment_due; ?>" />
+  <input type="hidden" name="AMOUNT_EVT" id="AMOUNT_EVT" value="<?php echo $decision_result->payment_due; ?>" />
   <input type="hidden" name="FORM_ID" value="<?php echo get_option('ifr_paygate_FORM_ID'); ?>" />
   <input type="hidden" name="ACCOUNT_EVT" value="<?php echo get_option('ifr_paygate_ACCOUNT_EVT'); ?>" />
   <input type="hidden" name="FUND_CODE_EVT" value="<?php echo get_option('ifr_paygate_FUND_CODE_EVT'); ?>" />
