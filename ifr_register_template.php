@@ -63,8 +63,8 @@ elseif (isset($_REQUEST['email'])) {
 
 <h3>Payment Amount</h3>
 <em>(this amount already includes all applicable discounts)</em><br />
-<label for="AMOUNT_PAID">Payment Amount: $</label>
-<input type="text" id="AMOUNT_PAID" name="AMOUNT_PAID" readonly="readonly" size="6" value="<?php echo $decision_result->payment_due; ?>" />
+<label for="AMOUNT_PAID">Payment Amount: </label>
+$<input type="text" id="AMOUNT_PAID" name="AMOUNT_PAID" readonly="readonly" size="6" value="<?php echo $decision_result->payment_due; ?>" />
 
 <h3>Contact/Billing Information</h3>
 <em> (all fields are required)</em>
