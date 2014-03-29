@@ -19,7 +19,7 @@ elseif (isset($_REQUEST['email'])) {
   $applicant = array();
 
   // lookup user
-  $user_result = $wpdb->get_row($wpdb->prepare("SELECT id FROM wp_2_ifr_user WHERE email = %s", $email));
+  $user_result = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_2_ifr_user WHERE email = %s", $email));
   if ($user_result) {
     // lookup decision for that user
     $decision_result = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_2_ifr_decision WHERE user = %d AND (decision = 'approve' OR decision = 'comp') ", $user_result->id));
