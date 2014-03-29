@@ -39,14 +39,14 @@ elseif (isset($_REQUEST['email'])) {
 <h2>Acceptance</h2>
 <p>Congratulations! You sound like a great fit for ITP camp.  You are officially in.  Your admission is complimentary so we do not need any payment from you, but we do need you to let us know whether you are coming to Camp: 
 
-<form action="https://itp.nyu.edu/camp/2014/comp" method="POST">
+<form action="https://itp.nyu.edu/camp/2014/registration-processing" method="POST">
   <input type="hidden" name="user" value="<?php echo $decision_result->user; ?>" />
   <input type="hidden" name="form" value="<?php echo $decision_result->form ?>" />
   <input type="hidden" name="entry" value="<?php echo $decision_result->entry ?>" />
   <input type="hidden" name="accept" value="1" />
   <input type="submit" value="Yes, I'm coming to Camp!" /> 
 </form>
-<form action="https://itp.nyu.edu/camp/2014/comp" method="POST">
+<form action="https://itp.nyu.edu/camp/2014/registration-processing" method="POST">
   <input type="hidden" name="user" value="<?php echo $decision_result->user; ?>" />
   <input type="hidden" name="form" value="<?php echo $decision_result->form ?>" />
   <input type="hidden" name="entry" value="<?php echo $decision_result->entry ?>" />
@@ -84,14 +84,14 @@ elseif (isset($_REQUEST['email'])) {
   <label for="LAST_NAME">Last Name:</label>
   <input type="text" name="LAST_NAME" id="LAST_NAME" required="true" size="25" />
   <label for="EMAIL">Email:</label>
-  <input type="text" name="EMAIL" id="EMAIL" size="35" readonly="true" value="<?php  ?>" />
+  <input type="text" name="EMAIL" id="EMAIL" size="35" readonly="true" value="<?php echo $user_result->email; ?>" />
   <label for="PHONE">Phone:</label>
   <input type="text" name="PHONE" id="PHONE" size="15" required="true" />
   <label for="ADDRESS_LINE_1">Address:</label>
   <input type="text" name="ADDRESS_LINE_1" id="ADDRESS_LINE_1" size="35" required="true" />
   <label for="CITY">City:</label>
   <input type="text" name="CITY" id="CITY" size="20" required="true" />
-  <label for="STATE">* State</label>
+  <label for="STATE">State</label>
   <select id="STATE" name="STATE" required="true" >
     <option value="NA">Non-US</option>
     <option value="AL">Alabama</option>
@@ -148,7 +148,7 @@ elseif (isset($_REQUEST['email'])) {
   </select>
   <label for="POSTAL_CODE">* Postal Code</label>
   <input type="text" name="POSTAL_CODE" id="POSTAL_CODE" size="10" size="5" required="true" />
-  <label for="COUNTRY">* Country</label>
+  <label for="COUNTRY">Country</label>
   <select id="COUNTRY" name="COUNTRY" required="true" >
     <option selected="selected" value="us">United States</option>
 <option value="af">Afghanistan</option>
