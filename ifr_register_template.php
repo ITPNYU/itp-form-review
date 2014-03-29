@@ -62,8 +62,8 @@ elseif (isset($_REQUEST['email'])) {
 <p>Payment will reserve your spot. We will accept payments until June 1st, pending availability. Feel free to email <a href="mailto:campinfo@itp.nyu.edu">campinfo@itp.nyu.edu</a> if you have any questions.  We look forward to seeing you in June!</p>
 
 <h3>Payment Amount</h3>
-<em>(this amount already includes all applicable discounts)</em>
-<label for="AMOUNT_PAID">Payment Amount:</label>
+<em>(this amount already includes all applicable discounts)</em><br />
+<label for="AMOUNT_PAID">Payment Amount: $</label>
 <input type="text" id="AMOUNT_PAID" name="AMOUNT_PAID" readonly="readonly" size="6" value="<?php echo $decision_result->payment_due; ?>" />
 
 <h3>Contact/Billing Information</h3>

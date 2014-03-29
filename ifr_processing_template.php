@@ -60,7 +60,7 @@ function validate($arg) {
 
 ?>
 
-<h2>Processing Error</h2>
+<h3>Processing Error</h3>
 <p>Uh oh! Something went wrong with your registration. We’re investigating the cause of the error, but please contact us at (212) 998-1880 or <a href="mailto:campinfo@itp.nyu.edu">campinfo@itp.nyu.edu</a> to get more information.</p>
 
 <?php
