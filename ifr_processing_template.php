@@ -25,8 +25,8 @@ if (validate($register_data)) {
         }
       }
       else if ($decision_result->decision == 'approve') {
-        $payment_data['form'] = $_POST['ifr_form'];
-        $payment_data['entry'] = $_POST['ifr_entry'];
+        $payment_data['form'] = $_POST['form'];
+        $payment_data['entry'] = $_POST['entry'];
         $payment_data['cc_amount'] = $_POST['AMOUNT_PAID'];
         $payment_data['cc_time'] = $_POST['ccAuthReply_authorizedDateTime'];
         $payment_data['cc_seq_no'] = $_POST['orderNumber'];
