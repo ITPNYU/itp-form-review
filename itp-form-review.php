@@ -12,7 +12,7 @@
 require 'ifr_gravity.php';
 
 global $ifr_db_version;
-$ifr_db_version = "10";
+$ifr_db_version = "11";
 
 register_activation_hook( __FILE__, 'ifr_setup');
 register_activation_hook( __FILE__, 'ifr_db_install');
@@ -87,7 +87,6 @@ PRIMARY KEY  (id)
 id INT NOT NULL AUTO_INCREMENT,
 form INT NOT NULL,
 entry VARCHAR(20) NOT NULL,
-session_id VARCHAR(20) NOT NULL,
 cc_amount VARCHAR(20) NULL,
 cc_time VARCHAR(30) NULL,
 cc_seq_no VARCHAR(20) NULL,
