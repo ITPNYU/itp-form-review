@@ -173,8 +173,8 @@ function ifr_special_template_filter() {
       exit();
     }
   }
-  else if (is_page('comp')) {
-    $location = plugin_dir_path(__FILE__) . 'ifr_comp_template.php';
+  else if (is_page('processing')) {
+    $location = plugin_dir_path(__FILE__) . 'ifr_processing_template.php';
     if ( file_exists( $location ) ) {
       load_template($location); 
       exit();
