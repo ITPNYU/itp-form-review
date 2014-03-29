@@ -25,18 +25,18 @@ if (validate($register_data)) {
         }
       }
       else if ($decision_result->decision == 'approve') {
-        if ($wpdb->insert('wp_2_ifr_register', $accept_data)) {
-          if ($wpdb->insert('wp_2_ifr_register', $register_data)) {
-            $payment_data['form'] = $_POST['ifr_form'];
-            $payment_data['entry'] = $_POST['ifr_entry'];
-            $payment_data['cc_amount'] = $_POST['AMOUNT_PAID'];
-            $payment_data['cc_time'] = $_POST['ccAuthReply_authorizedDateTime'];
-            $payment_data['cc_seq_no'] = $_POST['orderNumber'];
-            $payment_data['cc_transaction_id'] = $_POST['pg_transaction_id'];
-            $payment_data['cc_transaction_sig'] = $_POST['transactionSignature'];
-	    $payment_data['cc_decision'] = $_POST['decision'];
+        $payment_data['form'] = $_POST['ifr_form'];
+        $payment_data['entry'] = $_POST['ifr_entry'];
+        $payment_data['cc_amount'] = $_POST['AMOUNT_PAID'];
+        $payment_data['cc_time'] = $_POST['ccAuthReply_authorizedDateTime'];
+        $payment_data['cc_seq_no'] = $_POST['orderNumber'];
+        $payment_data['cc_transaction_id'] = $_POST['pg_transaction_id'];
+        $payment_data['cc_transaction_sig'] = $_POST['transactionSignature'];
+	$payment_data['cc_decision'] = $_POST['decision'];
 
-            if ($wpdb->insert('wp_2_ifr_payment', $payment_data)) {
+        if ($decision_result->payment_due == $payment_data['cc_amount']) {
+          if ($wpdb->insert('wp_2_ifr_payment', $payment_data)) {
+            if ($wpdb->insert('wp_2_ifr_register', $accept_data)) {
               header('Location: https://itp.nyu.edu/camp/2014/payment-successful');
               exit;
             }
