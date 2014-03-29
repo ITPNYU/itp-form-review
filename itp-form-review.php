@@ -173,7 +173,7 @@ function ifr_special_template_filter() {
       exit();
     }
   }
-  else if (is_page('processing')) {
+  else if (is_page('registration-processing')) {
     $location = plugin_dir_path(__FILE__) . 'ifr_processing_template.php';
     if ( file_exists( $location ) ) {
       load_template($location); 
