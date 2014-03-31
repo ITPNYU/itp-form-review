@@ -1,4 +1,4 @@
-ifrApp.controller("DecisionCtrl", ['$scope', '$http', '$window', function ($scope, $http, $window) {
+ifrApp.controller("DecisionCtrl", ['$scope', '$http', '$window', 'underscore', function ($scope, $http, $window, _) {
   $http.get(ifr_api + 'decision?blog=2') // FIXME
     .success(function(data) {
       $scope.decisions = data.objects;
@@ -24,7 +24,7 @@ ifrApp.controller("DecisionCtrl", ['$scope', '$http', '$window', function ($scop
   };
 
   function renderMessage(template, data) {
-    var compiledMessage = $window._.template(template);
+    var compiledMessage = _.template(template);
     return escape(compiledMessage(data));
   };
 
