@@ -67,6 +67,7 @@ ifrApp.controller("DecisionCtrl", function ($scope, $http, $window) {
     $http.post(ifr_api + 'decision?blog=2', formData) // FIXME
       .success(function(data, status, headers, config) {
         console.log('success ' + status + " ");
+        console.log('about to send ' + ifr_decision_message[data['decision']]);
         console.dir(data);
         $scope.decisions.push(data); // FIXME: probably a better way
         var messageData = {
