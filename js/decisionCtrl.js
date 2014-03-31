@@ -1,4 +1,4 @@
-ifrApp.controller("DecisionCtrl", ['$scope', '$http', '$window', function ($scope, $http, $window) {
+ifrApp.controller("DecisionCtrl", ['$scope', '$http', '$window', 'underscore', function ($scope, $http, $window, _) {
   $http.get(ifr_api + 'decision?blog=2') // FIXME
     .success(function(data) {
       $scope.decisions = data.objects;

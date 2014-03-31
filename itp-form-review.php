@@ -135,6 +135,11 @@ function ifr_page() {
   echo file_get_contents(plugin_dir_path(__FILE__) . '/html/ifrPage.html');
   echo '<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>';
   echo '<script type="text/javascript">
+  angular.module("underscore", []).factory("_", function() {
+    return window._; // assumes underscore has already been loaded on the page
+  });
+</script>';
+  echo '<script type="text/javascript">
   var ifr_form_query = "' . ifr_form_query('forms/2/entries') . '";
   var ifr_api = "' . network_site_url() . 'wp-content/plugins/itp-form-review/api/";
   var ifr_decision_message = {};
