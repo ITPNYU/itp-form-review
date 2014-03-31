@@ -63,10 +63,11 @@ ifrApp.controller("DecisionCtrl", function ($scope, $http, $window) {
       "email": email,
       "discount": discount
     };
-    console.dir(formData);
+    //console.dir(formData);
     $http.post(ifr_api + 'decision?blog=2', formData) // FIXME
       .success(function(data, status, headers, config) {
-        console.log('success ' + status + " " + data);
+        console.log('success ' + status + " ");
+        console.dir(data);
         $scope.decisions.push(data); // FIXME: probably a better way
         var messageData = {
           "firstName": data["fname"],
