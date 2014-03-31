@@ -215,6 +215,9 @@ if (current_user_can('activate_plugins')) { // indicates an administrator
         }
         else {
           $app->response->setStatus(201); // created
+          $decision_data['email'] = $req['email'];
+          $decision_data['fname'] = $req['fname'];
+          $decision_data['lname'] = $req['lname'];
           echo json_encode($decision_data);
         }
       }
