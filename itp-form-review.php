@@ -189,6 +189,7 @@ function ifr_script_load($hook) {
   wp_register_script('angular', '//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js');
   wp_register_script('angular-sanitize', '//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.min.js', array('angular'));
   wp_register_script('angular-ui-bootstrap', '//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js', array('angular'));
+  wp_enqueue_script('underscore');
   wp_enqueue_script('angular');
   wp_enqueue_script('angular-sanitize');
   wp_enqueue_script('angular-ui-bootstrap');
