@@ -65,8 +65,8 @@ ifrApp.controller("DecisionCtrl", ['$scope', '$http', '$window', function ($scop
         console.log('success ' + status + " " + data);
         $scope.decisions.push(data); // FIXME: probably a better way
         var messageData = {
-          "firstName": formData["fname"],
-          "registerLink": "https://itp.nyu.edu/camp/2014/register/?email=" + escape(formData["email"])
+          "firstName": data["fname"],
+          "registerLink": "https://itp.nyu.edu/camp/2014/register/?email=" + escape(data["email"])
         };
         $window.open('mailto:' + email + '?subject=ITP%20Camp%20Application%20Status&body=' + renderMessage(ifr_decision_message[formData["decision"]], messageData));
       })
