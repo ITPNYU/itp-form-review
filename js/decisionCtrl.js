@@ -23,6 +23,11 @@ ifrApp.controller("DecisionCtrl", ['$scope', '$http', '$window', 'underscore', f
     }
   };
 
+  function renderMessage(template, data) {
+    var compiledMessage = _.template(template);
+    return escape(compiledMessage(data));
+  }
+
   $scope.submitDecision = function(formId, entry, decision, fname, lname, email, affiliation, date_created) {
     console.log('form ' + formId + ' entry ' + entry);
     var discount = 0.0;

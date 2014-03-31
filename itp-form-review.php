@@ -146,11 +146,6 @@ function ifr_page() {
   ifr_decision_message["accept"] = ' . json_encode(get_option('ifr_message_accept')) . ';
   ifr_decision_message["comp"] = ' . json_encode(get_option('ifr_message_comp')) . ';
   ifr_decision_message["reject"] = ' . json_encode(get_option('ifr_message_reject')) . ';
-
-  function renderMessage(template, data) {
-    var compiledMessage = _.template(template);
-    return escape(compiledMessage(data));
-  }
 </script>';
   echo '<script type="text/javascript">';
   echo file_get_contents(plugin_dir_path(__FILE__) . '/js/entryCtrl.js');
