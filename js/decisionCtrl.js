@@ -23,10 +23,10 @@ ifrApp.controller("DecisionCtrl", ['$scope', '$http', '$window', 'underscore', f
     }
   };
 
-  function renderMessage(template, data) {
+  $scope.renderMessage = function(template, data) {
     var compiledMessage = _.template(template);
     return escape(compiledMessage(data));
-  }
+  };
 
   $scope.submitDecision = function(formId, entry, decision, fname, lname, email, affiliation, date_created) {
     console.log('form ' + formId + ' entry ' + entry);
@@ -68,7 +68,7 @@ ifrApp.controller("DecisionCtrl", ['$scope', '$http', '$window', 'underscore', f
           "firstName": formData["fname"],
           "registerLink": "https://itp.nyu.edu/camp/2014/register/?email=" + escape(formData["email"])
         };
-        $window.open('mailto:' + email + '?subject=ITP%20Camp%20Application%20Status&body=' + renderMessage(ifr_decision_message[formData["decision"]], messageData));
+        $window.open('mailto:' + email + '?subject=ITP%20Camp%20Application%20Status&body=' + $scope.renderMessage(ifr_decision_message[formData["decision"]], messageData));
       })
       .error(function() {
         console.log('error');
