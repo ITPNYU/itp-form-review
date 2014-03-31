@@ -133,7 +133,7 @@ function ifr_menu() {
 
 function ifr_page() {
   echo file_get_contents(plugin_dir_path(__FILE__) . '/html/ifrPage.html');
-  echo 'TEST <script type="text/javascript">
+  echo '<script type="text/javascript">
   angular.module("underscore", []).factory("_", function() {
     return window._; // assumes underscore has already been loaded on the page
   });
