@@ -16,7 +16,7 @@
             <br />
             <div class="payment" ng-controller="PaymentCtrl">
               <div ng-if="! needsDecision(e['id'])">
-                <b>Payment</b>: {{getPayment(e['id']) | currency}}
+                <b>Payment</b>: {{getPayment(e['id'])}}
               </div><!-- ng-if -->
             </div><!-- .payment -->
             <div class="review" ng-controller="ReviewCtrl">

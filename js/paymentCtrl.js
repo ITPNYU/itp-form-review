@@ -8,7 +8,10 @@ ifrApp.controller("PaymentCtrl", function ($scope, $http) {
     for (var dIndex in $scope.payments) {
       if ($scope.payments[dIndex]['entry'] == entry) {
         if ($scope.payments[dIndex]['cc_decision'] == "ACCEPT") {
-          return $scope.payments[dIndex]['cc_amount'];
+          return '$' + $scope.payments[dIndex]['cc_amount'] + " received";
+        }
+        else {
+          return '(payment failed)';
         }
       }
     }
