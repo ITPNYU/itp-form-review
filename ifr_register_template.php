@@ -35,7 +35,7 @@ elseif (isset($_REQUEST['email'])) {
   </form>
 <?php
     }
-    else if ($register_result && $payment_result) {
+    else if ($register_result && $payment_result && ($payment_result->cc_decision == "ACCEPT") && ($payment_result->cc_amount >= $decision_result->payment_due)) {
 ?>
 <h2>Already Registered</h2>
 <p>Our records show that you have already registered and paid. Thanks! Stay tuned for more info about Camp soon!</p>
