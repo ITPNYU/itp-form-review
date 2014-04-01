@@ -1,4 +1,12 @@
 <?php 
+date_default_timezone_set("America/New_York");
+$date = getdate();
+$early_discount = 0;
+// early bird discount for people who pay before April 15 2014
+if ( ($date['year'] <= 2014) && (($date['month'] <= 4) || (($date['month'] == 4) && ($date['day'] < 15)) ) ) {
+  $early_discount = 300;
+}
+
 $register_data = array('user' => null, 'form' => null, 'entry' => null, 'accept' => null);
 global $wpdb;
 if (validate($register_data)) {
@@ -13,7 +21,7 @@ if (validate($register_data)) {
     $decision_result = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_2_ifr_decision WHERE user = %d", $user_result->id));
     if ($decision_result) {
       if (($decision_result->decision == 'comp') 
-          || (($decision_result->decision == 'approve') && ($decision_result->payment_due == 0))) {
+          || (($decision_result->decision == 'approve') && (($decision_result->payment_due - $early_discount) == 0))) {
         if ($wpdb->insert('wp_2_ifr_register', $accept_data)) {
           if ($_POST['accept'] == 1) {
             header('Location: https://itp.nyu.edu/camp/2014/registration-successful');
@@ -34,7 +42,7 @@ if (validate($register_data)) {
         $payment_data['cc_transaction_sig'] = $_POST['transactionSignature'];
 	$payment_data['cc_decision'] = $_POST['decision'];
 
-        if ($decision_result->payment_due == $payment_data['cc_amount']) {
+        if (($decision_result->payment_due - $early_discount) == $payment_data['cc_amount']) {
           if ($wpdb->insert('wp_2_ifr_payment', $payment_data)) {
             if ($wpdb->insert('wp_2_ifr_register', $accept_data)) {
               header('Location: https://itp.nyu.edu/camp/2014/payment-successful');
