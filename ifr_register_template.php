@@ -398,6 +398,11 @@ elseif (isset($_REQUEST['email'])) {
 <?php
     }
   }
+  else {
+?>
+<h2>Applicant not found, or applicant not yet accepted. If you wish to apply, please <a href="https://itp.nyu.edu/camp/2014/apply">apply here</a>.</h2>
+<?php
+  }
 }
 ?>
 
