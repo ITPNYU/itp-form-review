@@ -7,7 +7,12 @@ ifrApp.controller("PaymentCtrl", function ($scope, $http) {
   $scope.getPayment = function(entry) {
     for (var dIndex in $scope.payments) {
       if ($scope.payments[dIndex]['entry'] == entry) {
-        return $scope.payments[dIndex]['payment'];
+        if ($scope.payments[dIndex]['cc_decision'] == "ACCEPT") {
+          return $scope.payments[dIndex]['cc_amount'];
+        }
+        else {
+          return "payment error";
+        }
       }
     }
     return null;
