@@ -10,9 +10,6 @@ ifrApp.controller("PaymentCtrl", function ($scope, $http) {
         if ($scope.payments[dIndex]['cc_decision'] == "ACCEPT") {
           return $scope.payments[dIndex]['cc_amount'];
         }
-        else {
-          return "payment error";
-        }
       }
     }
     return null;
