@@ -143,8 +143,8 @@ function ifr_page() {
   var ifr_api = "' . network_site_url() . 'wp-content/plugins/itp-form-review/api/";
   var ifr_decision_message = {};
   ifr_decision_message["approve"] = ' . str_replace('\n', '%0A', json_encode(get_option('ifr_message_accept'))) . ';
-  ifr_decision_message["comp"] = ' . json_encode(get_option('ifr_message_comp')) . ';
-  ifr_decision_message["reject"] = ' . json_encode(get_option('ifr_message_reject')) . ';
+  ifr_decision_message["comp"] = ' . str_replace('\n', '%0A', json_encode(get_option('ifr_message_comp'))) . ';
+  ifr_decision_message["reject"] = ' . str_replace('\n', '%0A', json_encode(get_option('ifr_message_reject'))) . ';
 </script>';
   echo '<script type="text/javascript">';
   echo file_get_contents(plugin_dir_path(__FILE__) . '/js/entryCtrl.js');
