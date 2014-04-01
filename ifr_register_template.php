@@ -1,5 +1,12 @@
 <?php 
 get_header();
+date_default_timezone_set("America/New_York");
+$date = getdate();
+$early_discount = 0;
+// early bird discount for people who pay before April 15 2014
+if ( ($date['year'] <= 2014) && (($date['month'] <= 4) || (($date['month'] == 4) && ($date['day'] < 15)) ) ) {
+  $early_discount = 300;
+}
 ?>
 
 <h2>Register</h2>
@@ -35,17 +42,39 @@ elseif (isset($_REQUEST['email'])) {
   </form>
 <?php
     }
-    else if ($register_result && $payment_result && ($payment_result->cc_decision == "ACCEPT") && ($payment_result->cc_amount >= $decision_result->payment_due)) {
+    else if ($register_result && $payment_result && 
+             ($payment_result->cc_decision == "ACCEPT") && 
+             ($payment_result->cc_amount >= ($decision_result->payment_due - $early_discount))) {
 ?>
 <h2>Already Registered</h2>
 <p>Our records show that you have already registered and paid. Thanks! Stay tuned for more info about Camp soon!</p>
 <?php
     }
-    else if (($decision_result->decision == 'comp') || 
-      ($decision_result->decision == 'approve' && $decision_result->payment_due == 0)) {
+    else if ($decision_result->decision == 'comp') {
 ?>
 <h2>Acceptance</h2>
-<p>Congratulations! You sound like a great fit for ITP camp.  You are officially in.  Your admission is complimentary so we do not need any payment from you, but we do need you to let us know whether you are coming to Camp: 
+<p>Congratulations! You sound like a great fit for ITP camp.  You are officially in.  <b>Your admission is complimentary</b> so we do not need any payment from you, but we do need you to let us know whether you are coming to Camp:   
+
+<form action="https://itp.nyu.edu/camp/2014/registration-processing" method="POST">
+  <input type="hidden" name="user" value="<?php echo $decision_result->user; ?>" />
+  <input type="hidden" name="form" value="<?php echo $decision_result->form ?>" />
+  <input type="hidden" name="entry" value="<?php echo $decision_result->entry ?>" />
+  <input type="hidden" name="accept" value="1" />
+  <input type="submit" value="Yes, I'm coming to Camp!" /> 
+</form>
+<form action="https://itp.nyu.edu/camp/2014/registration-processing" method="POST">
+  <input type="hidden" name="user" value="<?php echo $decision_result->user; ?>" />
+  <input type="hidden" name="form" value="<?php echo $decision_result->form ?>" />
+  <input type="hidden" name="entry" value="<?php echo $decision_result->entry ?>" />
+  <input type="hidden" name="accept" value="0" />
+  <input type="submit" value="No, I'm not coming to Camp" />
+</form>
+<?php
+    }
+    else if ($decision_result->decision == 'approve' && ($decision_result->payment_due - $early_discount) == 0) {
+?>
+<h2>Acceptance</h2>
+<p>Congratulations! You sound like a great fit for ITP camp.  You are officially in.  <b>Your admission is complimentary if you register before April 15.</b> We do not need any payment from you, but we do need you to let us know whether you are coming to Camp: 
 
 <form action="https://itp.nyu.edu/camp/2014/registration-processing" method="POST">
   <input type="hidden" name="user" value="<?php echo $decision_result->user; ?>" />
@@ -69,8 +98,8 @@ elseif (isset($_REQUEST['email'])) {
 <p>Congratulations! You sound like a great fit for ITP camp.  You are officially in.</p>
 <p>Payment will reserve your spot. We will accept payments until June 1st, pending availability. Feel free to email <a href="mailto:campinfo@itp.nyu.edu">campinfo@itp.nyu.edu</a> if you have any questions.  We look forward to seeing you in June!</p>
 
-<h3>Payment Amount: $<?php echo $decision_result->payment_due; ?></h3>
-<p>You will be charged <strong>$<?php echo $decision_result->payment_due; ?></strong>. This amount already includes all applicable discounts.</p>
+<h3>Payment Amount: $<?php echo ($decision_result->payment_due - $early_discount); ?></h3>
+<p>You will be charged <strong>$<?php echo ($decision_result->payment_due - $early_discount); ?></strong>. This amount already includes all applicable discounts.</p>
 
 <h3>Contact/Billing Information</h3>
 <em> (all fields are required)</em>
@@ -79,8 +108,8 @@ elseif (isset($_REQUEST['email'])) {
   <input type="hidden" name="form" value="<?php echo $decision_result->form; ?>" />
   <input type="hidden" name="entry" value="<?php echo $decision_result->entry; ?>" />
   <input type="hidden" name="accept" value="1" />
-  <input type="hidden" name="AMOUNT_PAID" value="<?php echo $decision_result->payment_due; ?>" />
-  <input type="hidden" name="AMOUNT_EVT" id="AMOUNT_EVT" value="<?php echo $decision_result->payment_due; ?>" />
+  <input type="hidden" name="AMOUNT_PAID" value="<?php echo ($decision_result->payment_due - $early_discount); ?>" />
+  <input type="hidden" name="AMOUNT_EVT" id="AMOUNT_EVT" value="<?php echo ($decision_result->payment_due - $early_discount); ?>" />
   <input type="hidden" name="FORM_ID" value="<?php echo get_option('ifr_paygate_FORM_ID'); ?>" />
   <input type="hidden" name="ACCOUNT_EVT" value="<?php echo get_option('ifr_paygate_ACCOUNT_EVT'); ?>" />
   <input type="hidden" name="FUND_CODE_EVT" value="<?php echo get_option('ifr_paygate_FUND_CODE_EVT'); ?>" />

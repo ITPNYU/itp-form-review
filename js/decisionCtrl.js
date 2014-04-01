@@ -51,9 +51,6 @@ ifrApp.controller("DecisionCtrl", function ($scope, $http, $window) {
           discount = discount + 0.25;
         }
       }
-      if ((month < 4) || (month === 4 && mday <= 16)) {
-        discount = discount + 0.25;
-      }
     }
     
     var formData = {
