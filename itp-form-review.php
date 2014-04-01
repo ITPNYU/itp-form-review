@@ -143,7 +143,7 @@ function ifr_page() {
   var ifr_api = "' . network_site_url() . 'wp-content/plugins/itp-form-review/api/";
   var ifr_decision_message = {};
   // FIXME: hackish newline handling
-  ifr_decision_message["approve"] = ' . str_replace('\r\n', '%0A', json_encode(get_option('ifr_message_accept'))) . ';
+  ifr_decision_message["approve"] = ' . json_encode(get_option('ifr_message_accept')) . ';
   ifr_decision_message["comp"] = ' . str_replace('\r\n', '%0A', json_encode(get_option('ifr_message_comp'))) . ';
   ifr_decision_message["reject"] = ' . str_replace('\r\n', '%0A', json_encode(get_option('ifr_message_reject'))) . ';
 </script>';
