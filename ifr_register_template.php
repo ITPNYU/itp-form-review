@@ -23,15 +23,25 @@ elseif (isset($_REQUEST['email'])) {
   if ($user_result) {
     // lookup decision for that user
     $decision_result = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_2_ifr_decision WHERE user = %d AND (decision = 'approve' OR decision = 'comp') ", $user_result->id));
+    $register_result = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_2_ifr_register WHERE user = %d", $user_result->id));
     if (!$decision_result) {
 ?>
 <h2>Applicant not found, or applicant not yet accepted. If you wish to apply, please <a href="https://itp.nyu.edu/camp/2014/apply">apply here</a></h2>
-<h3>If you have been accepted to Camp already, please input your email address that you used in your application:</h3>
+<h3>If you have applied to Camp already, please input your email address that you used in your application:</h3>
   <form method="post" action="" id="email_form">
     <input type="text" id="email" name="email" size="35" value=""><br/>
     <input type="submit" name="submit" value="Submit"/>
   </form>
 <?php
+    }
+    else if ($register_result) {
+      $payment_result = $wpdb->get_row($wpdb->prepare("SELECT * FROM FROM wp_2_ifr_payment WHERE form = %d AND entry = %s", array($register_result->form, $register_result->entry)));
+      if ($payment_result) {
+?>
+<h2>Already Registered</h2>
+<p>Our records show that you have already registered and paid. Thanks! Stay tuned for more info about Camp soon!</p>
+<?php
+      }
     }
     else if (($decision_result->decision == 'comp') || 
       ($decision_result->decision == 'approve' && $decision_result->payment_due == 0)) {
