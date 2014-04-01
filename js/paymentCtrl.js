@@ -15,6 +15,6 @@ ifrApp.controller("PaymentCtrl", function ($scope, $http) {
         }
       }
     }
-    return null;
+    return '(no payment yet)';
   };
 });
