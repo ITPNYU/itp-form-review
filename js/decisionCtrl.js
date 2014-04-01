@@ -74,7 +74,7 @@ ifrApp.controller("DecisionCtrl", function ($scope, $http, $window) {
           "firstName": data["fname"],
           "registerLink": "https://itp.nyu.edu/camp/2014/register/?email=" + escape(data["email"])
         };
-        $window.open('mailto:' + email + '?subject=ITP%20Camp%20Application%20Status&body=' + escape(renderMessage(ifr_decision_message[data['decision']], messageData)));
+        $window.open('mailto:' + email + '?subject=ITP%20Camp%20Application%20Status&body=' + renderMessage(ifr_decision_message[data['decision']], messageData));
       })
       .error(function() {
         console.log('error');
