@@ -43,11 +43,13 @@ ifrApp.controller("DecisionCtrl", function ($scope, $http, $window) {
       discount = 1.0;
     }
     else {
-      if (affiliation['ITP Alumni'] != null) {
-        discount = discount + 0.5;
-      }
-      if (affiliation['ITP Camp Alumni'] != null) {
-        discount = discount + 0.25;
+      for (var i in affiliation) {
+        if (affiliation[i] == 'ITP Alumni') {
+          discount = discount + 0.5;
+        }
+        else if (affiliation[i] == 'ITP Camp Alumni') {
+          discount = discount + 0.25;
+        }
       }
       if ((month < 4) || (month === 4 && mday <= 16)) {
         discount = discount + 0.25;
