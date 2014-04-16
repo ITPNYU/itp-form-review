@@ -4,9 +4,9 @@ date_default_timezone_set("America/New_York");
 $date = getdate();
 $early_discount = 0;
 // early bird discount for people who pay before April 15 2014
-if ( ($date['year'] <= 2014) && (($date['month'] <= 4) || (($date['month'] == 4) && ($date['day'] < 16) && ($date['hour'] < 18)) ) ) {
+/*if ( ($date['year'] <= 2014) && (($date['month'] <= 4) || (($date['month'] == 4) && ($date['day'] < 16) && ($date['hour'] < 18)) ) ) {
   $early_discount = 300;
-}
+}*/
 ?>
 
 <h2>Register</h2>
