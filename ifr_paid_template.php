@@ -18,7 +18,7 @@ if (validate($register_data)) {
         $payment_data['entry'] = $_POST['ifr_entry'];
         $payment_data['cc_amount'] = $_POST['AMOUNT_PAID'];
         $payment_data['cc_time'] = $_POST['ccAuthReply_authorizedDateTime'];
-        $payment_data['cc_seq_no'] = $_POST['orderNumber'];
+        $payment_data['cc_seq_no'] = $_POST['req_reference_number'];
         $payment_data['cc_transaction_id'] = $_POST['pg_transaction_id'];
         $payment_data['cc_transaction_sig'] = $_POST['transactionSignature'];
         $payment_data['cc_decision'] = $_POST['decision'];
