@@ -129,7 +129,7 @@ elseif (isset($_REQUEST['email'])) {
   <input type="text" name="CITY" id="CITY" size="20" required="true" />
   <label for="STATE">State</label>
   <select id="STATE" name="STATE" required="true" >
-    <option value="NA">Non-US</option>
+    <option value="NA">Non-US/Canada</option>
     <option value="AL">Alabama</option>
     <option value="AK">Alaska</option>
     <option value="AZ">Arizona</option>
@@ -181,6 +181,19 @@ elseif (isset($_REQUEST['email'])) {
     <option value="WV">West Virginia</option>
     <option value="WI">Wisconsin</option>
     <option value="WY">Wyoming</option>
+    <option value="AB">Canada - Alberta</option>
+    <option value="BC">Canada - British Columbia</option>
+    <option value="MB">Canada - Manitoba</option>
+    <option value="NB">Canada - New Brunswick</option>
+    <option value="NL">Canada - Newfoundland and Labrador</option>
+    <option value="NS">Canada - Nova Scotia</option>
+    <option value="NT">Canada - Northwest Territories</option>
+    <option value="NU">Canada - Nunavut</option>
+    <option value="ON">Canada - Ontario</option>
+    <option value="PE">Canada - Prince Edward Island</option>
+    <option value="QC">Canada - Quebec</option>
+    <option value="SK">Canada - Saskatchewan</option>
+    <option value="YT">Canada - Yukon</option>
   </select>
   <label for="POSTAL_CODE">Postal Code</label>
   <input type="text" name="POSTAL_CODE" id="POSTAL_CODE" size="10" size="5" required="true" />
