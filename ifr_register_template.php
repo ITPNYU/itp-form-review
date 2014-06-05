@@ -456,7 +456,7 @@ elseif (isset($_REQUEST['email'])) {
 jQuery(document).ready(function() {
   function nonUS() {
     jQuery('select#STATELIST').attr('style', 'display:none;');
-    jQuery('input#STATEINPUT').val('')
+    jQuery('input#STATEINPUT')
       .attr('readonly', null)
       .attr('style', null);
     jQuery('input#STATE').val(jQuery('input#STATEINPUT').val());
