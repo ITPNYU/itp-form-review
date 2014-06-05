@@ -477,7 +477,7 @@ jQuery(document).ready(function() {
       });
   };
   
-  jQuery('select#STATELIST').change(function() {
+  jQuery('select#STATELIST').on('change', function() {
     if (jQuery(this).val() == 'NA') {
       nonUS();
     }
@@ -485,7 +485,7 @@ jQuery(document).ready(function() {
       US();
     }
   });
-  jQuery('select#COUNTRY').change(function() {
+  jQuery('select#COUNTRY').on('change', function() {
     if ((jQuery(this).val() == 'us') || (jQuery(this).val() == 'ca')) {
       US();
     }
