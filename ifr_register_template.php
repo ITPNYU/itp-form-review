@@ -453,44 +453,46 @@ elseif (isset($_REQUEST['email'])) {
 <p>If you need help, please contact us at (212) 998-1880 or email <a href="mailto:campinfo@itp.nyu.edu">campinfo@itp.nyu.edu</a>.</p>
 
 <script type="text/javascript">
-var nonUS = function() {
-  jQuery('input#STATE').val('');
-  jQuery('select#STATELIST').attr('style', 'display:none;')
-    .val('NA');
-  jQuery('input#STATEINPUT').val('')
-    .attr('readonly', null)
-    .attr('style', null)
-    .change(function() {
-      jQuery('input#STATE').val(jQuery('input#STATEINPUT').val());
-    });
-};
-
-var US = function() {
-  jQuery('input#STATE').val(jQuery('select#STATELIST').val());
-  jQuery('input#STATEINPUT').attr('readonly', true)
-    .val()
-    .attr('style', 'display:none;');
-  jQuery('select#STATELIST').attr('style', null)
-    .change(function() {
-      jQuery('input#STATE').val(jQuery('select#STATELIST').val());
-    });
-};
-
-jQuery('select#STATELIST').change(function() {
-  if (jQuery(this).val() == 'NA') {
-    nonUS();
-  }
-  else {
-    US();
-  }
-});
-jQuery('select#COUNTRY').change(function() {
-  if ((jQuery(this).val() == 'us') || (jQuery(this).val() == 'ca')) {
-    US();
-  }
-  else {
-    nonUS();
-  }
+jQuery(document).ready(function() {
+  var nonUS = function() {
+    jQuery('input#STATE').val('');
+    jQuery('select#STATELIST').attr('style', 'display:none;')
+      .val('NA');
+    jQuery('input#STATEINPUT').val('')
+      .attr('readonly', null)
+      .attr('style', null)
+      .on('change', function() {
+        jQuery('input#STATE').val(jQuery('input#STATEINPUT').val());
+      });
+  };
+  
+  var US = function() {
+    jQuery('input#STATE').val(jQuery('select#STATELIST').val());
+    jQuery('input#STATEINPUT').attr('readonly', true)
+      .val()
+      .attr('style', 'display:none;');
+    jQuery('select#STATELIST').attr('style', null)
+      .on('change', function() {
+        jQuery('input#STATE').val(jQuery('select#STATELIST').val());
+      });
+  };
+  
+  jQuery('select#STATELIST').change(function() {
+    if (jQuery(this).val() == 'NA') {
+      nonUS();
+    }
+    else {
+      US();
+    }
+  });
+  jQuery('select#COUNTRY').change(function() {
+    if ((jQuery(this).val() == 'us') || (jQuery(this).val() == 'ca')) {
+      US();
+    }
+    else {
+      nonUS();
+    }
+  });
 });
 </script>
 
