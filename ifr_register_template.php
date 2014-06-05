@@ -493,6 +493,8 @@ jQuery(document).ready(function() {
       nonUS();
     }
   });
+
+  US();
 });
 </script>
 
