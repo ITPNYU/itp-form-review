@@ -470,25 +470,25 @@ jQuery(document).ready(function() {
     jQuery('input#STATE').val(jQuery('select#STATELIST').val());
   };
   
-  jQuery('select#STATELIST').on('change', function() {
+  jQuery('select#STATELIST').on('click', function() {
     if (jQuery(this).val() == 'NA') {
       nonUS();
     }
     else {
       US();
     }
-    jQuery(this).trigger('blur');
   });
-  jQuery('select#COUNTRY').on('change', function() {
+
+  jQuery('select#COUNTRY').on('click', function() {
     if ((jQuery(this).val() == 'us') || (jQuery(this).val() == 'ca')) {
       US();
     }
     else {
       nonUS();
     }
-    jQuery(this).trigger('blur');
   });
-  jQuery('input#STATEINPUT').on('change', function() {
+
+  jQuery('input#STATEINPUT').on('keyup', function() {
     jQuery('input#STATE').val(jQuery('input#STATEINPUT').val());
   });
 
