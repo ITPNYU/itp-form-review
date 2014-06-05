@@ -480,6 +480,7 @@ jQuery(document).ready(function() {
     else {
       US();
     }
+    jQuery(this).blur();
   });
   jQuery('select#COUNTRY').on('change', function() {
     if ((jQuery(this).val() == 'us') || (jQuery(this).val() == 'ca')) {
@@ -488,6 +489,7 @@ jQuery(document).ready(function() {
     else {
       nonUS();
     }
+    jQuery(this).blur();
   });
 
   US();
