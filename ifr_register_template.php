@@ -459,15 +459,21 @@ var nonUS = function() {
     .val('NA');
   jQuery('input#STATEINPUT').val('')
     .attr('readonly', null)
-    .attr('style', null);
+    .attr('style', null)
+    .change(function() {
+      jQuery('input#STATE').val(jQuery('input#STATEINPUT').val());
+    });
 };
 
 var US = function() {
   jQuery('input#STATE').val(jQuery('select#STATELIST').val());
   jQuery('input#STATEINPUT').attr('readonly', true)
-    .val(jQuery('select#STATELIST').val())
+    .val()
     .attr('style', 'display:none;');
-  jQuery('select#STATELIST').attr('style', null);
+  jQuery('select#STATELIST').attr('style', null)
+    .change(function() {
+      jQuery('input#STATE').val(jQuery('select#STATELIST').val());
+    });
 };
 
 jQuery('select#STATELIST').change(function() {
