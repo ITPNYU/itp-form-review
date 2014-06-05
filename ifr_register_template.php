@@ -455,7 +455,8 @@ elseif (isset($_REQUEST['email'])) {
 <script type="text/javascript">
 jQuery(document).ready(function() {
   function nonUS() {
-    jQuery('select#STATELIST').attr('style', 'display:none;');
+    jQuery('select#STATELIST').attr('style', 'display:none;')
+      .val('NA');
     jQuery('input#STATEINPUT')
       .attr('readonly', null)
       .attr('style', null);
@@ -473,11 +474,12 @@ jQuery(document).ready(function() {
   jQuery('select#STATELIST').on('change', function() {
     if (jQuery(this).val() == 'NA') {
       nonUS();
+      jQuery('input#STATEINPUT').focus();
     }
     else {
       US();
+      jQuery('input#POSTAL_CODE').focus();
     }
-    jQuery('input#POSTAL_CODE').focus();
   });
 
   jQuery('select#COUNTRY').on('change', function() {
