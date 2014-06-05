@@ -470,14 +470,13 @@ jQuery(document).ready(function() {
     jQuery('input#STATE').val(jQuery('select#STATELIST').val());
   };
   
-  jQuery('select#STATELIST').on('change', function() {
+  jQuery('select#STATELIST').on('mouseup', function() {
     if (jQuery(this).val() == 'NA') {
       nonUS();
     }
     else {
       US();
     }
-    jQuery(this).blur();
   });
 
   jQuery('select#COUNTRY').on('change', function() {
@@ -487,7 +486,6 @@ jQuery(document).ready(function() {
     else {
       nonUS();
     }
-    jQuery(this).blur();
   });
 
   jQuery('input#STATEINPUT').on('keyup', function() {
