@@ -488,6 +488,9 @@ jQuery(document).ready(function() {
     }
     jQuery(this).trigger('blur');
   });
+  jQuery('input#STATEINPUT').on('change', function() {
+    jQuery('input#STATE').val(jQuery('input#STATEINPUT').val());
+  });
 
   US();
 });
