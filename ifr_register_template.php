@@ -470,7 +470,7 @@ jQuery(document).ready(function() {
     jQuery('input#STATE').val(jQuery('select#STATELIST').val());
   };
   
-  jQuery('select#STATELIST').on('mouseup', function() {
+  jQuery('select#STATELIST').on('change', function() {
     if (jQuery(this).val() == 'NA') {
       nonUS();
     }
