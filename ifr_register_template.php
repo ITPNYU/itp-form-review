@@ -162,7 +162,7 @@ elseif (isset($_REQUEST['email'])) {
     <option value="NH">New Hampshire</option>
     <option value="NJ">New Jersey</option>
     <option value="NM">New Mexico</option>
-    <option value="NY" selected>New York</option>
+    <option value="NY">New York</option>
     <option value="NC">North Carolina</option>
     <option value="ND">North Dakota</option>
     <option value="OH">Ohio</option>
@@ -460,7 +460,8 @@ jQuery('select#STATELIST').change(function() {
   }
   else {
     jQuery('input#STATE').val(jQuery('select#STATELIST').val());
-    jQuery('input#STATEINPUT').attr('readonly', true);
+    jQuery('input#STATEINPUT').attr('readonly', true)
+      .val(jQuery('select#STATELIST').val());
   }
 });
 </script>
