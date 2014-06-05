@@ -128,7 +128,7 @@ elseif (isset($_REQUEST['email'])) {
   <label for="CITY">City:</label>
   <input type="text" name="CITY" id="CITY" size="20" required="true" />
   <label for="STATELIST">State</label>
-  <select id="STATELIST" name="STATE" required="true" >
+  <select id="STATELIST" required="true" >
     <option value="NA">Non-US/Canada</option>
     <option value="AL">Alabama</option>
     <option value="AK">Alaska</option>
