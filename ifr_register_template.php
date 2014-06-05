@@ -162,7 +162,7 @@ elseif (isset($_REQUEST['email'])) {
     <option value="NH">New Hampshire</option>
     <option value="NJ">New Jersey</option>
     <option value="NM">New Mexico</option>
-    <option value="NY">New York</option>
+    <option value="NY" selected>New York</option>
     <option value="NC">North Carolina</option>
     <option value="ND">North Dakota</option>
     <option value="OH">Ohio</option>
@@ -196,7 +196,7 @@ elseif (isset($_REQUEST['email'])) {
     <option value="YT">Canada - Yukon</option>
   </select>
   <input type="hidden" id="STATE" name="STATE" required />
-  <input type="text" id="STATEINPUT" readonly />
+  <input type="text" id="STATEINPUT" value="NY" readonly />
   <label for="POSTAL_CODE">Postal Code</label>
   <input type="text" name="POSTAL_CODE" id="POSTAL_CODE" size="10" size="5" required="true" />
   <label for="COUNTRY">Country</label>
