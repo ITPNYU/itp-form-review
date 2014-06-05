@@ -470,7 +470,7 @@ jQuery(document).ready(function() {
     jQuery('input#STATE').val(jQuery('select#STATELIST').val());
   };
   
-  jQuery('select#STATELIST').on('click', function() {
+  jQuery('select#STATELIST').on('change', function() {
     if (jQuery(this).val() == 'NA') {
       nonUS();
     }
@@ -479,7 +479,7 @@ jQuery(document).ready(function() {
     }
   });
 
-  jQuery('select#COUNTRY').on('click', function() {
+  jQuery('select#COUNTRY').on('change', function() {
     if ((jQuery(this).val() == 'us') || (jQuery(this).val() == 'ca')) {
       US();
     }
@@ -488,7 +488,7 @@ jQuery(document).ready(function() {
     }
   });
 
-  jQuery('input#STATEINPUT').on('keyup', function() {
+  jQuery('input#STATEINPUT').on('change', function() {
     jQuery('input#STATE').val(jQuery('input#STATEINPUT').val());
   });
 
