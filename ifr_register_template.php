@@ -453,18 +453,36 @@ elseif (isset($_REQUEST['email'])) {
 <p>If you need help, please contact us at (212) 998-1880 or email <a href="mailto:campinfo@itp.nyu.edu">campinfo@itp.nyu.edu</a>.</p>
 
 <script type="text/javascript">
+var nonUS = function() {
+  jQuery('input#STATE').val('');
+  jQuery('input#STATEINPUT').attr('readonly', null)
+    .val('')
+    .attr('style', null);
+  jQuery('select#STATELIST').attr('style', 'display:none;');
+};
+
+var US = function() {
+  jQuery('input#STATE').val(jQuery('select#STATELIST').val());
+  jQuery('input#STATEINPUT').attr('readonly', true)
+    .val(jQuery('select#STATELIST').val())
+    .attr('style', 'display:none;');
+  jQuery('select#STATELIST').attr('style', null);
+};
+
 jQuery('select#STATELIST').change(function() {
   if (jQuery(this).val() == 'NA') {
-    jQuery('input#STATE').val('');
-    jQuery('input#STATEINPUT').attr('readonly', null)
-      .val('')
-      .attr('style', null);
+    nonUS();
   }
   else {
-    jQuery('input#STATE').val(jQuery('select#STATELIST').val());
-    jQuery('input#STATEINPUT').attr('readonly', true)
-      .val(jQuery('select#STATELIST').val())
-      .attr('style', 'display:none;');
+    US();
+  }
+});
+jQuery('select#COUNTRY').change(function() {
+  if ((jQuery(this).val() != 'US') && (jQuery(this).val() != 'CA')) {
+    nonUS();
+  }
+  else {
+    US();
   }
 });
 </script>
