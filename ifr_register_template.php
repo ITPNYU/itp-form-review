@@ -469,7 +469,7 @@ jQuery(document).ready(function() {
   function US() {
     jQuery('input#STATE').val(jQuery('select#STATELIST').val());
     jQuery('input#STATEINPUT').attr('readonly', true)
-      .val()
+      .val('')
       .attr('style', 'display:none;');
     jQuery('select#STATELIST').attr('style', null)
       .on('change', function() {
