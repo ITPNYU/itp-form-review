@@ -457,6 +457,7 @@ jQuery(document).ready(function() {
   function nonUS() {
     jQuery('input#STATE').val('');
     jQuery('select#STATELIST').attr('style', 'display:none;')
+      .off('change')
       .val('NA');
     jQuery('input#STATEINPUT').val('')
       .attr('readonly', null)
@@ -469,6 +470,7 @@ jQuery(document).ready(function() {
   function US() {
     jQuery('input#STATE').val(jQuery('select#STATELIST').val());
     jQuery('input#STATEINPUT').attr('readonly', true)
+      .off('change')
       .val('')
       .attr('style', 'display:none;');
     jQuery('select#STATELIST').attr('style', null)
