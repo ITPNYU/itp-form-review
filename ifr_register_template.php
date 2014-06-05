@@ -455,8 +455,7 @@ elseif (isset($_REQUEST['email'])) {
 <script type="text/javascript">
 jQuery(document).ready(function() {
   function nonUS() {
-    jQuery('select#STATELIST').attr('style', 'display:none;')
-      .val('NA');
+    jQuery('select#STATELIST').attr('style', 'display:none;');
     jQuery('input#STATEINPUT').val('')
       .attr('readonly', null)
       .attr('style', null);
@@ -464,7 +463,7 @@ jQuery(document).ready(function() {
   };
   
   function US() {
-    jQuery('input#STATEINPUT').val('')
+    jQuery('input#STATEINPUT')
       .attr('readonly', true)
       .attr('style', 'display:none;');
     jQuery('select#STATELIST').attr('style', null);
@@ -478,7 +477,7 @@ jQuery(document).ready(function() {
     else {
       US();
     }
-    jQuery(this).blur();
+    jQuery(this).trigger('blur');
   });
   jQuery('select#COUNTRY').on('change', function() {
     if ((jQuery(this).val() == 'us') || (jQuery(this).val() == 'ca')) {
@@ -487,7 +486,7 @@ jQuery(document).ready(function() {
     else {
       nonUS();
     }
-    jQuery(this).blur();
+    jQuery(this).trigger('blur');
   });
 
   US();
