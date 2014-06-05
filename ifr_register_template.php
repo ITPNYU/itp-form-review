@@ -455,10 +455,11 @@ elseif (isset($_REQUEST['email'])) {
 <script type="text/javascript">
 var nonUS = function() {
   jQuery('input#STATE').val('');
-  jQuery('input#STATEINPUT').attr('readonly', null)
-    .val('NA')
+  jQuery('select#STATELIST').attr('style', 'display:none;')
+    .val('NA');
+  jQuery('input#STATEINPUT').val('')
+    .attr('readonly', null)
     .attr('style', null);
-  jQuery('select#STATELIST').attr('style', 'display:none;');
 };
 
 var US = function() {
