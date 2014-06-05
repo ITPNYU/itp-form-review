@@ -457,26 +457,20 @@ jQuery(document).ready(function() {
   function nonUS() {
     jQuery('input#STATE').val('');
     jQuery('select#STATELIST').attr('style', 'display:none;')
-      .off('change')
       .val('NA');
     jQuery('input#STATEINPUT').val('')
       .attr('readonly', null)
-      .attr('style', null)
-      .on('change', function() {
-        jQuery('input#STATE').val(jQuery('input#STATEINPUT').val());
-      });
+      .attr('style', null);
+    jQuery('input#STATE').val(jQuery('input#STATEINPUT').val());
   };
   
   function US() {
     jQuery('input#STATE').val(jQuery('select#STATELIST').val());
     jQuery('input#STATEINPUT').attr('readonly', true)
-      .off('change')
       .val('')
       .attr('style', 'display:none;');
-    jQuery('select#STATELIST').attr('style', null)
-      .on('change', function() {
-        jQuery('input#STATE').val(jQuery('select#STATELIST').val());
-      });
+    jQuery('select#STATELIST').attr('style', null);
+    jQuery('input#STATE').val(jQuery('select#STATELIST').val());
   };
   
   jQuery('select#STATELIST').on('change', function() {
