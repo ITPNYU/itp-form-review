@@ -478,11 +478,11 @@ jQuery('select#STATELIST').change(function() {
   }
 });
 jQuery('select#COUNTRY').change(function() {
-  if ((jQuery(this).val() != 'US') && (jQuery(this).val() != 'CA')) {
-    nonUS();
+  if ((jQuery(this).val() == 'US') || (jQuery(this).val() == 'CA')) {
+    US();
   }
   else {
-    US();
+    nonUS();
   }
 });
 </script>
