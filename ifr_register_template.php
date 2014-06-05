@@ -456,12 +456,15 @@ elseif (isset($_REQUEST['email'])) {
 jQuery('select#STATELIST').change(function() {
   if (jQuery(this).val() == 'NA') {
     jQuery('input#STATE').val('');
-    jQuery('input#STATEINPUT').attr('readonly', null);
+    jQuery('input#STATEINPUT').attr('readonly', null)
+      .val('')
+      .attr('style', null);
   }
   else {
     jQuery('input#STATE').val(jQuery('select#STATELIST').val());
     jQuery('input#STATEINPUT').attr('readonly', true)
-      .val(jQuery('select#STATELIST').val());
+      .val(jQuery('select#STATELIST').val())
+      .attr('style', 'display:none;');
   }
 });
 </script>
