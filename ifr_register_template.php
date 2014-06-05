@@ -478,7 +478,7 @@ jQuery('select#STATELIST').change(function() {
   }
 });
 jQuery('select#COUNTRY').change(function() {
-  if ((jQuery(this).val() == 'US') || (jQuery(this).val() == 'CA')) {
+  if ((jQuery(this).val() == 'us') || (jQuery(this).val() == 'ca')) {
     US();
   }
   else {
