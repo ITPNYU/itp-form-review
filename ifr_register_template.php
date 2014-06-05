@@ -127,8 +127,8 @@ elseif (isset($_REQUEST['email'])) {
   <input type="text" name="ADDRESS_LINE_1" id="ADDRESS_LINE_1" size="35" required="true" />
   <label for="CITY">City:</label>
   <input type="text" name="CITY" id="CITY" size="20" required="true" />
-  <label for="STATE">State</label>
-  <select id="STATE" name="STATE" required="true" >
+  <label for="STATELIST">State</label>
+  <select id="STATELIST" name="STATE" required="true" >
     <option value="NA">Non-US/Canada</option>
     <option value="AL">Alabama</option>
     <option value="AK">Alaska</option>
@@ -195,6 +195,8 @@ elseif (isset($_REQUEST['email'])) {
     <option value="SK">Canada - Saskatchewan</option>
     <option value="YT">Canada - Yukon</option>
   </select>
+  <input type="hidden" id="STATE" name="STATE" required />
+  <input type="text" id="STATEINPUT" readonly />
   <label for="POSTAL_CODE">Postal Code</label>
   <input type="text" name="POSTAL_CODE" id="POSTAL_CODE" size="10" size="5" required="true" />
   <label for="COUNTRY">Country</label>
@@ -449,6 +451,19 @@ elseif (isset($_REQUEST['email'])) {
 
 <h3>Questions? Problems?</h3>
 <p>If you need help, please contact us at (212) 998-1880 or email <a href="mailto:campinfo@itp.nyu.edu">campinfo@itp.nyu.edu</a>.</p>
+
+<script type="text/javascript">
+jQuery('select#STATELIST').change(function() {
+  if (jQuery(this).val() == 'NA') {
+    jQuery('input#STATE').val('');
+    jQuery('input#STATEINPUT').attr('readonly', null);
+  }
+  else {
+    jQuery('input#STATE').val(jQuery('select#STATELIST').val());
+    jQuery('input#STATEINPUT').attr('readonly', true);
+  }
+});
+</script>
 
 <?php
 get_footer();
